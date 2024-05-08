@@ -1,5 +1,6 @@
 {
   "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "imports": {
+    "rss": "jsr:@maxim-mazurok/sax-ts@1.2.13"
   }
 }
