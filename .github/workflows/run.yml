@@ -1,0 +1,19 @@
+on:
+  schedule:
+    #- cron: '*/10 * * * *'
+    - cron: "0 0 * * *"
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - uses: actions/cache@v4
+        with:
+          path: db/
+          key: db
+
+      - run: deno run ./main.ts
