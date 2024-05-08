@@ -15,8 +15,8 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: |
-            db/
-            ${{ grep "DENO_DIR" | cut -d \" -f 2 }}
+            ./db/
+            ${{ grep "DENO_DIR" | cut -d \" -f 2 }}/
           key: deno-deps-db
 
       - run: deno run ./main.ts
