@@ -11,9 +11,12 @@ jobs:
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
+
       - uses: actions/cache@v4
         with:
-          path: db/
-          key: db
+          path: |
+            db/
+            ${{ grep "DENO_DIR" | cut -d \" -f 2 }}
+          key: deno-deps-db
 
       - run: deno run ./main.ts
