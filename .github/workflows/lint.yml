@@ -1,0 +1,20 @@
+on:
+  push:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - uses: actions/cache@v4
+        with:
+          # path: ${{ grep 'DENO_DIR' | cut -d '"' -f 2 }}/
+          path: /home/runner/.cache/deno
+          key: deno-deps
+
+      - run: deno lint --unstable
