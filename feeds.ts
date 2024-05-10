@@ -1,8 +1,8 @@
 const feeds: Array<{
-  name: String,
-  url: String,
-  icon?: String,
-  host?: String, // Proxyしたフィードのホスト名
+  name: string,
+  url: string,
+  icon?: string,
+  host?: string, // Proxyしたフィードのホスト名
 }> = [
   {
     name: "虚構新聞",
