@@ -26,6 +26,8 @@ jobs:
           key: deno-deps
 
       - run: deno run ./main.ts
+        env:
+          WEBHOOKS: ${{ secrets.WebHooks }}
 
       - run: |
           git config user.name "github-actions[bot]"
