@@ -19,6 +19,6 @@ export default rawFeeds.map((feed) => ({
   name: feed.name,
   url: feed.url,
   icon: feed.icon ?? undefined,
-  host: feed.host ?? new URL(host.url).host,
+  host: feed.host ?? new URL(feed.url).host,
   webhook: webhooks[feed.base ?? feed.url],
 }));;
