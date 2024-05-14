@@ -14,9 +14,12 @@ feeds.forEach(
       if(!res.ok) {
         invalidFeeds.push(feed.host ?? feed.url);
       }
-      parseFeed(await res.text());
+      const feed = await parseFeed(await res.text());
+      feed.entries.forEach((entry) => {
+        console.log(entry);
+      });
     }
-  )
+  ) // .catch();
 );
 
 await kv.close();
