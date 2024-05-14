@@ -1,0 +1,26 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@maxim-mazurok/sax-ts@1.2.13": "jsr:@maxim-mazurok/sax-ts@1.2.13",
+      "jsr:@mikaelporttila/rss@1.1.0": "jsr:@mikaelporttila/rss@1.1.0"
+    },
+    "jsr": {
+      "@maxim-mazurok/sax-ts@1.2.13": {
+        "integrity": "9f2f9a3ac1b142400940a4c9e916656fe63d4710a78102aeb8e08e863de2c76d"
+      },
+      "@mikaelporttila/rss@1.1.0": {
+        "integrity": "08122f685bd5671313e9cab413ac1ced9e7b58017d0e69ec569f9e75d2159446",
+        "dependencies": [
+          "jsr:@maxim-mazurok/sax-ts@1.2.13"
+        ]
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "jsr:@mikaelporttila/rss@1.1.0"
+    ]
+  }
+}
