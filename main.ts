@@ -16,7 +16,7 @@ feeds.forEach(
       }
       const feed = await parseFeed(await res.text());
       feed.entries.forEach((entry) => {
-        console.log(entry);
+        console.log(feed);
       });
     }
   ) // .catch();
