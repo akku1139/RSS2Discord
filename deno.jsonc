@@ -1,6 +1,6 @@
 {
   "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "imports": {
-    "rss": "jsr:@mikaelporttila/rss@1.1.0",
+    "rss": "jsr:@mikaelporttila/rss@1.1.1",
   }
 }
