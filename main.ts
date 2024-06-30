@@ -2,7 +2,6 @@ import { parseFeed } from "rss";
 
 import feeds from "./feeds.ts";
 
-const kv = await Deno.openKv("db/main.db");
 
 let invalidFeeds: Array<string> = [];
 
@@ -21,5 +20,3 @@ feeds.forEach(
     }
   ) // .catch();
 );
-
-await kv.close();
