@@ -13,8 +13,8 @@ jobs:
 
       - uses: actions/cache@v4
         with:
-          # path: ${{ grep 'DENO_DIR' | cut -d '"' -f 2 }}/
           path: /home/runner/.cache/deno
-          key: deno-deps
+          restore-keys: deno-deps-
+          key: deno-deps-${{ hashFiles('./deno.jsonc') }}
 
       - run: deno lint --unstable

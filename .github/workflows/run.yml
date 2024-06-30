@@ -22,11 +22,11 @@ jobs:
 
       - uses: actions/cache@v4
         with:
-          # path: ${{ grep 'DENO_DIR' | cut -d '"' -f 2 }}/
-          path: /home/runner/.cache/deno/
-          key: deno-deps
+          path: /home/runner/.cache/deno
+          restore-keys: deno-deps-
+          key: deno-deps-${{ hashFiles('./deno.jsonc') }}
 
-      - run: deno run --unstable-kv --allow-env="WEBHOOKS" --allow-net --allow-read=./db/ --allow-write=./db/ ./main.ts
+      - run: deno run --unstable-kv --allow-env="WEBHOOKS" --allow-net --allow-read=. --allow-write=. ./main.ts
         env:
           WEBHOOKS: ${{ secrets.WebHooks }}
 
