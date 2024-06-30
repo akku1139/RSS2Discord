@@ -16,5 +16,6 @@ jobs:
           path: /home/runner/.cache/deno
           restore-keys: deno-deps-
           key: deno-deps-${{ hashFiles('./deno.jsonc') }}
+          save-always: true
 
       - run: deno lint --unstable

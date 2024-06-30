@@ -25,6 +25,7 @@ jobs:
           path: /home/runner/.cache/deno
           restore-keys: deno-deps-
           key: deno-deps-${{ hashFiles('./deno.jsonc') }}
+          save-always: true
 
       - run: deno run --unstable-kv --allow-env="WEBHOOKS" --allow-net --allow-read=. --allow-write=. ./main.ts
         env:
