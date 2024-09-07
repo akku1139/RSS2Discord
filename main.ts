@@ -46,6 +46,7 @@ feeds.forEach(
 
           if(r.ok) {
             db[url] = "a"
+            console.log(url)
             break
           } else if(retryCount > 5) {
             break
