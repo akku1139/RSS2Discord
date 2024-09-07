@@ -16,14 +16,27 @@ feeds.forEach(
 
     if(typeof feed.system === "undefined") {
       const data = await parseFeed(await res.text())
-      data.entries.forEach((entry) => {
-        console.log(entry)
+      data.entries.forEach(async (e) => {
+        const url = e.links[0].href
+        await fetch(feed.webhook, {
+          headers: { 'Content-type': "application/json" },
+          body: JSON.stringify({
+            username: feed.name,
+            avatar_url: feed.icon,
+            embeds: [{
+              url,
+              color: 16777215,
+              title: e?.title.value.substr(0, 256).padStart(1, "-"),
+              description: e?.description.value.substr(0, 4096),
+            }]
+          })
+        })
       })
-    } else {
-      const data = await feed.system.parser(
-        await feed.system.loader(res)
-      )
-    }
+    } // else {
+      // const data = await feed.system.parser(
+      //   await feed.system.loader(res)
+      // )
+    // }
   }) // .catch();
 )
 
