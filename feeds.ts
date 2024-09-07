@@ -14,12 +14,9 @@ const rawFeeds: Array<RawFeed> = [
   },
 ]
 
-const webhooks = JSON.parse(
-  await (
-    await fetch(
-      Deno.env.get("WEBHOOK_URL")
-    )
-  ).json()) as {
+const webhooks = await (
+  await fetch(Deno.env.get("WEBHOOK_URL"))
+).json() as {
   [key: string]: string
 }
 
