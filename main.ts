@@ -19,6 +19,7 @@ feeds.forEach(
       data.entries.forEach(async (e) => {
         const url = e.links[0].href
         await fetch(feed.webhook, {
+          method: "POST",
           headers: { 'Content-type': "application/json" },
           body: JSON.stringify({
             username: feed.name,
@@ -28,6 +29,8 @@ feeds.forEach(
               color: 16777215,
               title: e?.title.value.substr(0, 256).padStart(1, "-"),
               description: e?.description.value.substr(0, 4096),
+              timestamp: e?.published,
+              thumbnail: (e?.attachments ?? [])[0]?.url
             }]
           })
         })
