@@ -1,7 +1,7 @@
 import { parseFeed } from "rss"
 
 import feeds from "./feeds.ts"
-import { sleep } from "./utils.js"
+import { sleep } from "./utils.ts"
 
 const db = JSON.parse(Deno.readTextFileSync("./db.json")) as {[key: string]: "a"}
 
