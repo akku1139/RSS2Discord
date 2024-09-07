@@ -1,4 +1,4 @@
-export const addSIPrefix = (e) => {
+export const addSIPrefix = (e: string) => {
   const units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"];
   let o = parseFloat(e);
   let n = 0
@@ -9,9 +9,9 @@ export const addSIPrefix = (e) => {
   return o.toFixed(2) + " " + units[n]
 }
 
-export const timeSince = (e) => {
+export const timeSince = (e: number) => {
   let t = Math.floor(e / 31536e3);
   return t > 1 ? t + " y" : (t = Math.floor(e / 2592e3)) > 1 ? t + " months" : (t = Math.floor(e / 86400)) > 1 ? t + " days" : (t = Math.floor(e / 3600)) > 1 ? t + " hours" : (t = Math.floor(e / 60)) > 1 ? t + " min" : "NOW"
 }
 
-export const sleep = s => new Promise(resolve => setTimeout(resolve, 1000 * s))
+export const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, 1000 * s))

@@ -14,8 +14,12 @@ const rawFeeds: Array<RawFeed> = [
   },
 ]
 
+const WEBHOOK_URL = Deno.env.get("WEBHOOK_URL") ?? ""
+if(WEBHOOK_URL === "") {
+  throw new Error("Env WEBHOOK_URL is not set.")
+}
 const webhooks = await (
-  await fetch(Deno.env.get("WEBHOOK_URL"))
+  await fetch(WEBHOOK_URL)
 ).json() as {
   [key: string]: string
 }
