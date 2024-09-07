@@ -43,6 +43,7 @@ feeds.forEach(
               }]
             })
           })
+
           if(r.ok) {
             db[url] = "a"
             break
@@ -65,8 +66,7 @@ feeds.forEach(
   }) // .catch();
 )
 
-
-
+console.log(db)
 console.log("failed feeds", invalidFeeds)
 
 Deno.writeTextFileSync("./db.json", JSON.stringify(db))
