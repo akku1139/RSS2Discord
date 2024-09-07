@@ -9,14 +9,19 @@ const invalidFeeds: Array<string> = []
 
 feeds.forEach(
   (feed) => {
-    console.log(feed.name)
     fetch(feed.url).then(async (res) => {
       if(!res.ok) {
         invalidFeeds.push(feed.host ?? feed.url);
       }
 
       if(typeof feed.system === "undefined") {
-        const data = await parseFeed(await res.text())
+        let data
+        try {
+          data = await parseFeed(await res.text())
+        } catch(e) {
+          console.error(feed.name, e)
+          return
+        }
         data.entries.forEach(async (e) => {
           const url = e.links[0].href
           if(typeof url === "undefined") {
