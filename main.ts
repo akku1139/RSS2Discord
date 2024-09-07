@@ -34,22 +34,28 @@ feeds.forEach(
 
           let retryCount = 0
           while(true) {
-            const r = await fetch(feed.webhook, {
-              method: "POST",
-              headers: { 'Content-type': "application/json" },
-              body: JSON.stringify({
-                username: feed.name,
-                avatar_url: feed.icon,
-                embeds: [{
-                  url,
-                  color: 16777215,
-                  title: e?.title?.value?.substr(0, 256).padStart(1, "-"),
-                  description: e?.description?.value?.substr(0, 4096),
-                  timestamp: e?.published,
-                  thumbnail: (e?.attachments ?? [])[0]?.url
-                }]
+            let r
+            try {
+              r = await fetch(feed.webhook, {
+                method: "POST",
+                headers: { 'Content-type': "application/json" },
+                body: JSON.stringify({
+                  username: feed.name,
+                  avatar_url: feed.icon,
+                  embeds: [{
+                    url,
+                    color: 16777215,
+                    title: e?.title?.value?.substr(0, 256).padStart(1, "-"),
+                    description: e?.description?.value?.substr(0, 4096),
+                    timestamp: e?.published,
+                    thumbnail: (e?.attachments ?? [])[0]?.url
+                  }]
+                })
               })
-            })
+            } catch(e) {
+              console.error(feed.name, url, e)
+              break
+            }
 
             if(r.ok) {
               db.set([url], "a")
