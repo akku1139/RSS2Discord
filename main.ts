@@ -70,6 +70,8 @@ feeds.forEach(
         //   await feed.system.loader(res)
         // )
       // }
-    }) // .catch();
+    }).catch((e) => {
+      console.error(e)
+    });
   }
 )
