@@ -3,7 +3,7 @@ import { parseFeed } from "rss"
 import feeds from "./feeds.ts"
 import { sleep } from "./utils.ts"
 
-const db = JSON.parse(Deno.readTextFileSync("./db.json")) as {[key: string]: "a"}
+const db = await Deno.openKv("./data.db")
 
 const invalidFeeds: Array<string> = []
 
@@ -21,7 +21,7 @@ feeds.forEach(
           throw new Error(`in feed ${feed.name} (${feed.url}): url is undefined`)
         }
 
-        if(Object.hasOwn(db, url)) {
+        if((await db.get([url])).value !== null) {
           return
         }
 
@@ -45,7 +45,7 @@ feeds.forEach(
           })
 
           if(r.ok) {
-            db[url] = "a"
+            db.set([url], "a")
             console.log(url)
             break
           } else if(retryCount > 5) {
@@ -66,8 +66,3 @@ feeds.forEach(
     // }
   }) // .catch();
 )
-
-console.log(db)
-console.log("failed feeds", invalidFeeds)
-
-Deno.writeTextFileSync("./db.json", JSON.stringify(db))
