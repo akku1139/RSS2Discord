@@ -4,8 +4,9 @@ on:
     - cron: '*/5 * * * *'
 
 concurrency:
-    group: main
-    cancel-in-progress: true
+  group: main
+  # 先の実行がキャンセルされるため
+  #cancel-in-progress: true
 
 permissions:
   contents: write
@@ -24,7 +25,7 @@ jobs:
         with:
           path: /home/runner/.cache/deno
           restore-keys: deno-deps-
-          key: deno-deps-${{ hashFiles('./deno.jsonc') }}
+          key: deno-deps-${{ hashFiles('./deno.lock') }}
           save-always: true
 
       - run: deno run --unstable-kv --allow-env="WEBHOOKS" --allow-net --allow-read=. --allow-write=. ./main.ts
@@ -36,6 +37,6 @@ jobs:
            git config user.name "github-actions[bot]"
            git config user.email "github-actions[bot]@users.noreply.github.com"
            git add -A
-           git commit -m "DB"
+           git commit -m "Run"
            git push
          fi
