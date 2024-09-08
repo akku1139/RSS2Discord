@@ -66,6 +66,7 @@ feeds.forEach(
               break
             } else if(r.status === 400) {
               console.log("400 Bad Request", feed.name, url, body)
+              break
             } else if(r.status === 429) {
               await sleep((await r.json()).retry_after)
               retryCount ++
