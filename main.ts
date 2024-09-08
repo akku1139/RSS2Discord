@@ -65,6 +65,7 @@ feeds.forEach(
             } else if(r.status === 429) {
               await sleep((await r.json()).retry_after)
               retryCount ++
+              continue
             } else {
               console.error(r)
               break
