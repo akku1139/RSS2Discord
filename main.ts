@@ -32,6 +32,19 @@ feeds.forEach(
             return
           }
 
+          const body = {
+            username: feed.name,
+            avatar_url: feed.icon,
+            embeds: [{
+              url,
+              color: 16777215,
+              title: e?.title?.value?.substr(0, 256).padStart(1, "-"),
+              description: e?.description?.value?.substr(0, 4096),
+              timestamp: e?.published,
+              thumbnail: (e?.attachments ?? [])[0]?.url
+            }]
+          }
+
           let retryCount = 0
           while(true) {
             let r: Response
@@ -39,18 +52,7 @@ feeds.forEach(
               r = await fetch(feed.webhook, {
                 method: "POST",
                 headers: { 'Content-type': "application/json" },
-                body: JSON.stringify({
-                  username: feed.name,
-                  avatar_url: feed.icon,
-                  embeds: [{
-                    url,
-                    color: 16777215,
-                    title: e?.title?.value?.substr(0, 256).padStart(1, "-"),
-                    description: e?.description?.value?.substr(0, 4096),
-                    timestamp: e?.published,
-                    thumbnail: (e?.attachments ?? [])[0]?.url
-                  }]
-                })
+                body: JSON.stringify(body)
               })
             } catch(e) {
               console.error(feed.name, url, e)
@@ -62,6 +64,8 @@ feeds.forEach(
               break
             } else if(retryCount > 5) {
               break
+            } else if(r.status === 400) {
+              console.log("400 Bad Request", feed.name, url, body)
             } else if(r.status === 429) {
               await sleep((await r.json()).retry_after)
               retryCount ++
