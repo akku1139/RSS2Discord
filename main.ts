@@ -32,6 +32,12 @@ feeds.forEach(
             return
           }
 
+          let timestamp: string | undefined = void 0
+          try {
+            timestamp = e?.published.toISOString()
+          } catch(e) {
+            console.error(feed.name, url, e)
+          }
           const body = {
             username: feed.name,
             avatar_url: feed.icon,
@@ -40,7 +46,7 @@ feeds.forEach(
               color: 16777215,
               title: e?.title?.value?.substr(0, 256).padStart(1, "-"),
               description: e?.description?.value?.substr(0, 4096),
-              timestamp: e?.published?.toISOString(),
+              timestamp,
               thumbnail: (e?.attachments ?? [])[0]?.url
             }]
           }
