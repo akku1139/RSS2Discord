@@ -1,9 +1,12 @@
-interface RawFeed {
+import { addSIPrefix, timeSince } from "./utils.ts"
+
+type RawFeed = {
   name: string,
   url: string,
   icon: string,
   host?: string, // Proxyしたフィードの元データ
   base?: string, // WebHook設定用
+  builder?: (feed: FormattedFeed) => Promise<Array<{url: string, body: any}>>
 }
 
 const rawFeeds: Array<RawFeed> = [
@@ -366,7 +369,82 @@ const rawFeeds: Array<RawFeed> = [
     name: "ガジェット通信",
     url: "https://getnews.jp/feed/ext/orig",
     icon: "https://pbs.twimg.com/profile_images/512441585976360960/DMd5at7__400x400.png"
-  },
+  }, {
+    name: "Mining Pool Stats新コイン通知",
+    url: "",
+    base: "https://miningpoolstats.stream/newcoins",
+    icon: "https://pbs.twimg.com/profile_images/1061222423612276737/ciKYxa2__400x400.jpg",
+    builder: async (feed) => {
+      const timeParmReg = /;var last_time = "(\d+)";/.exec(
+        await (await fetch("https://miningpoolstats.stream/newcoins")).text()
+      )
+      if(timeParmReg === null) {
+        throw new Error(`${feed.name}: cannnot get time parameter`)
+      }
+      const timeParm = timeParmReg[1]
+      const data = await (await fetch("https://data.miningpoolstats.stream/data/coins_data_new.js?t=" + timeParm)).json() as {
+        data: Array<{
+          name: string,
+          algo: string,
+          symbol: string,
+          height: number,
+          hashrate: number,
+          unit: string,
+          diff: number,
+          pools: number,
+          target: number,
+          i: number,
+          page: string,
+          ph: number,
+          typ: string,
+          e24: number,
+          bt: number,
+          time: number,
+          age: number,
+        }>,
+        time: number,
+      }
+      return data.data.map((d) => ({
+        url: "https://miningpoolstats.stream/"+d.page,
+        body: {
+          username: feed.name,
+          avatar_url: feed.icon,
+          embeds: [{
+            url: "https://miningpoolstats.stream/"+d.page,
+            color: 16777215,
+            fields: [
+              {
+                inline: true,
+                name: "Algorithm",
+                value: d.algo
+              }, {
+                name: "Height",
+                value: String(d.height),
+                inline: true
+              }, {
+                name: "Pools",
+                value: String(d.pools),
+                inline: true
+              }, {
+                name: "Miner",
+                value: d.typ,
+                inline: true
+              }, {
+                name: "Hashrate",
+                value: addSIPrefix(String(d.hashrate))+d.unit,
+                inline: true
+              }, {
+                name: "Difficulty",
+                value: addSIPrefix(String(d.diff)),
+                inline: true
+              }
+            ],
+            footer: "Age: "+timeSince(d.age),
+          }],
+        },
+      }))
+    }
+  }
 ]
 
 /*
@@ -388,12 +466,8 @@ const webhooks = await (
   [key: string]: string
 }
 
-interface FormattedFeed extends RawFeed {
+export type FormattedFeed = RawFeed & {
   webhook: string,
-  system?: {
-    loader: (res: Response) => Promise<string>,
-    parser: (data: string) => Promise<object>,
-  }
 }
 
 export default rawFeeds.map((feed): FormattedFeed => {

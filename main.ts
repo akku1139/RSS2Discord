@@ -1,7 +1,7 @@
 import { parseFeed } from "rss"
 
 import feeds from "./feeds.ts"
-import { sleep } from "./utils.ts"
+import { sendWebHook, sleep } from "./utils.ts"
 
 const db = await Deno.openKv("./data.db")
 
@@ -14,7 +14,7 @@ feeds.forEach(
         invalidFeeds.push(feed.host ?? feed.url);
       }
 
-      if(typeof feed.system === "undefined") {
+      if(typeof feed.builder === "undefined") {
         let data
         try {
           data = await parseFeed(await res.text())
@@ -50,46 +50,12 @@ feeds.forEach(
               thumbnail: (e?.attachments ?? [])[0]?.url
             }]
           }
-
-          let retryCount = 0
-          while(true) {
-            let r: Response
-            try {
-              r = await fetch(feed.webhook, {
-                method: "POST",
-                headers: { 'Content-type': "application/json" },
-                body: JSON.stringify(body)
-              })
-            } catch(e) {
-              console.error(feed.name, url, e)
-              break
-            }
-
-            if(r.ok) {
-              db.set([url], "a")
-              break
-            } else if(retryCount > 5) {
-              break
-            } else if(r.status === 400) {
-              console.log("400 Bad Request", feed.name, url, body)
-              break
-            } else if(r.status === 429) {
-              await sleep((await r.json()).retry_after)
-              retryCount ++
-              continue
-            } else if(r.status === 500) {
-              await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
-            } else {
-              console.error("on webhook: ", feed.name, url, r.status, await r.json())
-              break
-            }
-          }
+          sendWebHook(url, body, feed, db)
         })
-      } // else {
-        // const data = await feed.system.parser(
-        //   await feed.system.loader(res)
-        // )
-      // }
+      } else {
+        const ret = await feed.builder(feed)
+        ret.forEach(r => sendWebHook(r.url, r.body, feed, db))
+      }
     }).catch((e) => {
       console.error(e, e.stack)
     });

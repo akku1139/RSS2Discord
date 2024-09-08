@@ -1,3 +1,5 @@
+import { FormattedFeed } from "./feeds.ts";
+
 export const addSIPrefix = (e: string) => {
   const units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"];
   let o = parseFloat(e);
@@ -15,3 +17,39 @@ export const timeSince = (e: number) => {
 }
 
 export const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, 1000 * s))
+
+export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, db: Deno.Kv) => {
+  let retryCount = 0
+  while(true) {
+    let r: Response
+    try {
+      r = await fetch(feed.webhook, {
+        method: "POST",
+        headers: { 'Content-type': "application/json" },
+        body: JSON.stringify(body)
+      })
+    } catch(e) {
+      console.error(feed.name, url, e)
+      break
+    }
+
+    if(r.ok) {
+      db.set([url], "a")
+      break
+    } else if(retryCount > 5) {
+      break
+    } else if(r.status === 400) {
+      console.log("400 Bad Request", feed.name, url, body)
+      break
+    } else if(r.status === 429) {
+      await sleep((await r.json()).retry_after)
+      retryCount ++
+      continue
+    } else if(r.status === 500) {
+      await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
+    } else {
+      console.error("on webhook: ", feed.name, url, r.status, await r.json())
+      break
+    }
+  }
+}
