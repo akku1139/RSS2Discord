@@ -329,23 +329,17 @@ const rawFeeds: Array<RawFeed> = [
     url: "https://ascii.jp/rss.xml",
     icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
     base: "https://ascii.jp"
-  }, {
-    name: "DistroWatch.com news",
-    url: "https://distrowatch.com/news/dw.xml",
-    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png"
-  }, {
-    name: "DistroWatch.com Latest Distributions",
-    url: "https://distrowatch.com/news/dwd.xml",
-    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png"
-  }, {
-    name: "DistroWatch.com Latest Headlines",
-    url: "https://distrowatch.com/news/news-headlines.xml",
-    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png"
-  }, {
-    name: "DistroWatch.com Packages",
-    url: "https://distrowatch.com/news/dwp.xml",
-    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png"
-  }, {
+  }, ...[
+    {name: "news", key: "news"},
+    {name: "Latest Distributions", key: "dwd"},
+    {name: "Latest Headlines", key: "news-headlines"},
+    {name: "Packages", key: "dwp"},
+  ].map(f => ({
+    name: f.name + " - DistroWatch.com",
+    url: "https://distrowatch.com/news/" + f.key + ".xml",
+    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png",
+    base: "https://distrowatch.com"
+  })), {
     name: "WIRED.jp", // 他言語版もあるっぽい
     url: "https://wired.jp/feed/rss",
     icon: "https://pbs.twimg.com/profile_images/1605821808347082752/aymalKvn_400x400.jpg"
