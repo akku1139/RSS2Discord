@@ -43,11 +43,12 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       db.set([url], "a")
       break
     } else if(retryCount > 5) {
+      log.warn(url, "Exceeded maximum retry count")
       break
     } else if(r.status === 400) {
-      // log.error("400 Bad Request", feed.name, url, body, r.headers)
       await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
       retryCount ++
+      continue
     } else if(r.status === 429) {
       await sleep((await r.json()).retry_after)
       retryCount ++
@@ -55,6 +56,7 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
     } else if(r.status === 500) {
       await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
       retryCount ++
+      continue
     } else {
       log.error("on webhook: ", feed.name, url, r.status, await r.text())
       break

@@ -331,7 +331,7 @@ const rawFeeds: Array<RawFeed> = [
     icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
     base: "https://ascii.jp"
   }, ...[
-    {name: "news", key: "news"},
+    {name: "news", key: "dw"},
     {name: "Latest Distributions", key: "dwd"},
     {name: "Latest Headlines", key: "news-headlines"},
     {name: "Packages", key: "dwp"},
