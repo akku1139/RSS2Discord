@@ -40,7 +40,7 @@ feeds.forEach(
               color: 16777215,
               title: e?.title?.value?.substr(0, 256).padStart(1, "-"),
               description: e?.description?.value?.substr(0, 4096),
-              timestamp: e?.published.toISOString(),
+              timestamp: e?.published?.toISOString(),
               thumbnail: (e?.attachments ?? [])[0]?.url
             }]
           }
