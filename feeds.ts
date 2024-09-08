@@ -338,8 +338,14 @@ interface FormattedFeed extends RawFeed {
   }
 }
 
-export default rawFeeds.map((feed): FormattedFeed => ({
-  ...feed,
-  host: feed.host ?? new URL(feed.url).host,
-  webhook: webhooks[feed.base ?? feed.url] ?? webhooks.default,
-}))
+export default rawFeeds.map((feed): FormattedFeed => {
+  const webhook = webhooks[feed.base ?? feed.url]
+  if(webhook === void 0) {
+    console.log(`${feed.name} (${feed.url}) has no webhooks configured. Use default hook.`)
+  }
+  return {
+    ...feed,
+    host: feed.host ?? new URL(feed.url).host,
+    webhook: webhook ?? webhooks.default,
+  }
+})
