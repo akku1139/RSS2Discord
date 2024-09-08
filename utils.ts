@@ -48,7 +48,7 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
     } else if(r.status === 500) {
       await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
     } else {
-      console.error("on webhook: ", feed.name, url, r.status, await r.json())
+      console.error("on webhook: ", feed.name, url, r.status, await r.text())
       break
     }
   }
