@@ -19,9 +19,9 @@ export const timeSince = (e: number) => {
 export const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, 1000 * s))
 
 export const log = {
-  info: (...msg) => console.log("[ info  ]", ...msg),
-  warn: (...msg) => console.warn("[ warn  ]", ...msg),
-  error: (...msg) => console.error("[ error ]", ...msg),
+  info: (...msg) => console.log("[  info  ]", ...msg),
+  warn: (...msg) => console.warn("[  warn  ]", ...msg),
+  error: (...msg) => console.error("[  error ]", ...msg),
 } as const
 
 export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, db: Deno.Kv) => {
@@ -46,9 +46,15 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       log.warn(url, "Exceeded maximum retry count")
       break
     } else if(r.status === 400) {
-      await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
-      retryCount ++
-      continue
+      const ratelimit = r.headers.get("x-ratelimit-reset-after")
+      if(ratelimit === null) {
+        log.error("400 Bad Request", feed.name, url, r.text())
+        break
+      } else {
+        await sleep(Number())
+        retryCount ++
+        continue
+      }
     } else if(r.status === 429) {
       await sleep((await r.json()).retry_after)
       retryCount ++
