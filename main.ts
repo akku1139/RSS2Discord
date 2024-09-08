@@ -34,7 +34,7 @@ feeds.forEach(
 
           let retryCount = 0
           while(true) {
-            let r
+            let r: Response
             try {
               r = await fetch(feed.webhook, {
                 method: "POST",
@@ -66,6 +66,8 @@ feeds.forEach(
               await sleep((await r.json()).retry_after)
               retryCount ++
               continue
+            } else if(r.status === 500) {
+              await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
             } else {
               console.error(r)
               break
