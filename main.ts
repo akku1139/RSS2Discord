@@ -17,7 +17,7 @@ for(const feed of feeds) {
       data = await parseFeed(await res.text())
     } catch(e) {
       log.error(feed.name, e)
-      return
+      continue
     }
     log.info(feed.name, data.entries.length, "posts")
     for(const e of data.entries) {
@@ -27,7 +27,7 @@ for(const feed of feeds) {
       }
 
       if((await db.get([url])).value !== null) {
-        return
+        continue
       }
 
       let timestamp: string | undefined = void 0
