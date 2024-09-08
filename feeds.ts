@@ -465,6 +465,7 @@ const webhooks = await (
 
 export type FormattedFeed = RawFeed & {
   webhook: string,
+  res: Promise<Response>
 }
 
 export default rawFeeds.map((feed): FormattedFeed => {
@@ -472,9 +473,11 @@ export default rawFeeds.map((feed): FormattedFeed => {
   if(webhook === void 0) {
     log.warn(`${feed.name} (${feed.url}) has no webhooks configured. Use default hook.`)
   }
+  const res = fetch(feed.url)
   return {
     ...feed,
     host: feed.host ?? new URL(feed.url).host,
     webhook: webhook ?? webhooks.default,
+    res,
   }
 })

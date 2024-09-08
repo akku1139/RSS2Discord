@@ -19,8 +19,8 @@ export const timeSince = (e: number) => {
 export const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, 1000 * s))
 
 export const log = {
-  info: (...msg) => console.log("[ info ]", ...msg),
-  warn: (...msg) => console.warn("[ warn ]", ...msg),
+  info: (...msg) => console.log("[ info  ]", ...msg),
+  warn: (...msg) => console.warn("[ warn  ]", ...msg),
   error: (...msg) => console.error("[ error ]", ...msg),
 } as const
 

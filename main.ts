@@ -5,36 +5,35 @@ import { sendWebHook, log } from "./utils.ts"
 
 const db = await Deno.openKv("./data.db")
 
-
-feeds.forEach(async (feed) => {
-  const res = await fetch(feed.url)
-  if (!res.ok) {
+for(const feed of feeds) {
+  const res = await feed.res
+  if(!res.ok) {
     log.error(`${feed.name} (${feed.url}): HTTP ${res.status} (${res.statusText})`)
   }
 
-  if (typeof feed.builder === "undefined") {
-    let data
+  if(typeof feed.builder === "undefined") {
+    let data: {entries: Array<any>}
     try {
       data = await parseFeed(await res.text())
-    } catch (e) {
+    } catch(e) {
       log.error(feed.name, e)
       return
     }
     log.info(feed.name, data.entries.length, "posts")
-    data.entries.forEach(async (e) => {
+    for(const e of data.entries) {
       const url = e.links[0].href
-      if (typeof url === "undefined") {
+      if(typeof url === "undefined") {
         throw new Error(`in feed ${feed.name} (${feed.url}): url is undefined`)
       }
 
-      if ((await db.get([url])).value !== null) {
+      if((await db.get([url])).value !== null) {
         return
       }
 
       let timestamp: string | undefined = void 0
       try {
         timestamp = e?.published?.toISOString()
-      } catch (e) {
+      } catch(e) {
         log.error(feed.name, url, e)
       }
       const body = {
@@ -49,12 +48,13 @@ feeds.forEach(async (feed) => {
           thumbnail: (e?.attachments ?? [])[0]?.url
         }]
       }
-      sendWebHook(url, body, feed, db)
-    })
+      await sendWebHook(url, body, feed, db)
+    }
   } else {
     const ret = await feed.builder(feed)
     log.info(feed.name, ret.length, "posts")
-    ret.forEach(r => sendWebHook(r.url, r.body, feed, db))
+    for(const r of ret) {
+      await sendWebHook(r.url, r.body, feed, db)
+    }
   }
 }
-)
