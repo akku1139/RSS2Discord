@@ -23,6 +23,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "NHK News",
     url: `https://www.nhk.or.jp/rss/news/cat${i}.xml`,
     icon: "https://i.imgur.com/76KCIrY.png",
+    base: "https://www.nhk.or.jp",
   })), {
     name: "3Blue1Brown",
     url: "https://3blue1brown.substack.com/feed",
@@ -59,6 +60,7 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name,
     url: `https://rss.itmedia.co.jp/rss/2.0/${f.key}.xml`,
     icon: "https://image.itmedia.co.jp/info/images/itmapp_part_icon_1_1422324774.png",
+    base: "https://rss.itmedia.co.jp",
   })), {
     name: "AIDB",
     url: "https://ai-data-base.com/feed",
@@ -192,6 +194,7 @@ const rawFeeds: Array<RawFeed> = [
     name: (f.name ?? f.key) + " - The New York Times",
     url: `https://rss.nytimes.com/services/xml/rss/nyt/${f.key}.xml`,
     icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
+    base: "https://rss.nytimes.com",
   })), ...[
     {name: "Charles M. Blow", key: "charles-m-blow"},
     {name: "Jamelle Bouie", key: "jamelle-bouie"},
@@ -211,6 +214,7 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name + "'s Column - The New York Times",
     url: `https://www.nytimes.com/svc/collections/v1/publish/www.nytimes.com/column/${f.key}/rss.xml`,
     icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
+    base: "https://rss.nytimes.com",
   })), ...[
     {name: "マーケット", key: "RSSJapanMarket"},
     {name: "Heard on the Street", key: "RSSJapanHeardonTheStreet"},
@@ -226,6 +230,7 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name + " - ウォール・ストリート・ジャーナル日本語版",
     url: "https://feeds.content.dowjones.io/public/rss/" + f.key,
     icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
+    base: "https://feeds.content.dowjones.io",
   })), ...[
     {name: "Opinion", key: "RSSOpinion"},
     {name: "World News", key: "RSSWorldNews"},
@@ -237,6 +242,7 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name + " - The Wall Street Journal",
     url: "https://feeds.a.dj.com/rss/" + f.key + ".xml",
     icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
+    base: "https://feeds.a.dj.com",
   })), ...[
     {name: "政治", key: "politics"},
     {name: "北朝鮮", key: "nk"},
@@ -249,6 +255,7 @@ const rawFeeds: Array<RawFeed> = [
   ].map(f => ({
     name: f.name + " - 聯合ニュース日本語版",
     url: "https://jp.yna.co.kr/RSS/" + f.key + ".xml",
+    base: "https://jp.yna.co.kr"
   })), ...[
     {name: "时政", key: "politics"},
     {name: "社会", key: "society"},
@@ -261,6 +268,7 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name + " - 人民日报",
     url: "http://www.people.com.cn/rss/" + f.key + ".xml",
     icon: "http://politics.people.com.cn/img/MAIN/2013/08/113596/images/logo.gif",
+    base: "http://www.people.com.cn"
   })), {
     name: "IPAセキュリティセンター:重要なセキュリティ情報",
     url: "https://www.ipa.go.jp/security/alert-rss.rdf",
@@ -288,7 +296,10 @@ const rawFeeds: Array<RawFeed> = [
       url: "https://qiita.com/organizations/trans-dev/activities.atom",
       icon: "https://cdn.qiita.com/assets/public/qiita-pwa-icon_512-4f5b031e6cb002cb865db0dd38635a78.png",
     }
-  ]
+  ].map(f => ({
+    ...f,
+    base: "trans"
+  }))
 ]
 
 /*
