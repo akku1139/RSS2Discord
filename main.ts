@@ -54,6 +54,9 @@ for(const feed of feeds) {
     const ret = await feed.builder(feed)
     log.info(feed.name, ret.length, "posts")
     for(const r of ret) {
+      if((await db.get([r.url])).value !== null) {
+        continue
+      }
       await sendWebHook(r.url, r.body, feed, db)
     }
   }
