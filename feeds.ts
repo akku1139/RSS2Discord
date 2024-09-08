@@ -108,6 +108,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "CoinPost",
     // url: "https://coinpost.jp/rss.xml",
     url: "https://coinpost.jp/?feed=rsscach32",
+    base: "https://coinpost.jp",
     icon: "https://coinpost.jp/img/icon.png",
   }, {
     name: "アニメ！アニメ！",
