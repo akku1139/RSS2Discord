@@ -405,7 +405,11 @@ const rawFeeds: Array<RawFeed> = [
           username: feed.name,
           avatar_url: feed.icon,
           embeds: [{
-            url: "https://miningpoolstats.stream/"+d.page,
+            author: {
+              name: d.name+" ["+d.symbol+"]",
+              url: "https://miningpoolstats.stream/"+d.page,
+              icon_url: "https://miningpoolstats.stream/ico/"+d.page+".webp",
+            },
             color: 16777215,
             fields: [
               {
