@@ -1,4 +1,4 @@
-import { addSIPrefix, timeSince } from "./utils.ts"
+import { addSIPrefix, timeSince, log } from "./utils.ts"
 
 type RawFeed = {
   name: string,
@@ -106,8 +106,8 @@ const rawFeeds: Array<RawFeed> = [
     icon: "https://akku1139.github.io/images/favicon.png",
   }, {
     name: "CoinPost",
-    url: "https://coinpost.jp/rss.xml",
-    // url: "https://coinpost.jp/?feed=rsscach32",
+    // url: "https://coinpost.jp/rss.xml",
+    url: "https://coinpost.jp/?feed=rsscach32",
     icon: "https://coinpost.jp/img/icon.png",
   }, {
     name: "アニメ！アニメ！",
@@ -465,7 +465,7 @@ export type FormattedFeed = RawFeed & {
 export default rawFeeds.map((feed): FormattedFeed => {
   const webhook = webhooks[feed.base ?? feed.url]
   if(webhook === void 0) {
-    console.log(`${feed.name} (${feed.url}) has no webhooks configured. Use default hook.`)
+    log.warn(`${feed.name} (${feed.url}) has no webhooks configured. Use default hook.`)
   }
   return {
     ...feed,

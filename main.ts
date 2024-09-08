@@ -1,17 +1,16 @@
 import { parseFeed } from "rss"
 
 import feeds from "./feeds.ts"
-import { sendWebHook, sleep } from "./utils.ts"
+import { sendWebHook, log } from "./utils.ts"
 
 const db = await Deno.openKv("./data.db")
 
-const invalidFeeds: Array<string> = []
 
 feeds.forEach(
   (feed) => {
     fetch(feed.url).then(async (res) => {
       if(!res.ok) {
-        invalidFeeds.push(feed.host ?? feed.url);
+        log.error(`${feed.name} (${feed.url}): HTTP ${res.status} (${res.statusText})`)
       }
 
       if(typeof feed.builder === "undefined") {
@@ -19,9 +18,10 @@ feeds.forEach(
         try {
           data = await parseFeed(await res.text())
         } catch(e) {
-          console.error(feed.name, e)
+          log.error(feed.name, e)
           return
         }
+        log.info(feed.name, data.entries.length, "posts")
         data.entries.forEach(async (e) => {
           const url = e.links[0].href
           if(typeof url === "undefined") {
@@ -36,7 +36,7 @@ feeds.forEach(
           try {
             timestamp = e?.published?.toISOString()
           } catch(e) {
-            console.error(feed.name, url, e)
+            log.error(feed.name, url, e)
           }
           const body = {
             username: feed.name,
@@ -54,10 +54,11 @@ feeds.forEach(
         })
       } else {
         const ret = await feed.builder(feed)
+        log.info(feed.name, ret.length, "posts")
         ret.forEach(r => sendWebHook(r.url, r.body, feed, db))
       }
     }).catch((e) => {
-      console.error(e, e.stack)
+      log.error(e, e.stack)
     });
   }
 )
