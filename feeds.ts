@@ -308,7 +308,7 @@ const rawFeeds: Array<RawFeed> = [
     url: "https://www.astroarts.co.jp/article/feed.atom",
     icon: "https://yt3.googleusercontent.com/ytc/AIdro_lK9Qx3Xa2l5EmrIJ8VkBPK2k7PtGaR4QCc5nFuRYJFUQ=s160-c-k-c0x00ffffff-no-rj"
   }, {
-    name: "https://automaton-media.com/",
+    name: "AUTOMATON",
     url: "https://automaton-media.com/feed/",
     icon: "https://automaton-media.com/wp-content/uploads/2024/03/automaton-amp-logo.png"
   }, ...[
@@ -448,10 +448,8 @@ const rawFeeds: Array<RawFeed> = [
 ]
 
 /*
-https://github.com/akku1139/GAS-RSS/blob/main/feeds.gs
 まちカドまぞく画像bot
 Nアニメ
-Mining Pool Stats
   // BBC
   // forbesjapan.com
 */
