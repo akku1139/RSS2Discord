@@ -34,7 +34,7 @@ feeds.forEach(
 
           let timestamp: string | undefined = void 0
           try {
-            timestamp = e?.published.toISOString()
+            timestamp = e?.published?.toISOString()
           } catch(e) {
             console.error(feed.name, url, e)
           }
@@ -80,7 +80,7 @@ feeds.forEach(
             } else if(r.status === 500) {
               await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
             } else {
-              console.error(r)
+              console.error("on webhook: ", feed.name, url, r.status, await r.json())
               break
             }
           }

@@ -1,7 +1,7 @@
 interface RawFeed {
   name: string,
   url: string,
-  icon?: string,
+  icon: string,
   host?: string, // Proxyしたフィードの元データ
   base?: string, // WebHook設定用
 }
@@ -255,6 +255,7 @@ const rawFeeds: Array<RawFeed> = [
   ].map(f => ({
     name: f.name + " - 聯合ニュース日本語版",
     url: "https://jp.yna.co.kr/RSS/" + f.key + ".xml",
+    icon: "https://r.yna.co.kr/global/home/v01/img/favicon-152.png",
     base: "https://jp.yna.co.kr"
   })), ...[
     {name: "时政", key: "politics"},
@@ -299,7 +300,73 @@ const rawFeeds: Array<RawFeed> = [
   ].map(f => ({
     ...f,
     base: "trans"
-  }))
+  })),{
+    name: "アストロアーツ",
+    url: "https://www.astroarts.co.jp/article/feed.atom",
+    icon: "https://yt3.googleusercontent.com/ytc/AIdro_lK9Qx3Xa2l5EmrIJ8VkBPK2k7PtGaR4QCc5nFuRYJFUQ=s160-c-k-c0x00ffffff-no-rj"
+  }, {
+    name: "https://automaton-media.com/",
+    url: "https://automaton-media.com/feed/",
+    icon: "https://automaton-media.com/wp-content/uploads/2024/03/automaton-amp-logo.png"
+  }, ...[
+    {name: "ビジネス", key: "biz"},
+    {name: "TECH", key: "tech"},
+    {name: "Web Professional", key: "web"},
+    {name: "デジタル", key: "digital"},
+    {name: "iPhone/Mac", key: "mac"},
+    {name: "ゲーム・ホビー", key: "hobby"},
+    {name: "自作PC", key: "pc"}
+  ].map(f => ({
+    name: f.name + " - ASCII.jp",
+    url: "https://ascii.jp/" + f.key + "/rss.xml",
+    icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
+    base: "https://ascii.jp"
+  })), {
+    name: "ASCII.jp",
+    url: "https://ascii.jp/rss.xml",
+    icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
+    base: "https://ascii.jp"
+  }, {
+    name: "DistroWatch.com news",
+    url: "https://distrowatch.com/news/dw.xml",
+    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png"
+  }, {
+    name: "DistroWatch.com Latest Distributions",
+    url: "https://distrowatch.com/news/dwd.xml",
+    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png"
+  }, {
+    name: "DistroWatch.com Latest Headlines",
+    url: "https://distrowatch.com/news/news-headlines.xml",
+    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png"
+  }, {
+    name: "DistroWatch.com Packages",
+    url: "https://distrowatch.com/news/dwp.xml",
+    icon: "https://distrowatch.com/images/cpxtu/dwbanner.png"
+  }, {
+    name: "WIRED.jp", // 他言語版もあるっぽい
+    url: "https://wired.jp/feed/rss",
+    icon: "https://pbs.twimg.com/profile_images/1605821808347082752/aymalKvn_400x400.jpg"
+  }, {
+    name: "THE GOLD ONLINE",
+    url: "https://gentosha-go.com/list/feed/rss",
+    icon: "https://pbs.twimg.com/profile_images/1685900736021053441/CoHHUCSW_400x400.jpg"
+  }, {
+    name: "エンジニアtype",
+    url: "https://type.jp/et/feature/feed/",
+    icon: "https://type.jp/common/img/layout/footer_site_id_logo01.png"
+  }, {
+    name: "Japaaan",
+    url: "https://mag.japaaan.com/feed",
+    icon: "https://pbs.twimg.com/profile_images/3469257935/0db49db253a2710fd1372b392d595798_400x400.jpeg"
+  }, {
+    name: "withnews",
+    url: "https://withnews.jp/rss/consumer/new.rdf",
+    icon: "https://pbs.twimg.com/profile_images/1207550416579252224/oecKIDmH_400x400.jpg"
+  }, {
+    name: "ガジェット通信",
+    url: "https://getnews.jp/feed/ext/orig",
+    icon: "https://pbs.twimg.com/profile_images/512441585976360960/DMd5at7__400x400.png"
+  },
 ]
 
 /*
@@ -307,17 +374,8 @@ https://github.com/akku1139/GAS-RSS/blob/main/feeds.gs
 まちカドまぞく画像bot
 Nアニメ
 Mining Pool Stats
-  // https://www.astroarts.co.jp/
-  // https://automaton-media.com/
-  // https://ascii.jp/info/about_rss.html
-  // https://distrowatch.com/news/dw.xml
-  // https://gentosha-go.com/
-  // https://wired.jp/
   // BBC
-  // https://mag.japaaan.com/feed
   // forbesjapan.com
-  // https://withnews.jp/rss/consumer/new.rdf
-  // https://getnews.jp
 */
 
 const WEBHOOK_URL = Deno.env.get("WEBHOOK_URL") ?? ""
