@@ -371,7 +371,7 @@ const rawFeeds: Array<RawFeed> = [
     icon: "https://pbs.twimg.com/profile_images/512441585976360960/DMd5at7__400x400.png"
   }, {
     name: "Mining Pool Stats新コイン通知",
-    url: "",
+    url: "https://miningpoolstats.stream/newcoins",
     base: "https://miningpoolstats.stream/newcoins",
     icon: "https://pbs.twimg.com/profile_images/1061222423612276737/ciKYxa2__400x400.jpg",
     builder: async (feed) => {
