@@ -45,7 +45,7 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
     } else if(retryCount > 5) {
       break
     } else if(r.status === 400) {
-      log.error("400 Bad Request", feed.name, url, body)
+      log.error("400 Bad Request", feed.name, url, body, r.headers)
       break
     } else if(r.status === 429) {
       await sleep((await r.json()).retry_after)

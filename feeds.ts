@@ -434,7 +434,7 @@ const rawFeeds: Array<RawFeed> = [
                 inline: true
               }
             ],
-            footer: "Age: "+timeSince(d.age),
+            footer: {text: "Age: "+timeSince(d.age)},
           }],
         },
       }))
