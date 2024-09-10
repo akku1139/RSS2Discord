@@ -9,6 +9,7 @@ for(const feed of feeds) {
   const res = await feed.res
   if(!res.ok) {
     log.error(`${feed.name} (${feed.url}): HTTP ${res.status} (${res.statusText})`)
+    continue
   }
 
   if(typeof feed.builder === "undefined") {
