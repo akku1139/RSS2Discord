@@ -47,8 +47,8 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       break
     } else if(r.status === 400) {
       const ratelimit = r.headers.get("x-ratelimit-reset-after")
+      log.error("400 Bad Request", feed.name, url, r.text())
       if(ratelimit === null) {
-        log.error("400 Bad Request", feed.name, url, r.text())
         break
       } else {
         await sleep(Number(ratelimit))
@@ -60,9 +60,15 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       retryCount ++
       continue
     } else if(r.status === 500) {
-      await sleep(Number(r.headers.get("x-ratelimit-reset-after")))
-      retryCount ++
-      continue
+      const ratelimit = r.headers.get("x-ratelimit-reset-after")
+      log.error("500 Internal Server Error", feed.name, url, r.text())
+      if(ratelimit === null) {
+        break
+      } else {
+        await sleep(Number(ratelimit))
+        retryCount ++
+        continue
+      }
     } else {
       log.error("on webhook: ", feed.name, url, r.status, await r.text())
       break
