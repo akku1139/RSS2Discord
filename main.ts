@@ -43,7 +43,7 @@ for(const feed of feeds) {
         embeds: [{
           url,
           color: 16777215,
-          title: e?.title?.value?.substr(0, 256).padStart(1, "-"),
+          title: e?.title?.value?.substr(0, 256) ?? "-",
           description: e?.description?.value?.substr(0, 4096),
           timestamp,
           thumbnail: {
