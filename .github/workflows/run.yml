@@ -9,8 +9,6 @@ on:
 
 concurrency:
   group: main
-  # 先の実行がキャンセルされるため
-  #cancel-in-progress: true
 
 permissions:
   contents: write
@@ -46,10 +44,3 @@ jobs:
             git commit -m "Run"
             git push
           fi
-
-      # - run: |
-      #     gh api "repos/akku1139/RSS2Discord/actions/workflows/run.yml/runs?per_page=100"
-      #     | jq -r '.workflow_runs[].id'
-      #     | xargs -P4 -I{} gh api repos/akku1139/RSS2Discord/actions/runs/{} -X DELETE
-      #   env:
-      #     GH_TOKEN: ${{ github.token }}
