@@ -46,7 +46,9 @@ for(const feed of feeds) {
           title: e?.title?.value?.substr(0, 256).padStart(1, "-"),
           description: e?.description?.value?.substr(0, 4096),
           timestamp,
-          thumbnail: (e?.attachments ?? [])[0]?.url
+          thumbnail: {
+            url: (e?.attachments ?? [])[0]?.url
+          },
         }]
       }
       await sendWebHook(url, body, feed, db)
