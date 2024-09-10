@@ -47,7 +47,7 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       break
     } else if(r.status === 400) {
       const ratelimit = r.headers.get("x-ratelimit-reset-after")
-      log.error("400 Bad Request", feed.name, url, r.text())
+      r.text().then(t => log.error("400 Bad Request", feed.name, url, t))
       if(ratelimit === null) {
         break
       } else {
@@ -61,7 +61,7 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       continue
     } else if(r.status === 500) {
       const ratelimit = r.headers.get("x-ratelimit-reset-after")
-      log.error("500 Internal Server Error", feed.name, url, r.text())
+      r.text().then(t => log.error("500 Internal Server Error", feed.name, url, t))
       if(ratelimit === null) {
         break
       } else {
