@@ -67,4 +67,4 @@ for(const feed of feeds) {
 }
 
 _db = await Array.fromAsync(db.list({prefix:[]}))
-await Deno.writeTextFile('data.json', JSON.stringify(_db))
+await Deno.writeTextFile('data.json', JSON.stringify(_db, null, 2))
