@@ -3,6 +3,7 @@ import { parseFeed } from "rss"
 import feeds from "./feeds.ts"
 import { sendWebHook, log } from "./utils.ts"
 
+let _db = JSON.parse(await Deno.readTextFile('data.json'))
 const db = await Deno.openKv("./data.db")
 
 for(const feed of feeds) {
@@ -64,3 +65,6 @@ for(const feed of feeds) {
     }
   }
 }
+
+_db = await Array.fromAsync(db.list({prefix:[]}))
+await Deno.writeTextFile('data.json', JSON.stringify(_db))
