@@ -61,15 +61,16 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       retryCount ++
       continue
     } else if(r.status === 500) {
-      const ratelimit = r.headers.get("x-ratelimit-reset-after")
+      // const ratelimit = r.headers.get("x-ratelimit-reset-after")
       r.text().then(t => log.error("500 Internal Server Error", feed.name, url, t))
-      if(ratelimit === null) {
+      break
+      /* if(ratelimit === null) {
         break
       } else {
         await sleep(Number(ratelimit))
         retryCount ++
         continue
-      }
+      } */
     } else {
       log.error("on webhook: ", feed.name, url, r.status, await r.text())
       break
