@@ -443,7 +443,19 @@ const rawFeeds: Array<RawFeed> = [
         },
       }))
     }
-  }
+  }, {
+    name: "現代ビジネス",
+    url: "https://gendai.media/list/feed/rss",
+    icon: "https://gendai-m.ismcdn.jp/common/images/v3/logo/cover-logo.png"
+  }, {
+    name: "現代農業web",
+    url: "https://gn.nbkbooks.com/?feed=rss2",
+    icon: "https://gn.nbkbooks.com/wpblog/wp-content/uploads/2021/11/logo.png",
+  }, {
+    name: "旅する応用言語学",
+    url: "https://www.nihongo-appliedlinguistics.net/wp/feed",
+    icon: "https://www.nihongo-appliedlinguistics.net/wp/wp-content/uploads/2021/01/new-logo-150x150.jpg"
+  },
 ]
 
 /*
