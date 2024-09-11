@@ -24,7 +24,7 @@ export const log = {
   error: (...msg) => console.error("[  error ]", ...msg),
 } as const
 
-export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, db: Deno.Kv) => {
+export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, db: {[key: string]: "a"}) => {
   let retryCount = 0
   while(true) {
     let r: Response
@@ -40,7 +40,7 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
     }
 
     if(r.ok) {
-      db.set([url], "a")
+      db[url] = "a"
       break
     } else if(retryCount > 5) {
       log.warn(url, "Exceeded maximum retry count")

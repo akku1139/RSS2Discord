@@ -3,8 +3,7 @@ import { parseFeed } from "rss"
 import feeds from "./feeds.ts"
 import { sendWebHook, log } from "./utils.ts"
 
-let _db = JSON.parse(await Deno.readTextFile('data.json'))
-const db = await Deno.openKv("./data.db")
+let db = JSON.parse(await Deno.readTextFile('data.json'))
 
 for(const feed of feeds) {
   const res = await feed.res
@@ -28,7 +27,7 @@ for(const feed of feeds) {
         throw new Error(`in feed ${feed.name} (${feed.url}): url is undefined`)
       }
 
-      if((await db.get([url])).value !== null) {
+      if(db[url] !== null) {
         continue
       }
 
@@ -58,7 +57,7 @@ for(const feed of feeds) {
     const ret = await feed.builder(feed)
     log.info(feed.name, ret.length, "posts")
     for(const r of ret) {
-      if((await db.get([r.url])).value !== null) {
+      if(db[r.url] !== null) {
         continue
       }
       await sendWebHook(r.url, r.body, feed, db)
@@ -66,5 +65,4 @@ for(const feed of feeds) {
   }
 }
 
-_db = await Array.fromAsync(db.list({prefix:[]}))
-await Deno.writeTextFile('data.json', JSON.stringify(_db, null, 2))
+await Deno.writeTextFile('data.json', JSON.stringify(db, null, 2))
