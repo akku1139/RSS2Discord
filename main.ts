@@ -27,7 +27,7 @@ for(const feed of feeds) {
         throw new Error(`in feed ${feed.name} (${feed.url}): url is undefined`)
       }
 
-      if(db[url] !== null) {
+      if(db[url] === "a") {
         continue
       }
 
@@ -57,7 +57,7 @@ for(const feed of feeds) {
     const ret = await feed.builder(feed)
     log.info(feed.name, ret.length, "posts")
     for(const r of ret) {
-      if(db[r.url] !== null) {
+      if(db[r.url] === "a") {
         continue
       }
       await sendWebHook(r.url, r.body, feed, db)
