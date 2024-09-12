@@ -455,7 +455,11 @@ const rawFeeds: Array<RawFeed> = [
     name: "旅する応用言語学",
     url: "https://www.nihongo-appliedlinguistics.net/wp/feed",
     icon: "https://www.nihongo-appliedlinguistics.net/wp/wp-content/uploads/2021/01/new-logo-150x150.jpg"
-  },
+  }, {
+    name: "The Cloudflare Blog",
+    url: "https://blog.cloudflare.com/rss",
+    icon: "https://pbs.twimg.com/profile_images/1600539069217480704/RzK50Sks_400x400.jpg"
+  }
 ]
 
 /*
