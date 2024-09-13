@@ -459,6 +459,10 @@ const rawFeeds: Array<RawFeed> = [
     name: "The Cloudflare Blog",
     url: "https://blog.cloudflare.com/rss",
     icon: "https://pbs.twimg.com/profile_images/1600539069217480704/RzK50Sks_400x400.jpg"
+  }, {
+    name: "xkcd",
+    url: "https://xkcd.com/atom.xml",
+    icon: "https://xkcd.com/s/0b7742.png"
   }
 ]
 
