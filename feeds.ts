@@ -463,6 +463,10 @@ const rawFeeds: Array<RawFeed> = [
     name: "xkcd",
     url: "https://xkcd.com/atom.xml",
     icon: "https://xkcd.com/s/0b7742.png"
+  }, {
+    name: "PRESIDENT Online",
+    url: "https://president.jp/list/rss",
+    icon: "https://president.jp/common/icons/128x128.png"
   }
 ]
 
