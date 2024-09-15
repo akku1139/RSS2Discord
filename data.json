@@ -16683,5 +16683,10 @@
   "http://military.people.com.cn/n1/2024/0916/c1011-40321239.html": "a",
   "https://ascii.jp/elem/000/004/221/4221588/?rss": "a",
   "https://ascii.jp/elem/000/004/221/4221374/?rss": "a",
-  "http://www.squid-cache.org/": "a"
+  "http://www.squid-cache.org/": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-8876": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-8875": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-46938": "a",
+  "https://ascii.jp/elem/000/004/221/4221895/?rss": "a",
+  "https://getnews.jp/archives/3557579": "a"
 }
