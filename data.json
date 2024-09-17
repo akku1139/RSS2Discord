@@ -18627,5 +18627,12 @@
   "https://www.nytimes.com/2024/09/17/us/politics/kamala-harris-media-strategy.html": "a",
   "https://www.nytimes.com/2024/09/17/business/boeing-strike-negotiations.html": "a",
   "https://www.nytimes.com/interactive/2024/09/17/learning/17StudentNewsQuiz.html": "a",
-  "https://www.nytimes.com/es/2024/09/17/espanol/estados-unidos/trump-servicio-secreto.html": "a"
+  "https://www.nytimes.com/es/2024/09/17/espanol/estados-unidos/trump-servicio-secreto.html": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-47049": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-47047": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-38860": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-22303": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-21743": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2021-27915": "a",
+  "https://adguard.com/ja/blog/mozilla-firefox-ad-tracking-adjust-sdk.html": "a"
 }
