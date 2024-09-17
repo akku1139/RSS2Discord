@@ -497,7 +497,15 @@ export default rawFeeds.map((feed): FormattedFeed => {
   if(webhook === void 0) {
     log.warn(`${feed.name} (${feed.url}) has no webhooks configured. Use default hook.`)
   }
-  const res = fetch(feed.url)
+  let res: Promise<Response>
+  try {
+    res = fetch(feed.url)
+  } catch(e) {
+    res = new Promise((resolve, reject) => resolve(new Response("", {
+      status: 500,
+      statusText: `fetch error: ${e.stack}`
+    })))
+  }
   return {
     ...feed,
     host: feed.host ?? new URL(feed.url).host,
