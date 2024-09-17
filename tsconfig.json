@@ -3,6 +3,9 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext", "WebWorker"]
+    "lib": ["ESNext", "WebWorker"],
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "Bundler"
   }
 }
