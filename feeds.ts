@@ -501,7 +501,6 @@ export default rawFeeds.map((feed): FormattedFeed => {
     `Error: ${e.stack}`,
     {
       status: 500,
-      statusText: `fetch error: ${e.stack}`
     }
   ))))
   return {
