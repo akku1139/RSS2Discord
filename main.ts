@@ -15,7 +15,12 @@ for(const feed of feeds) {
   if(typeof feed.builder === "undefined") {
     let data: {entries: Array<any>}
     try {
-      data = await parseFeed(await res.text())
+      if(res.ok) {
+        data = await parseFeed(await res.text())
+      } else {
+        log.error(`${feed.name} returned HTTP error ${res.status} (${res.statusText})`)
+        continue
+      }
     } catch(e) {
       log.error(feed.name, e)
       continue
@@ -24,7 +29,8 @@ for(const feed of feeds) {
     for(const e of data.entries) {
       const url = e.links[0].href
       if(typeof url === "undefined") {
-        throw new Error(`in feed ${feed.name} (${feed.url}): url is undefined`)
+        log.error(`in feed ${feed.name} (${feed.url}): url is undefined`)
+        continue
       }
 
       if(db[url] === "a") {
