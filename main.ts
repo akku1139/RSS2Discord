@@ -40,8 +40,8 @@ for(const feed of feeds) {
       let timestamp: string | undefined = void 0
       try {
         timestamp = e?.published?.toISOString()
-      } catch(e) {
-        log.error(feed.name, url, e)
+      } catch(err) {
+        log.error(feed.name, url, err)
       }
       const body = {
         username: feed.name,
