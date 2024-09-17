@@ -32,7 +32,7 @@ jobs:
           key: deno-cache-${{ hashFiles('./deno.lock') }}
           save-always: true
 
-      - run: deno run --unstable-kv --allow-env --allow-net --allow-read=. --allow-write=. ./main.ts
+      - run: deno run --unstable-kv --allow-env --allow-net --allow-read=. --allow-write=. ./main.ts 2&>1 | sed -e 's/discord.com\/api\/webhooks\/.*/***/g'
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
 
