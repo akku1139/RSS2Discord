@@ -501,6 +501,9 @@ export default rawFeeds.map((feed): FormattedFeed => {
     `Error: ${e.stack}`,
     {
       status: 500,
+      headers: {
+        "X-Local-Error": "yes"
+      }
     }
   ))))
   return {

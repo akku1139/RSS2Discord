@@ -19,6 +19,9 @@ for(const feed of feeds) {
         data = await parseFeed(await res.text())
       } else {
         log.error(`${feed.name} returned HTTP error ${res.status} (${res.statusText})`)
+        if(res.headers.get("X-Local-Error")) {
+          res.text().then(() => log.error())
+        }
         continue
       }
     } catch(e) {
