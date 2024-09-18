@@ -20556,5 +20556,7 @@
   "https://archlinux.org/packages/extra/x86_64/ghostscript/": "a",
   "https://archlinux.org/packages/extra/x86_64/ghostpcl/": "a",
   "https://www.nytimes.com/2024/09/18/us/justice-department-suit-baltimore-bridge-collapse.html": "a",
-  "https://getnews.jp/archives/3558398": "a"
+  "https://getnews.jp/archives/3558398": "a",
+  "https://aur.archlinux.org/packages/gnome-shell-mobile": "a",
+  "https://aur.archlinux.org/packages/gnome-shell-mobile-docs": "a"
 }
