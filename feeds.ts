@@ -467,6 +467,14 @@ const rawFeeds: Array<RawFeed> = [
     name: "PRESIDENT Online",
     url: "https://president.jp/list/rss",
     icon: "https://president.jp/common/icons/128x128.png"
+  }, {
+    name: "Arch Linux News",
+    url: "https://archlinux.org/feeds/news/",
+    icon: "https://archlinux.org/static/logos/apple-touch-icon-144x144.png",
+  }, {
+    name: "Arch Linux Packages",
+    url: "https://archlinux.org/feeds/packages/",
+    icon: "https://archlinux.org/static/logos/apple-touch-icon-144x144.png"
   }
 ]
 
