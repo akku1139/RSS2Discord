@@ -20800,5 +20800,7 @@
   "https://aur.archlinux.org/packages/firefox-beta-bin-all-localizations": "a",
   "http://www3.nhk.or.jp/news/html/20240919/k10014585551000.html": "a",
   "https://www.nytimes.com/2024/09/18/nyregion/harrison-j-goldin-dead.html": "a",
-  "https://aur.archlinux.org/packages/corosync-qdevice": "a"
+  "https://aur.archlinux.org/packages/corosync-qdevice": "a",
+  "https://www.nytimes.com/2024/09/18/us/politics/trump-rally-secret-service.html": "a",
+  "https://archlinux.org/packages/multilib-testing/x86_64/lib32-libtiff/": "a"
 }
