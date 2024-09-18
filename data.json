@@ -20910,5 +20910,11 @@
   "https://aur.archlinux.org/packages/systemd-ukify-git": "a",
   "https://aur.archlinux.org/packages/nextcloud-app-passwords": "a",
   "https://aur.archlinux.org/packages/thunderbird-beta-bin": "a",
-  "https://aur.archlinux.org/packages/asciigen": "a"
+  "https://aur.archlinux.org/packages/asciigen": "a",
+  "https://unnerv.jp/@UN_NERV/113160017339592256": "a",
+  "https://archlinux.org/packages/multilib/x86_64/lib32-libtiff/": "a",
+  "https://archlinux.org/packages/extra/x86_64/libtiff/": "a",
+  "https://archlinux.org/packages/extra-testing/x86_64/python-numpy/": "a",
+  "https://aur.archlinux.org/packages/sst-bin": "a",
+  "https://aur.archlinux.org/packages/debianutils": "a"
 }
