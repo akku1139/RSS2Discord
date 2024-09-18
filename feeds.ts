@@ -475,6 +475,10 @@ const rawFeeds: Array<RawFeed> = [
     name: "Arch Linux Packages",
     url: "https://archlinux.org/feeds/packages/",
     icon: "https://archlinux.org/static/logos/apple-touch-icon-144x144.png"
+  }, {
+    name: "AUR",
+    url: "https://aur.archlinux.org/rss/modified",
+    icon: "https://archlinux.org/static/logos/apple-touch-icon-144x144.png"
   }
 ]
 
