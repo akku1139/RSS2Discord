@@ -20797,5 +20797,8 @@
   "https://aur.archlinux.org/packages/qaratms-en": "a",
   "https://aur.archlinux.org/packages/qaratms-ru": "a",
   "https://aur.archlinux.org/packages/firefox-beta-bin": "a",
-  "https://aur.archlinux.org/packages/firefox-beta-bin-all-localizations": "a"
+  "https://aur.archlinux.org/packages/firefox-beta-bin-all-localizations": "a",
+  "http://www3.nhk.or.jp/news/html/20240919/k10014585551000.html": "a",
+  "https://www.nytimes.com/2024/09/18/nyregion/harrison-j-goldin-dead.html": "a",
+  "https://aur.archlinux.org/packages/corosync-qdevice": "a"
 }
