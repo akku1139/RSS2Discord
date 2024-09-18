@@ -20735,5 +20735,8 @@
   "https://aur.archlinux.org/packages/bun-bin": "a",
   "https://aur.archlinux.org/packages/vasp2qe-git": "a",
   "https://aur.archlinux.org/packages/power-options-webview-git": "a",
-  "https://aur.archlinux.org/packages/power-options-gtk-git": "a"
+  "https://aur.archlinux.org/packages/power-options-gtk-git": "a",
+  "https://unnerv.jp/@UN_NERV/113159345233140681": "a",
+  "https://aur.archlinux.org/packages/tensorrt": "a",
+  "https://aur.archlinux.org/packages/python-tensorrt": "a"
 }
