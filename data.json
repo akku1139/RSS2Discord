@@ -21036,5 +21036,13 @@
   "https://aur.archlinux.org/packages/linutil-git": "a",
   "https://aur.archlinux.org/packages/libdeltachat": "a",
   "https://aur.archlinux.org/packages/aws-sam-cli": "a",
-  "https://aur.archlinux.org/packages/python-boto3-stubs": "a"
+  "https://aur.archlinux.org/packages/python-boto3-stubs": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-8287": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-34057": "a",
+  "https://unnerv.jp/@UN_NERV/113160218696506603": "a",
+  "https://www.nytimes.com/es/2024/09/18/espanol/cultura/sean-diddy-combs-carcel.html": "a",
+  "https://www.nytimes.com/interactive/2024/09/18/us/elections/results-new-jersey-us-house-10-special.html": "a",
+  "https://aur.archlinux.org/packages/valveresourceformat-bin": "a",
+  "https://aur.archlinux.org/packages/puck": "a",
+  "https://aur.archlinux.org/packages/r-wgcna": "a"
 }
