@@ -479,6 +479,10 @@ const rawFeeds: Array<RawFeed> = [
     name: "AUR",
     url: "https://aur.archlinux.org/rss/modified",
     icon: "https://archlinux.org/static/logos/apple-touch-icon-144x144.png"
+  }, {
+    name: "fabcross",
+    url: "https://fabcross.jp/rss.xml",
+    icon: "https://fabcross.jp/images/common/apple-touch-icon-precomposed.png"
   }
 ]
 
