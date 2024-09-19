@@ -1,6 +1,6 @@
 import { parseFeed } from "rss"
 
-import feeds from "./feeds.ts"
+import feeds, { FormattedFeed } from "./feeds.ts"
 import { sendWebHook, log } from "./utils.ts"
 
 const db_old = JSON.parse(await Deno.readTextFile('data.json')) as {[key: string]: "a"}
@@ -72,8 +72,9 @@ for(const feed of feeds) {
       await sendWebHook(url, body, feed, db)
     }
   } else {
+    let ret: ReturnType<FormattedFeed["builder"]> extends Promise<infer T> ? T : never
     try{
-      const ret = await feed.builder(feed)
+      ret = await feed.builder(feed)
       log.info(feed.name, ret.length, "posts")
     } catch(e) {
       log.error(feed.name, e)
