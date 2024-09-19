@@ -29,7 +29,7 @@ for(const feed of feeds) {
       }
     } catch(e) {
       log.error(feed.name, e)
-      failFeeds.push(feed.url)
+      failFeeds.push(new URL(feed.url).host)
       continue
     }
     log.info(feed.name, data.entries.length, "posts")
@@ -72,9 +72,21 @@ for(const feed of feeds) {
       await sendWebHook(url, body, feed, db)
     }
   } else {
-    const ret = await feed.builder(feed)
-    log.info(feed.name, ret.length, "posts")
+    try{
+      const ret = await feed.builder(feed)
+      log.info(feed.name, ret.length, "posts")
+    } catch(e) {
+      log.error(feed.name, e)
+      failFeeds.push(new URL(feed.url).host)
+      continue
+    }
+
     for(const r of ret) {
+      if(r.url in db_old) {
+        db[r.url] = "a"
+        delete db_old[r.url]
+      }
+
       if(db[r.url] === "a") {
         continue
       }
@@ -89,5 +101,7 @@ Object.keys(db_old).forEach(_o => {
     db[_o] = "a"
   }
 })
+
+log.info("Failed feeds:", failFeeds)
 
 await Deno.writeTextFile('data.json', JSON.stringify(db, null, 2))
