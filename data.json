@@ -22899,5 +22899,14 @@
   "https://aur.archlinux.org/packages/javy-bin": "a",
   "https://aur.archlinux.org/packages/gnome-control-center-x11-scaling": "a",
   "https://aur.archlinux.org/packages/gnome-keybindings-x11-scaling": "a",
-  "https://aur.archlinux.org/packages/mutter-x11-scaling": "a"
+  "https://aur.archlinux.org/packages/mutter-x11-scaling": "a",
+  "http://www3.nhk.or.jp/news/html/20240919/k10014586081000.html": "a",
+  "https://gamebiz.jp/news/392742": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-8986": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-8354": "a",
+  "https://unnerv.jp/@UN_NERV/113163983640647905": "a",
+  "https://jp.yna.co.kr/view/AJP20240919003600882?section=nk/index&input=rss": "a",
+  "https://jp.yna.co.kr/view/AJP20240919003600882?section=news&input=rss": "a",
+  "https://aur.archlinux.org/packages/wasmedge-bin": "a",
+  "https://aur.archlinux.org/packages/wasmedge": "a"
 }
