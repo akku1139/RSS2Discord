@@ -23062,5 +23062,18 @@
   "https://unnerv.jp/@UN_NERV/113164420710296352": "a",
   "https://aur.archlinux.org/packages/alist-bin": "a",
   "https://aur.archlinux.org/packages/gsettings-desktop-schemas-nofont": "a",
-  "https://aur.archlinux.org/packages/alist": "a"
+  "https://aur.archlinux.org/packages/alist": "a",
+  "https://cvefeed.io/vuln/detail/CVE-2024-46382": "a",
+  "https://unnerv.jp/@UN_NERV/113164433637385661": "a",
+  "https://unnerv.jp/@UN_NERV/113164428864866614": "a",
+  "http://world.people.com.cn/n1/2024/0919/c1002-40323850.html": "a",
+  "http://world.people.com.cn/n1/2024/0919/c1002-40323833.html": "a",
+  "https://aur.archlinux.org/packages/wivrn-server": "a",
+  "https://aur.archlinux.org/packages/linux-mainline-um5606": "a",
+  "https://aur.archlinux.org/packages/linux-mainline-um5606-headers": "a",
+  "https://aur.archlinux.org/packages/python-bumpfontversion": "a",
+  "https://aur.archlinux.org/packages/firefox-extension-adguard": "a",
+  "https://aur.archlinux.org/packages/python-impacket-git": "a",
+  "https://aur.archlinux.org/packages/qdrant": "a",
+  "https://aur.archlinux.org/packages/jetbrains-fleet": "a"
 }
