@@ -16,11 +16,12 @@ Pythonのfeedparserとかにする?
 
 ## TODO
 
-- 定期的にDBクリーン
-- 実行ログも飛ばす
+- 実行ログも飛ばす(?) WebHook漏れないなら問題ない
 
 https://qiita.com/tippy/items/79ca3f7b7bcac1d92136
 https://zenn.dev/snowcait/articles/be718160aa9b2e
+
+- fetchをキューにしちゃう?
 
 ## 前のアルゴリズム
 

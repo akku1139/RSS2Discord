@@ -72,7 +72,7 @@ for(const feed of feeds) {
       await sendWebHook(url, body, feed, db)
     }
   } else {
-    let ret: ReturnType<FormattedFeed["builder"]> extends Promise<infer T> ? T : never
+    let ret: Awaited<ReturnType<FormattedFeed["builder"]>>
     try{
       ret = await feed.builder(feed)
       log.info(feed.name, ret.length, "posts")
