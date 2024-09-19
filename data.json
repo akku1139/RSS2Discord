@@ -23081,5 +23081,9 @@
   "http://politics.people.com.cn/n1/2024/0919/c1001-40323852.html": "a",
   "https://aur.archlinux.org/packages/python-gfsubsets": "a",
   "https://aur.archlinux.org/packages/hath": "a",
-  "https://aur.archlinux.org/packages/jfrog-cli": "a"
+  "https://aur.archlinux.org/packages/jfrog-cli": "a",
+  "https://aur.archlinux.org/packages/pypy3-setuptools": "a",
+  "https://aur.archlinux.org/packages/python-trame-server": "a",
+  "https://aur.archlinux.org/packages/minipro": "a",
+  "https://aur.archlinux.org/packages/gftools": "a"
 }
