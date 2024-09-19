@@ -22103,5 +22103,10 @@
   "https://archlinux.org/packages/extra/x86_64/virtualbox-host-modules-lts/": "a",
   "https://archlinux.org/packages/extra/x86_64/tp_smapi-lts/": "a",
   "https://archlinux.org/packages/extra/x86_64/r8168-lts/": "a",
-  "https://aur.archlinux.org/packages/liberica-jdk-full-bin": "a"
+  "https://aur.archlinux.org/packages/liberica-jdk-full-bin": "a",
+  "http://www3.nhk.or.jp/news/html/20240919/k10014585871000.html": "a",
+  "https://jp.yna.co.kr/view/AJP20240919001400882?section=entertainment-sports/index&input=rss": "a",
+  "https://jp.yna.co.kr/view/AJP20240919001400882?section=news&input=rss": "a",
+  "https://aur.archlinux.org/packages/jfrog-cli-bin": "a",
+  "https://aur.archlinux.org/packages/python-skidl": "a"
 }
