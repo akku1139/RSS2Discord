@@ -12,22 +12,17 @@ for(const feed of feeds) {
   const res = await feed.res
   if(!res.ok) {
     log.error(`${feed.name} (${feed.url}): HTTP ${res.status} (${res.statusText})`)
+    if(res.headers.get("X-Local-Error")) {
+      res.text().then(() => log.error())
+    }
+    failFeeds.push(new URL(feed.url).host)
     continue
   }
 
   if(typeof feed.builder === "undefined") {
     let data: {entries: Array<any>}
     try {
-      if(res.ok) {
-        data = await parseFeed(await res.text())
-      } else {
-        log.error(`${feed.name} returned HTTP error ${res.status} (${res.statusText})`)
-        if(res.headers.get("X-Local-Error")) {
-          res.text().then(() => log.error())
-        }
-        failFeeds.push(new URL(feed.url).host)
-        continue
-      }
+      data = await parseFeed(await res.text())
     } catch(e) {
       log.error(feed.name, e)
       failFeeds.push(new URL(feed.url).host)
