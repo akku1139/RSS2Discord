@@ -22908,5 +22908,9 @@
   "https://jp.yna.co.kr/view/AJP20240919003600882?section=nk/index&input=rss": "a",
   "https://jp.yna.co.kr/view/AJP20240919003600882?section=news&input=rss": "a",
   "https://aur.archlinux.org/packages/wasmedge-bin": "a",
-  "https://aur.archlinux.org/packages/wasmedge": "a"
+  "https://aur.archlinux.org/packages/wasmedge": "a",
+  "http://politics.people.com.cn/n1/2024/0919/c1001-40323823.html": "a",
+  "http://world.people.com.cn/n1/2024/0919/c1002-40323824.html": "a",
+  "http://world.people.com.cn/n1/2024/0919/c1002-40323825.html": "a",
+  "https://archlinux.org/packages/extra-testing/x86_64/xfce4-eyes-plugin/": "a"
 }
