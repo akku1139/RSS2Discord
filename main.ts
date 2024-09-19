@@ -25,6 +25,7 @@ for(const feed of feeds) {
         if(res.headers.get("X-Local-Error")) {
           res.text().then(() => log.error())
         }
+        failFeeds.push(new URL(feed.url).host)
         continue
       }
     } catch(e) {
