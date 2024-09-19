@@ -3,7 +3,10 @@ import { parseFeed } from "rss"
 import feeds from "./feeds.ts"
 import { sendWebHook, log } from "./utils.ts"
 
-let db = JSON.parse(await Deno.readTextFile('data.json'))
+const db_old = JSON.parse(await Deno.readTextFile('data.json')) as {[key: string]: "a"}
+const db: {[key: string]: "a"} = {}
+
+const failFeeds = []
 
 for(const feed of feeds) {
   const res = await feed.res
@@ -26,6 +29,7 @@ for(const feed of feeds) {
       }
     } catch(e) {
       log.error(feed.name, e)
+      failFeeds.push(feed.url)
       continue
     }
     log.info(feed.name, data.entries.length, "posts")
@@ -34,6 +38,11 @@ for(const feed of feeds) {
       if(typeof url === "undefined") {
         log.error(`in feed ${feed.name} (${feed.url}): url is undefined`)
         continue
+      }
+
+      if(url in db_old) {
+        db[url] = "a"
+        delete db_old[url]
       }
 
       if(db[url] === "a") {
@@ -73,5 +82,12 @@ for(const feed of feeds) {
     }
   }
 }
+
+Object.keys(db_old).forEach(_o => {
+  const o = new URL(_o)
+  if(failFeeds.includes(o.host)) {
+    db[_o] = "a"
+  }
+})
 
 await Deno.writeTextFile('data.json', JSON.stringify(db, null, 2))

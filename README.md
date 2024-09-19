@@ -21,3 +21,26 @@ Pythonのfeedparserとかにする?
 
 https://qiita.com/tippy/items/79ca3f7b7bcac1d92136
 https://zenn.dev/snowcait/articles/be718160aa9b2e
+
+## 前のアルゴリズム
+
+```js
+/* 新アルゴリズム概要
+変数: 新旧KVデータ
+KVのデータを全部読み出し → 旧
+ループ
+  もし url in 旧
+    (記事の存在しなかった分を削除する: RSSから溢れいてるため)
+    旧.削除(url)
+  else
+    新[url] = "a"
+  ここまで
+ここまで
+
+(削除を先にしないと)
+KV.削除一括(Object.keys(旧))
+KV.一括追加(新)
+*/
+```
+
+ここにフィードがエラー返した場合の処理がある

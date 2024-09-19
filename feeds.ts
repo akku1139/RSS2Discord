@@ -4,7 +4,7 @@ type RawFeed = {
   name: string,
   url: string,
   icon: string,
-  host?: string, // Proxyしたフィードの元データ
+  host?: string, // Proxyしたフィードの元データ ex: "blogbooks.net"
   base?: string, // WebHook設定用
   builder?: (feed: FormattedFeed) => Promise<Array<{url: string, body: any}>>
 }
