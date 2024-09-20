@@ -486,7 +486,7 @@ const rawFeeds: Array<RawFeed> = [
   }, {
     name: "NEWS | ホロライブプロダクション",
     url: "https://hololivepro.com/news/feed",
-    icon: "https://hololivepro.com/wp-content/themes/hololive_production/images/favicon.ico"
+    icon: "https://pbs.twimg.com/profile_images/1805110423274016768/QSsckQWV_400x400.jpg"
   }
 ]
 
