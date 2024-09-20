@@ -483,6 +483,10 @@ const rawFeeds: Array<RawFeed> = [
     name: "fabcross",
     url: "https://fabcross.jp/rss.xml",
     icon: "https://fabcross.jp/images/common/apple-touch-icon-precomposed.png"
+  }, {
+    name: "NEWS | ホロライブプロダクション",
+    url: "https://hololivepro.com/news/feed",
+    icon: "https://hololivepro.com/wp-content/themes/hololive_production/images/favicon.ico"
   }
 ]
 
