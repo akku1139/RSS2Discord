@@ -487,6 +487,10 @@ const rawFeeds: Array<RawFeed> = [
     name: "NEWS | ホロライブプロダクション",
     url: "https://hololivepro.com/news/feed",
     icon: "https://pbs.twimg.com/profile_images/1805110423274016768/QSsckQWV_400x400.jpg"
+  }, {
+    name: "萌え萌えmoebuntu",
+    url: "https://moebuntu.blog.fc2.com/?xml",
+    icon: "https://moebuntu.web.fc2.com/img/moe_j_logo.png"
   }
 ]
 
