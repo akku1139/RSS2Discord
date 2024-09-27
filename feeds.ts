@@ -494,7 +494,8 @@ const rawFeeds: Array<RawFeed> = [
   }, {
     name: "東方Projectよもやまニュース",
     url: "https://touhou-project.news/feed.rss",
-    icon: "https://touhou-project.news/wp-content/themes/korindo/resources/img/favicon.ico"
+    // icon: "https://touhou-project.news/wp-content/themes/korindo/resources/img/favicon.ico"
+    icon: "https://i.imgur.com/yjwXFbN.png"
   }
 ]
 
