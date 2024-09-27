@@ -491,6 +491,10 @@ const rawFeeds: Array<RawFeed> = [
     name: "萌え萌えmoebuntu",
     url: "https://moebuntu.blog.fc2.com/?xml",
     icon: "https://moebuntu.web.fc2.com/img/moe_j_logo.png"
+  }, {
+    name: "東方Projectよもやまニュース",
+    url: "https://touhou-project.news/feed.rss",
+    icon: "https://touhou-project.news/wp-content/themes/korindo/resources/img/favicon.ico"
   }
 ]
 
