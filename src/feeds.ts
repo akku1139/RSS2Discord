@@ -2,6 +2,7 @@ import { addSIPrefix, timeSince, log } from "./utils.ts"
 
 type RawFeed = {
   name: string,
+  description?: string,
   url: string,
   icon: string,
   host?: string, // Proxyしたフィードの元データ ex: "blogbooks.net"
@@ -27,6 +28,7 @@ const rawFeeds: Array<RawFeed> = [
   }, ...[...Array(9).keys()].map(i => ({
     name: "NHK News",
     url: `https://www.nhk.or.jp/rss/news/cat${i}.xml`,
+    description: "https://www.nhk.or.jp/toppage/rss/index.html",
     icon: "https://i.imgur.com/76KCIrY.png",
     base: "https://www.nhk.or.jp",
   })), {
@@ -63,6 +65,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "ITmedia", key: "itmedia_all"},
   ].map(f => ({
     name: f.name,
+    description: "https://corp.itmedia.co.jp/media/rss_list/",
     url: `https://rss.itmedia.co.jp/rss/2.0/${f.key}.xml`,
     icon: "https://image.itmedia.co.jp/info/images/itmapp_part_icon_1_1422324774.png",
     base: "https://rss.itmedia.co.jp",
@@ -199,6 +202,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "Top", key: "HomePage"},
   ].map(f => ({
     name: (f.name ?? f.key) + " - The New York Times",
+    description: "https://www.nytimes.com/rss",
     url: `https://rss.nytimes.com/services/xml/rss/nyt/${f.key}.xml`,
     icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
     base: "https://rss.nytimes.com",
@@ -220,6 +224,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "Bret Stephens", key: "bret-stephens"},
   ].map(f => ({
     name: f.name + "'s Column - The New York Times",
+    description: "https://www.nytimes.com/rss",
     url: `https://www.nytimes.com/svc/collections/v1/publish/www.nytimes.com/column/${f.key}/rss.xml`,
     icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
     base: "https://rss.nytimes.com",
@@ -237,6 +242,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "バロンズ", key: "RSSJapanBarrons"},
   ].map(f => ({
     name: f.name + " - ウォール・ストリート・ジャーナル日本語版",
+    description: "https://jp.wsj.com/news/rss-news-and-feeds",
     url: "https://feeds.content.dowjones.io/public/rss/" + f.key,
     icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
     base: "https://feeds.content.dowjones.io",
@@ -250,6 +256,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "Lifestyle", key: "RSSLifestyle"},
   ].map(f => ({
     name: f.name + " - The Wall Street Journal",
+    description: "https://www.wsj.com/news/rss-news-and-feeds",
     url: "https://feeds.a.dj.com/rss/" + f.key + ".xml",
     icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
     base: "https://feeds.a.dj.com",
@@ -265,6 +272,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "全般", key: "news"},
   ].map(f => ({
     name: f.name + " - 聯合ニュース日本語版",
+    description: "https://jp.yna.co.kr/channel/rss",
     url: "https://jp.yna.co.kr/RSS/" + f.key + ".xml",
     icon: "https://r.yna.co.kr/global/home/v01/img/favicon-152.png",
     base: "https://jp.yna.co.kr",
@@ -279,6 +287,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "全部", key: "ywkx"},
   ].map(f => ({
     name: f.name + " - 人民日报",
+    description: "http://politics.people.com.cn/ywkx/GB/368825/index.html",
     url: "http://www.people.com.cn/rss/" + f.key + ".xml",
     icon: "http://politics.people.com.cn/img/MAIN/2013/08/113596/images/logo.gif",
     base: "http://www.people.com.cn",
@@ -331,6 +340,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "自作PC", key: "pc"}
   ].map(f => ({
     name: f.name + " - ASCII.jp",
+    description: "https://ascii.jp/info/about_rss.html",
     url: "https://ascii.jp/" + f.key + "/rss.xml",
     icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
     base: "https://ascii.jp",
@@ -347,6 +357,7 @@ const rawFeeds: Array<RawFeed> = [
     {name: "Packages", key: "dwp"},
   ].map(f => ({
     name: f.name + " - DistroWatch.com",
+    description: "https://distrowatch.com",
     url: "https://distrowatch.com/news/" + f.key + ".xml",
     icon: "https://distrowatch.com/images/cpxtu/dwbanner.png",
     base: "https://distrowatch.com",
@@ -531,6 +542,7 @@ const webhooks = await (
 }
 
 export type FormattedFeed = RawFeed & {
+  description: string,
   base: string,
   threadName: string,
   test: boolean,
@@ -540,7 +552,8 @@ export type FormattedFeed = RawFeed & {
 }
 
 export default rawFeeds.map((feed): FormattedFeed => {
-  const webhook = webhooks[feed.base ?? feed.url]
+  const base = webhooks[feed.base ?? feed.url]
+  const webhook = base
   if(webhook === void 0) {
     log.warn(`${feed.name} (${feed.url}) has no webhooks configured. Use default hook.`)
   }
@@ -554,11 +567,13 @@ export default rawFeeds.map((feed): FormattedFeed => {
     }
   ))))
   return {
+    // 上書きされるかもしれない
+    description: feed.url,
+    test: false,
+    threadName: feed.name,
     ...feed,
-    base: feed.base ?? feed.url,
-    threadName: feed.threadName ?? feed.name,
-    test: feed.test ?? false,
-    host: feed.host ?? new URL(feed.url).host,
+    base,
+    host: feed.host ?? new URL(feed.url).host, // 右辺評価省略によるプチ軽量化
     webhook: webhook ?? webhooks.default,
     res,
   }

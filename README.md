@@ -22,6 +22,7 @@ https://qiita.com/tippy/items/79ca3f7b7bcac1d92136
 https://zenn.dev/snowcait/articles/be718160aa9b2e
 
 - fetchをキューにしちゃう?
+- letを排除 (https://qiita.com/kiyoshiro/items/13c60fad1f5279993fa2)
 
 ## 前のアルゴリズム
 

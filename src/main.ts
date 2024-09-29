@@ -1,13 +1,19 @@
 import { parseFeed } from "rss"
 
 import feeds, { FormattedFeed } from "./feeds.ts"
-import { log } from "./utils.ts"
+import { log, hook } from "./utils.ts"
 import { sendWebHook } from "./send.ts"
 
 const db_old = JSON.parse(await Deno.readTextFile('data/data.json')) as {[key: string]: "a"}
+hook.clean.push(async () => {
+  await Deno.writeTextFile('data/data.json', JSON.stringify(db, null, 2))
+})
 const db: {[key: string]: "a"} = {}
 
 const failFeeds: Array<string> = []
+hook.clean.push(() => {
+  log.info("Failed feeds:", failFeeds)
+})
 
 for(const feed of feeds) {
   const res = await feed.res
@@ -100,6 +106,4 @@ Object.keys(db_old).forEach(_o => {
   }
 })
 
-log.info("Failed feeds:", failFeeds)
-
-await Deno.writeTextFile('data/data.json', JSON.stringify(db, null, 2))
+hook.clean.forEach((f) => f())

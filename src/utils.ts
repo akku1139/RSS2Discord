@@ -21,3 +21,7 @@ export const log = {
   warn: (...msg) => console.warn("[  warn  ]", ...msg),
   error: (...msg) => console.error("[  error ]", ...msg),
 } as const
+
+export const hook: {[name: string]: Array<Function>} = {
+  clean: []
+}
