@@ -11,6 +11,13 @@ if(FORUM_WEBHOOK_URL === "") {
   throw new Error("Env FORUM_WEBHOOK_URL is not set.")
 }
 
+const responseStatus = {
+  error: 0
+}
+hook.clean.push(() => {
+  log.info("WebHook status", responseStatus)
+})
+
 const webhook = async (url: string, body: any, ok: Function, onFetchError: Function, onHTTPError: Function) => {
   let retryCount = 0
   let error: boolean = false
@@ -24,9 +31,12 @@ const webhook = async (url: string, body: any, ok: Function, onFetchError: Funct
       })
     } catch(e) {
       onFetchError(e)
+      responseStatus["error"] ++
       error = true
       break
     }
+
+    responseStatus[r.status]  = (responseStatus[r.status] ?? 0) + 1
 
     if(r.ok) {
       ok(r)
