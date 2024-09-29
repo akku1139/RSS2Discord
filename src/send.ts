@@ -1,7 +1,7 @@
 import { FormattedFeed } from "./feeds.ts";
 import { log, sleep, hook } from "./utils.ts"
 
-const threads = JSON.parse(await Deno.readTextFile('data/threads.json')) as {[key: string]: "a"}
+const threads = JSON.parse(await Deno.readTextFile('data/threads.json')) as {[key: string]: string}
 hook.clean.push(async () => {
   await Deno.writeTextFile('data/threads.json', JSON.stringify(threads, null, 2))
 })
@@ -14,7 +14,7 @@ if(FORUM_WEBHOOK_URL === "") {
 const webhook = async (url: string, body: any, ok: Function, onFetchError: Function, onHTTPError: Function) => {
   let retryCount = 0
   let error: boolean = false
-  let r: Response
+  let r: Response = new Response("Fake body")
   while(true) {
     try {
       r = await fetch(url, {
@@ -29,7 +29,7 @@ const webhook = async (url: string, body: any, ok: Function, onFetchError: Funct
     }
 
     if(r.ok) {
-      ok()
+      ok(r)
       break
     } else if(retryCount > 5) {
       log.warn(url, "Exceeded maximum retry count")
@@ -89,6 +89,8 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       FORUM_WEBHOOK_URL+"?wait=true", {
         thread_name: feed.threadName,
         content: feed.description,
+        username: feed.name,
+        avatar_url: feed.icon,
       },
       () => { /* db[url] = "a" */ },
       (s, t) => log.error("on webhook (create thread): ", feed.name, url, s, t),
@@ -99,8 +101,8 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
       return
     }
     const res = await raw.r.json()
-    threads[feed.base] = res.channel_id
     threadID = res.channel_id
+    threads[feed.base] = threadID
   }
 
   await webhook(

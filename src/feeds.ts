@@ -570,8 +570,8 @@ export default rawFeeds.map((feed): FormattedFeed => {
     // 上書きされるかもしれない
     description: feed.url,
     test: false,
-    threadName: feed.name,
     ...feed,
+    threadName: (feed.threadName ?? feed.name).substring(0, 256),
     base,
     host: feed.host ?? new URL(feed.url).host, // 右辺評価省略によるプチ軽量化
     webhook: webhook ?? webhooks.default,
