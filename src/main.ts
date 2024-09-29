@@ -7,7 +7,7 @@ import { sendWebHook } from "./send.ts"
 const db_old = JSON.parse(await Deno.readTextFile('data/data.json')) as {[key: string]: "a"}
 const db: {[key: string]: "a"} = {}
 
-const failFeeds = []
+const failFeeds: Array<string> = []
 
 for(const feed of feeds) {
   const res = await feed.res
