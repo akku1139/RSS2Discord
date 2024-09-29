@@ -81,6 +81,10 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
     (s, t) => log.error(s, feed.name, url, t, body),
   )
 
+  if(feed.test === true) {
+    return
+  }
+
   let threadID: string
   if(feed.base in threads) {
     threadID = threads[feed.base]

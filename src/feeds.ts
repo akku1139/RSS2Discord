@@ -321,7 +321,8 @@ const rawFeeds: Array<RawFeed> = [
     }
   ].map(f => ({
     ...f,
-    base: "trans"
+    base: "trans",
+    test: true,
   })),{
     name: "アストロアーツ",
     url: "https://www.astroarts.co.jp/article/feed.atom",
