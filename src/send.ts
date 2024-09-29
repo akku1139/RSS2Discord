@@ -74,14 +74,14 @@ const webhook = async (url: string, body: any, ok: Function, onFetchError: Funct
 }
 
 export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, db: {[key: string]: "a"}) => {
-  await webhook(
-    url, body,
-    () => { db[url] = "a" },
-    (s, t) => log.error("on webhook: ", feed.name, url, s, t),
-    (s, t) => log.error(s, feed.name, url, t, body),
-  )
-
   if(feed.test === true) {
+    await webhook(
+      url, body,
+      () => { db[url] = "a" },
+      (s, t) => log.error("on webhook: ", feed.name, url, s, t),
+      (s, t) => log.error(s, feed.name, url, t, body),
+    )
+
     return
   }
 
