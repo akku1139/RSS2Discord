@@ -6,6 +6,8 @@ type RawFeed = {
   icon: string,
   host?: string, // Proxyしたフィードの元データ ex: "blogbooks.net"
   base?: string, // WebHook設定用
+  threadName?: string,
+  test?: boolean, // 指定したら送信しない
   builder?: (feed: FormattedFeed) => Promise<Array<{url: string, body: any}>>
 }
 
@@ -64,6 +66,7 @@ const rawFeeds: Array<RawFeed> = [
     url: `https://rss.itmedia.co.jp/rss/2.0/${f.key}.xml`,
     icon: "https://image.itmedia.co.jp/info/images/itmapp_part_icon_1_1422324774.png",
     base: "https://rss.itmedia.co.jp",
+    threadName: "ITmedia",
   })), {
     name: "AIDB",
     url: "https://ai-data-base.com/feed",
@@ -199,6 +202,7 @@ const rawFeeds: Array<RawFeed> = [
     url: `https://rss.nytimes.com/services/xml/rss/nyt/${f.key}.xml`,
     icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
     base: "https://rss.nytimes.com",
+    threadName: "The New York Times",
   })), ...[
     {name: "Charles M. Blow", key: "charles-m-blow"},
     {name: "Jamelle Bouie", key: "jamelle-bouie"},
@@ -219,6 +223,7 @@ const rawFeeds: Array<RawFeed> = [
     url: `https://www.nytimes.com/svc/collections/v1/publish/www.nytimes.com/column/${f.key}/rss.xml`,
     icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
     base: "https://rss.nytimes.com",
+    threadName: "The New York Times",
   })), ...[
     {name: "マーケット", key: "RSSJapanMarket"},
     {name: "Heard on the Street", key: "RSSJapanHeardonTheStreet"},
@@ -235,6 +240,7 @@ const rawFeeds: Array<RawFeed> = [
     url: "https://feeds.content.dowjones.io/public/rss/" + f.key,
     icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
     base: "https://feeds.content.dowjones.io",
+    threadName: "ウォール・ストリート・ジャーナル日本語版",
   })), ...[
     {name: "Opinion", key: "RSSOpinion"},
     {name: "World News", key: "RSSWorldNews"},
@@ -247,6 +253,7 @@ const rawFeeds: Array<RawFeed> = [
     url: "https://feeds.a.dj.com/rss/" + f.key + ".xml",
     icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
     base: "https://feeds.a.dj.com",
+    threadName: "The Wall Street Journal"
   })), ...[
     {name: "政治", key: "politics"},
     {name: "北朝鮮", key: "nk"},
@@ -260,7 +267,8 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name + " - 聯合ニュース日本語版",
     url: "https://jp.yna.co.kr/RSS/" + f.key + ".xml",
     icon: "https://r.yna.co.kr/global/home/v01/img/favicon-152.png",
-    base: "https://jp.yna.co.kr"
+    base: "https://jp.yna.co.kr",
+    threadName: "聯合ニュース日本語版"
   })), ...[
     {name: "时政", key: "politics"},
     {name: "社会", key: "society"},
@@ -273,7 +281,8 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name + " - 人民日报",
     url: "http://www.people.com.cn/rss/" + f.key + ".xml",
     icon: "http://politics.people.com.cn/img/MAIN/2013/08/113596/images/logo.gif",
-    base: "http://www.people.com.cn"
+    base: "http://www.people.com.cn",
+    threadName: "人民日报"
   })), {
     name: "IPAセキュリティセンター:重要なセキュリティ情報",
     url: "https://www.ipa.go.jp/security/alert-rss.rdf",
@@ -324,7 +333,8 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name + " - ASCII.jp",
     url: "https://ascii.jp/" + f.key + "/rss.xml",
     icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
-    base: "https://ascii.jp"
+    base: "https://ascii.jp",
+    threadName: "ASCII.jp"
   })), {
     name: "ASCII.jp",
     url: "https://ascii.jp/rss.xml",
@@ -339,7 +349,8 @@ const rawFeeds: Array<RawFeed> = [
     name: f.name + " - DistroWatch.com",
     url: "https://distrowatch.com/news/" + f.key + ".xml",
     icon: "https://distrowatch.com/images/cpxtu/dwbanner.png",
-    base: "https://distrowatch.com"
+    base: "https://distrowatch.com",
+    threadName: "DistroWatch"
   })), {
     name: "WIRED.jp", // 他言語版もあるっぽい
     url: "https://wired.jp/feed/rss",
@@ -369,6 +380,7 @@ const rawFeeds: Array<RawFeed> = [
     url: "https://miningpoolstats.stream/newcoins",
     base: "https://miningpoolstats.stream/newcoins",
     icon: "https://pbs.twimg.com/profile_images/1061222423612276737/ciKYxa2__400x400.jpg",
+    threadName: "Mining Pool Stats新コイン通知",
     builder: async (feed) => {
       const timeParmReg = /;var last_time = "(\d+)";/.exec(
         await (await fetch("https://miningpoolstats.stream/newcoins")).text()
@@ -502,8 +514,10 @@ const rawFeeds: Array<RawFeed> = [
 /*
 まちカドまぞく画像bot
 Nアニメ
-  // BBC
-  // forbesjapan.com
+BBC
+forbesjapan.com
+
+フォーラム化したらTRANsのフィードを分離しないと
 */
 
 const WEBHOOK_URL = Deno.env.get("WEBHOOK_URL") ?? ""
@@ -517,6 +531,10 @@ const webhooks = await (
 }
 
 export type FormattedFeed = RawFeed & {
+  base: string,
+  threadName: string,
+  test: boolean,
+  host: string,
   webhook: string,
   res: Promise<Response>
 }
@@ -537,6 +555,9 @@ export default rawFeeds.map((feed): FormattedFeed => {
   ))))
   return {
     ...feed,
+    base: feed.base ?? feed.url,
+    threadName: feed.threadName ?? feed.name,
+    test: feed.test ?? false,
     host: feed.host ?? new URL(feed.url).host,
     webhook: webhook ?? webhooks.default,
     res,

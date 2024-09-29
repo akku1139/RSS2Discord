@@ -19,7 +19,7 @@ jobs:
           save-always: true
 
       - run: deno lint
-        if: ${{ !cancelled() }}
+        # if: ${{ !cancelled() }}
 
       - run: deno check main.ts
         if: ${{ !cancelled() }}
