@@ -555,7 +555,7 @@ export type FormattedFeed = RawFeed & {
 export default rawFeeds.map((feed): FormattedFeed => {
   const base = feed.base ?? feed.url
   const webhook = webhooks[base]
-  if(webhook === void 0) {
+  if(webhook === void 0 && feed.test === true) {
     log.warn(`${feed.name} (${feed.url}) has no webhooks configured. Use default hook.`)
   }
   const res = fetch(feed.url).catch<Response>(e => new Promise((resolve, _) => resolve(new Response(
