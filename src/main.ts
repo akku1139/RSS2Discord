@@ -27,6 +27,8 @@ for(const feed of feeds) {
   }
 
   if(typeof feed.builder === "undefined") {
+    let sentCount: number = 0
+    let errorCount: number = 0
     let data: {entries: Array<any>}
     try {
       data = await parseFeed(await res.text())
@@ -35,7 +37,6 @@ for(const feed of feeds) {
       failFeeds.push(new URL(feed.url).host)
       continue
     }
-    log.info(feed.name, data.entries.length, "posts")
     for(const e of data.entries) {
       const url = e.links[0].href
       if(typeof url === "undefined") {
@@ -72,13 +73,21 @@ for(const feed of feeds) {
           },
         }]
       }
-      await sendWebHook(url, body, feed, db)
+
+      const res = await sendWebHook(url, body, feed, db)
+      if(res.error) {
+        errorCount ++
+      } else {
+        sentCount ++
+      }
     }
+    log.info(feed.name, data.entries.length, "posts (sent: ", sentCount, "error: ", errorCount, ")")
   } else {
+    let sentCount: number = 0
+    let errorCount: number = 0
     let ret: Awaited<ReturnType<FormattedFeed["builder"]>>
     try{
       ret = await feed.builder(feed)
-      log.info(feed.name, ret.length, "posts")
     } catch(e) {
       log.error(feed.name, e)
       failFeeds.push(new URL(feed.url).host)
@@ -94,8 +103,14 @@ for(const feed of feeds) {
       if(db[r.url] === "a") {
         continue
       }
-      await sendWebHook(r.url, r.body, feed, db)
+      const res = await sendWebHook(r.url, r.body, feed, db)
+      if(res.error) {
+        errorCount ++
+      } else {
+        sentCount ++
+      }
     }
+    log.info(feed.name, ret.length, "posts (sent: ", sentCount, "error: ", errorCount, ")")
   }
 }
 
