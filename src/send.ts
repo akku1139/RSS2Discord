@@ -30,13 +30,13 @@ const webhook = async (url: string, body: any, ok: Function, onFetchError: Funct
         body: JSON.stringify(body)
       })
     } catch(e) {
-      onFetchError(e)
+      onFetchError(e, "")
       responseStatus["error"] ++
       error = true
       break
     }
 
-    responseStatus[r.status]  = (responseStatus[r.status] ?? 0) + 1
+    responseStatus[r.status] = (responseStatus[r.status] ?? 0) + 1
 
     if(r.ok) {
       ok(r)
