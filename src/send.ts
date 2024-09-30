@@ -85,14 +85,12 @@ const webhook = async (url: string, body: any, ok: Function, onFetchError: Funct
 
 export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, db: {[key: string]: "a"}) => {
   if(feed.test === true) {
-    await webhook(
+    return await webhook(
       url, body,
       () => { db[url] = "a" },
       (s, t) => log.error("on webhook: ", feed.name, url, s, t),
       (s, t) => log.error(s, feed.name, url, t, body),
     )
-
-    return
   }
 
   let threadID: string
@@ -106,22 +104,22 @@ export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, d
         username: feed.name,
         avatar_url: feed.icon,
       },
-      () => { /* db[url] = "a" */ },
+      () => { },
       (s, t) => log.error("on webhook (create thread): ", feed.name, url, s, t),
       (s, t) => log.error(s, "(create thread)", feed.name, url, t, body),
     )
     if(raw.error === true) {
       log.warn(url, "was not be sent because the thread could not be created.")
-      return
+      return raw
     }
     const res = await raw.r.json()
     threadID = res.channel_id
     threads[feed.base] = threadID
   }
 
-  await webhook(
+  return await webhook(
     `${FORUM_WEBHOOK_URL}?thread_id=${threadID}`, body,
-    () => { /* db[url] = "a" */ },
+    () => { db[url] = "a" },
     (s, t) => log.error("on webhook (forum): ", feed.name, url, s, t),
     (s, t) => log.error(s, "(forum)", feed.name, url, t, body),
   )
