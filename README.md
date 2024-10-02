@@ -1,5 +1,11 @@
 # RSS2Discord
 
+## Important
+
+`data/` 以下のファイルを編集してはいけない
+
+ファイル追加はおk?
+
 ## Memo
 
 https://deno.land/api@v1.32.1?unstable=&s=Deno.Kv
