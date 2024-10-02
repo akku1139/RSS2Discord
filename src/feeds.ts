@@ -531,12 +531,10 @@ const rawFeeds: Array<RawFeed> = [
     name: "TechFeed 公式記事",
     url: "https://techfeed.io/feeds/original-contents",
     icon: "https://play-lh.googleusercontent.com/lpVgh0bGMLPnIIjMvlsoMlSsPmkfQBBlr4kBgYUQOsnhaE3tE04jd7E-W-_XRXtVVLL2=w240-h480",
-    test
   }, {
     name: "CodeZine",
     url: "https://codezine.jp/rss/new/index.xml",
     icon: "https://pbs.twimg.com/profile_images/1267291016035307522/OEH0rwXO_400x400.jpg",
-    test
   }
 ]
 

@@ -21,6 +21,10 @@ hook.clean.push(() => {
 })
 
 for(const feed of feeds) {
+  if( !(feed.url in executedFeeds) ) {
+    feed.test = true
+  }
+
   const res = await feed.res
   if(!res.ok) {
     log.error(`${feed.name} (${feed.url}): HTTP ${res.status} (${res.statusText})`)
