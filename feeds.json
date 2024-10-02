@@ -192,5 +192,6 @@
   "https://touhou-project.news/feed.rss": "a",
   "https://diamond.jp/list/feed/rss/dol": "a",
   "https://techfeed.io/feeds/original-contents": "a",
-  "https://codezine.jp/rss/new/index.xml": "a"
+  "https://codezine.jp/rss/new/index.xml": "a",
+  "https://www.engadget.com/rss.xml": "a"
 }
