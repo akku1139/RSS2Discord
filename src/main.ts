@@ -10,6 +10,11 @@ hook.clean.push(async () => {
 })
 const db: {[key: string]: "a"} = {}
 
+const executedFeeds = JSON.parse(await Deno.readTextFile('data/feeds.json')) as {[key: string]: "a"}
+hook.clean.push(async () => {
+  await Deno.writeTextFile('data/feeds.json', JSON.stringify(executedFeeds, null, 2))
+})
+
 const failFeeds: Array<string> = []
 hook.clean.push(() => {
   log.info("Failed feeds:", failFeeds)
@@ -112,6 +117,7 @@ for(const feed of feeds) {
     }
     log.info(feed.name, ret.length, "posts (sent: ", sentCount, "error: ", errorCount, ")")
   }
+  executedFeeds[feed.url] = "a"
 }
 
 Object.keys(db_old).forEach(_o => {

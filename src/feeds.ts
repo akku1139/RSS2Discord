@@ -12,6 +12,8 @@ type RawFeed = {
   builder?: (feed: FormattedFeed) => Promise<Array<{url: string, body: any}>>
 }
 
+const test = true
+
 const rawFeeds: Array<RawFeed> = [
   {
     name: "虚構新聞",
@@ -520,6 +522,21 @@ const rawFeeds: Array<RawFeed> = [
     url: "https://touhou-project.news/feed.rss",
     // icon: "https://touhou-project.news/wp-content/themes/korindo/resources/img/favicon.ico"
     icon: "https://i.imgur.com/yjwXFbN.png"
+  }, {
+    name: "ダイヤモンド・オンライン",
+    url: "https://diamond.jp/list/feed/rss/dol",
+    icon: "https://pbs.twimg.com/profile_images/1355858337825386500/dN6N0nUi_400x400.jpg",
+    test
+  }, {
+    name: "TechFeed 公式記事",
+    url: "https://techfeed.io/feeds/original-contents",
+    icon: "https://play-lh.googleusercontent.com/lpVgh0bGMLPnIIjMvlsoMlSsPmkfQBBlr4kBgYUQOsnhaE3tE04jd7E-W-_XRXtVVLL2=w240-h480",
+    test
+  }, {
+    name: "CodeZine",
+    url: "https://codezine.jp/rss/new/index.xml",
+    icon: "https://pbs.twimg.com/profile_images/1267291016035307522/OEH0rwXO_400x400.jpg",
+    test
   }
 ]
 
