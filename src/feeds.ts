@@ -526,7 +526,6 @@ const rawFeeds: Array<RawFeed> = [
     name: "ダイヤモンド・オンライン",
     url: "https://diamond.jp/list/feed/rss/dol",
     icon: "https://pbs.twimg.com/profile_images/1355858337825386500/dN6N0nUi_400x400.jpg",
-    test
   }, {
     name: "TechFeed 公式記事",
     url: "https://techfeed.io/feeds/original-contents",
