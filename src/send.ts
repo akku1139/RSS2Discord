@@ -1,4 +1,4 @@
-import { FormattedFeed } from "./feeds.ts";
+import { type FormattedFeed } from "./types.ts";
 import { log, sleep, hook } from "./utils.ts"
 
 const threads = JSON.parse(await Deno.readTextFile('data/threads.json')) as {[key: string]: string}
