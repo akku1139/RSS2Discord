@@ -1,3 +1,7 @@
+type Transformer = {
+  url?: (url: string) => string,
+}
+
 export type RawFeed = {
   name: string,
   description?: string,
@@ -7,6 +11,7 @@ export type RawFeed = {
   base?: string, // WebHook設定用
   threadName?: string,
   test?: boolean, // 指定したら送信しない
+  transformer?: Transformer
   builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: any }>>
 }
 
@@ -17,5 +22,6 @@ export type FormattedFeed = RawFeed & {
   test: boolean,
   host: string,
   webhook: string,
-  res: Promise<Response>
+  res: Promise<Response>,
+  transformer: Transformer,
 }

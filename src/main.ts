@@ -21,6 +21,13 @@ hook.clean.push(() => {
   log.info("Failed feeds:", failFeeds)
 })
 
+const transform = (obj: string, transformer: (s: string) => string | undefined) => {
+  if(transformer === void 0) {
+    return obj
+  }
+  return transformer(obj)
+}
+
 for(const feed of feeds) {
   if( !(feed.url in executedFeeds) ) {
     feed.test = true
@@ -48,7 +55,7 @@ for(const feed of feeds) {
       continue
     }
     for(const e of data.entries) {
-      const url = e.links[0].href
+      const url = transform(e.links[0].href, feed.transformer.url)
       if(typeof url === "undefined") {
         log.error(`in feed ${feed.name} (${feed.url}): url is undefined`)
         continue
