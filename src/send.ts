@@ -1,10 +1,6 @@
 import { type FormattedFeed } from "./types.ts";
 import { log, sleep, hook } from "./utils.ts"
-
-const threads = JSON.parse(await Deno.readTextFile('data/threads.json')) as {[key: string]: string}
-hook.clean.push(async () => {
-  await Deno.writeTextFile('data/threads.json', JSON.stringify(threads, null, 2))
-})
+import { threads } from "./defs.ts"
 
 const FORUM_WEBHOOK_URL = Deno.env.get("FORUM_WEBHOOK_URL") ?? ""
 if(FORUM_WEBHOOK_URL === "") {

@@ -4,12 +4,14 @@ import feeds from "./feed.ts"
 import { type FormattedFeed } from "./types.ts"
 import { log, hook } from "./utils.ts"
 import { sendWebHook } from "./send.ts"
+import { threads } from "./defs.ts"
+
+const db: {[key: string]: "a"} = {}
 
 const db_old = JSON.parse(await Deno.readTextFile('data/data.json')) as {[key: string]: "a"}
 hook.clean.push(async () => {
   await Deno.writeTextFile('data/data.json', JSON.stringify(db, null, 2))
 })
-const db: {[key: string]: "a"} = {}
 
 const executedFeeds = JSON.parse(await Deno.readTextFile('data/feeds.json')) as {[key: string]: "a"}
 hook.clean.push(async () => {
@@ -27,6 +29,12 @@ const transform = (obj: string, transformer: (s: string) => string | undefined) 
   }
   return transformer(obj)
 }
+
+// --- main script ---
+
+log.info("Scanning", feeds.length, "feeds")
+log.info("threads (total):", new Set(feeds.map(f => f.base)).size)
+log.info("threads (sent):", Object.keys(threads).length)
 
 for(const feed of feeds) {
   if( !(feed.url in executedFeeds) ) {
@@ -98,7 +106,7 @@ for(const feed of feeds) {
         sentCount ++
       }
     }
-    log.info(feed.name, data.entries.length, "posts (sent: ", sentCount, "error: ", errorCount, ")")
+    log.info(feed.name, data.entries.length, "posts (sent:", sentCount, "error:", errorCount, ")")
   } else {
     let sentCount: number = 0
     let errorCount: number = 0
@@ -127,7 +135,7 @@ for(const feed of feeds) {
         sentCount ++
       }
     }
-    log.info(feed.name, ret.length, "posts (sent: ", sentCount, "error: ", errorCount, ")")
+    log.info(feed.name, ret.length, "posts (sent:", sentCount, "error:", errorCount, ")")
   }
   executedFeeds[feed.url] = "a"
 }
