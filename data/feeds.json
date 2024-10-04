@@ -193,5 +193,7 @@
   "https://diamond.jp/list/feed/rss/dol": "a",
   "https://techfeed.io/feeds/original-contents": "a",
   "https://codezine.jp/rss/new/index.xml": "a",
-  "https://www.engadget.com/rss.xml": "a"
+  "https://www.engadget.com/rss.xml": "a",
+  "https://www.techno-edge.net/rss20/index.rdf": "a",
+  "https://kakakumag.com/rss/": "a"
 }
