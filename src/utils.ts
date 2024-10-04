@@ -1,4 +1,4 @@
-import { RawFeed } from "./types"
+import { RawFeed } from "./types.ts"
 
 export const addSIPrefix = (e: string) => {
   const units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"];

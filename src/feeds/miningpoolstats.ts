@@ -1,5 +1,4 @@
-import { makeFeeds } from "../utils"
-import { addSIPrefix, timeSince } from "../utils.ts"
+import { addSIPrefix, timeSince, makeFeeds } from "../utils.ts"
 
 export default makeFeeds({
   name: "Mining Pool Stats新コイン通知",
