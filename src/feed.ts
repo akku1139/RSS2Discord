@@ -1,20 +1,20 @@
-import { addSIPrefix, timeSince, log } from "./utils.ts"
+import { log } from "./utils.ts"
+import type { RawFeed, FormattedFeed } from "./types.ts"
 
-type RawFeed = {
-  name: string,
-  description?: string,
-  url: string,
-  icon: string,
-  host?: string, // Proxyしたフィードの元データ ex: "blogbooks.net"
-  base?: string, // WebHook設定用
-  threadName?: string,
-  test?: boolean, // 指定したら送信しない
-  builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: any }>>
-}
+import core from "./feeds/core.ts"
+import impress from "./feeds/impress.ts"
+import miningpoolstats from "./feeds/miningpoolstats.ts"
+import nytimes from "./feeds/nytimes.ts"
+import trans from "./feeds/trans.ts"
 
 const test = true
 
 const rawFeeds: Array<RawFeed> = [
+  ...core,
+  ...impress,
+  ...miningpoolstats,
+  ...trans,
+  ...nytimes,
   {
     name: "虚構新聞",
     url: "https://kyoko-np.net/index.xml",
@@ -143,95 +143,6 @@ const rawFeeds: Array<RawFeed> = [
     url: "http://feeds.afpbb.com/rss/afpbb/afpbbnews", // SSLエラー
     icon: "https://afpbb.ismcdn.jp/common/images/apple-touch-icon2020.png",
   }, ...[
-    { key: "World" },
-    { key: "Africa" },
-    { key: "Americas" },
-    { name: "Asia Pacific", key: "AsiaPacific" },
-    { key: "Europe" },
-    { key: "MiddleEast" },
-    { name: "U.S.", key: "US" },
-    { key: "Education" },
-    { name: "The Upshot", key: "Upshot" },
-    { key: "Politics" },
-    { name: "N.Y./Region", key: "NYRegion" },
-    { key: "Business" },
-    { name: "Energy & Environment", key: "EnergyEnvironment" },
-    { name: "Small Business", key: "SmallBusiness" },
-    { key: "Economy" },
-    { name: "DealBook", key: "Dealbook" },
-    { name: "Media & Advertising", key: "MediaandAdvertising" },
-    { name: "Your Money", key: "YourMoney" },
-    { key: "Technology" },
-    { name: "Personal Tech", key: "PersonalTech" },
-    { key: "Sports" },
-    { key: "Baseball" },
-    { name: "College Basketball", key: "CollegeBasketball" },
-    { name: "College Football", key: "CollegeFootball" },
-    { key: "Golf" },
-    { key: "Hockey" },
-    { name: "Pro-Basketball", key: "ProBasketball" },
-    { name: "Pro-Football", key: "ProFootball" },
-    { key: "Soccer" },
-    { key: "Tennis" },
-    { key: "Science" },
-    { name: "Environment", key: "Climate" },
-    { name: "Space & Cosmos", key: "Space" },
-    { key: "Health" },
-    { name: "Well Blog", key: "Well" },
-    { key: "Arts" },
-    { name: "Art & Design", key: "ArtandDesign" },
-    { name: "Book Review", key: "Books/Review" },
-    { key: "Dance" },
-    { key: "Movies" },
-    { key: "Music" },
-    { key: "Television" },
-    { key: "Theater" },
-    { name: "Fashion & Style", key: "FashionandStyle" },
-    { name: "Dining & Wine", key: "DiningandWine" },
-    { name: "Love", key: "Weddings" },
-    { name: "T Magazine", key: "tmagazine" },
-    { key: "Travel" },
-    { key: "Jobs" },
-    { name: "Real Estate", key: "RealEstate" },
-    { name: "Autos", key: "Automobiles" },
-    { name: "Lens Blog", key: "Lens" },
-    { key: "Obituaries" },
-    { name: "Times Wire", key: "recent" },
-    { name: "Most E-Mailed", key: "MostEmailed" },
-    { name: "Most Shared", key: "MostShared" },
-    { name: "Most Viewed", key: "MostViewed" },
-    { name: "Sunday Opinion", key: "sunday-review" },
-    { name: "Top", key: "HomePage" },
-  ].map(f => ({
-    name: (f.name ?? f.key) + " - The New York Times",
-    description: "https://www.nytimes.com/rss",
-    url: `https://rss.nytimes.com/services/xml/rss/nyt/${f.key}.xml`,
-    icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
-    base: "https://rss.nytimes.com",
-    threadName: "The New York Times",
-  })), ...[
-    { name: "Charles M. Blow", key: "charles-m-blow" },
-    { name: "Jamelle Bouie", key: "jamelle-bouie" },
-    { name: "David Brooks", key: "david-brooks" },
-    { name: "Frank Bruni", key: "frank-bruni" },
-    { name: "Gail Collins", key: "gail-collins" },
-    { name: "Ross Douthat", key: "ross-douthat" },
-    { name: "Maureen Dowd", key: "maureen-dowd" },
-    { name: "Thomas L. Friedman", key: "thomas-l-friedman" },
-    { name: "Michelle Goldberg", key: "michelle-goldberg" },
-    { name: "Ezra Klein", key: "ezra-klein" },
-    { name: "Nicholas D. Kristof", key: "nicholas-kristof" },
-    { name: "Paul Krugman", key: "paul-krugman" },
-    { name: "Farhad Manjoo", key: "farhad-manjoo" },
-    { name: "Bret Stephens", key: "bret-stephens" },
-  ].map(f => ({
-    name: f.name + "'s Column - The New York Times",
-    description: "https://www.nytimes.com/rss",
-    url: `https://www.nytimes.com/svc/collections/v1/publish/www.nytimes.com/column/${f.key}/rss.xml`,
-    icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
-    base: "https://rss.nytimes.com",
-    threadName: "The New York Times",
-  })), ...[
     { name: "マーケット", key: "RSSJapanMarket" },
     { name: "Heard on the Street", key: "RSSJapanHeardonTheStreet" },
     { name: "ビジネス", key: "RSSJapanBusiness" },
@@ -306,26 +217,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "JVN",
     url: "https://jvn.jp/rss/jvn.rdf",
     icon: "https://www.ipa.go.jp/apple-touch-icon-180x180.png",
-  }, ...[
-    {
-      name: "Zenn",
-      url: "https://zenn.dev/p/trans/feed",
-      //icon: "https://static.zenn.studio/images/icon.png",
-      icon: "https://static.zenn.studio/images/logo-transparent.png",
-    }, {
-      name: "note",
-      url: "https://note.com/kombumori/m/me3717a077c16/rss",
-      icon: "https://theme.zdassets.com/theme_assets/2318981/c1e35dfc4394b7982d2ea5e5a5a2e9c1621247cf.png",
-    }, {
-      name: "Qiita",
-      url: "https://qiita.com/organizations/trans-dev/activities.atom",
-      icon: "https://cdn.qiita.com/assets/public/qiita-pwa-icon_512-4f5b031e6cb002cb865db0dd38635a78.png",
-    }
-  ].map(f => ({
-    ...f,
-    base: "trans",
-    test: true,
-  })), {
+  }, {
     name: "アストロアーツ",
     url: "https://www.astroarts.co.jp/article/feed.atom",
     icon: "https://yt3.googleusercontent.com/ytc/AIdro_lK9Qx3Xa2l5EmrIJ8VkBPK2k7PtGaR4QCc5nFuRYJFUQ=s160-c-k-c0x00ffffff-no-rj"
@@ -389,86 +281,6 @@ const rawFeeds: Array<RawFeed> = [
     name: "ガジェット通信",
     url: "https://getnews.jp/feed/ext/orig",
     icon: "https://pbs.twimg.com/profile_images/512441585976360960/DMd5at7__400x400.png"
-  }, {
-    name: "Mining Pool Stats新コイン通知",
-    url: "https://miningpoolstats.stream/newcoins",
-    base: "https://miningpoolstats.stream/newcoins",
-    icon: "https://pbs.twimg.com/profile_images/1061222423612276737/ciKYxa2__400x400.jpg",
-    threadName: "Mining Pool Stats新コイン通知",
-    builder: async (feed) => {
-      const timeParmReg = /;var last_time = "(\d+)";/.exec(
-        await (await fetch("https://miningpoolstats.stream/newcoins")).text()
-      )
-      if (timeParmReg === null) {
-        throw new Error(`${feed.name}: cannnot get time parameter`)
-      }
-      const timeParm = timeParmReg[1]
-      const data = await (await fetch("https://data.miningpoolstats.stream/data/coins_data_new.js?t=" + timeParm)).json() as {
-        data: Array<{
-          name: string,
-          algo: string,
-          symbol: string,
-          height: number,
-          hashrate: number,
-          unit: string,
-          diff: number,
-          pools: number,
-          target: number,
-          i: number,
-          page: string,
-          ph: number,
-          typ: string,
-          e24: number,
-          bt: number,
-          time: number,
-          age: number,
-        }>,
-        time: number,
-      }
-      return data.data.map((d) => ({
-        url: "https://miningpoolstats.stream/" + d.page,
-        body: {
-          username: feed.name,
-          avatar_url: feed.icon,
-          embeds: [{
-            author: {
-              name: d.name + " [" + d.symbol + "]",
-              url: "https://miningpoolstats.stream/" + d.page,
-              icon_url: "https://miningpoolstats.stream/ico/" + d.page + ".webp",
-            },
-            color: 16777215,
-            fields: [
-              {
-                inline: true,
-                name: "Algorithm",
-                value: d.algo
-              }, {
-                name: "Height",
-                value: String(d.height),
-                inline: true
-              }, {
-                name: "Pools",
-                value: String(d.pools),
-                inline: true
-              }, {
-                name: "Miner",
-                value: d.typ,
-                inline: true
-              }, {
-                name: "Hashrate",
-                value: addSIPrefix(String(d.hashrate)) + d.unit,
-                inline: true
-              }, {
-                name: "Difficulty",
-                value: addSIPrefix(String(d.diff)),
-                inline: true
-              }
-            ],
-            footer: { text: "Age: " + timeSince(d.age) },
-          }],
-        },
-      }))
-    }
   }, {
     name: "現代ビジネス",
     url: "https://gendai.media/list/feed/rss",
@@ -546,7 +358,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "価格.com マガジン",
     url: "https://kakakumag.com/rss/",
     icon: "https://pbs.twimg.com/profile_images/877052835182936064/yNkw85sy_400x400.jpg"
-  }
+  },
 ]
 
 /*
@@ -566,16 +378,6 @@ const webhooks = await (
   await fetch(WEBHOOK_URL)
 ).json() as {
   [key: string]: string
-}
-
-export type FormattedFeed = RawFeed & {
-  description: string,
-  base: string,
-  threadName: string,
-  test: boolean,
-  host: string,
-  webhook: string,
-  res: Promise<Response>
 }
 
 export default rawFeeds.map((feed): FormattedFeed => {

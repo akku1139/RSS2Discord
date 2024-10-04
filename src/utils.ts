@@ -1,3 +1,5 @@
+import { RawFeed } from "./types"
+
 export const addSIPrefix = (e: string) => {
   const units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"];
   let o = parseFloat(e);
@@ -24,4 +26,8 @@ export const log = {
 
 export const hook: {[name: string]: Array<Function>} = {
   clean: []
+}
+
+export const makeFeeds = (...feeds: Array<RawFeed | Array<RawFeed>>): Array<RawFeed> => {
+  return feeds.flat()
 }

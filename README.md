@@ -30,6 +30,9 @@ https://zenn.dev/snowcait/articles/be718160aa9b2e
 - fetchをキューにしちゃう?
 - letを排除 (https://qiita.com/kiyoshiro/items/13c60fad1f5279993fa2)
 
+- 自動でfeedsからimport
+- Deno 2.0 対応
+
 ## 前のアルゴリズム
 
 ```js

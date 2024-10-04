@@ -1,6 +1,7 @@
 import { parseFeed } from "rss"
 
-import feeds, { FormattedFeed } from "./feeds.ts"
+import feeds from "./feed.ts"
+import { type FormattedFeed } from "./types.ts"
 import { log, hook } from "./utils.ts"
 import { sendWebHook } from "./send.ts"
 
