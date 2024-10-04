@@ -106,7 +106,11 @@ for(const feed of feeds) {
         sentCount ++
       }
     }
-    log.info(feed.name, data.entries.length, "posts (sent:", sentCount, "error:", errorCount, ")")
+    log.info(
+      feed.name, data.entries.length,
+      "posts (sent:", sentCount, "error:", errorCount, ")",
+      threads[feed.base] ? void 0 : "never sent",
+    )
   } else {
     let sentCount: number = 0
     let errorCount: number = 0
@@ -135,7 +139,11 @@ for(const feed of feeds) {
         sentCount ++
       }
     }
-    log.info(feed.name, ret.length, "posts (sent:", sentCount, "error:", errorCount, ")")
+    log.info(
+      feed.name, ret.length,
+      "posts (sent:", sentCount, "error:", errorCount, ")",
+      threads[feed.base] ? void 0 : "never sent",
+    )
   }
   executedFeeds[feed.url] = "a"
 }

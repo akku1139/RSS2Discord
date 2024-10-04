@@ -18,10 +18,17 @@ export const timeSince = (e: number) => {
 
 export const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, 1000 * s))
 
+const filterUndefined = (a: Array<any>) => a.filter(e => {
+  if(e === void 0) {
+    return false
+  }
+  return true
+})
+
 export const log = {
-  info: (...msg) => console.log("[  info  ]", ...msg),
-  warn: (...msg) => console.warn("[  warn  ]", ...msg),
-  error: (...msg) => console.error("[  error ]", ...msg),
+  info: (...msg) => console.log("[  info  ]", ...filterUndefined(msg)),
+  warn: (...msg) => console.warn("[  warn  ]", ...filterUndefined(msg)),
+  error: (...msg) => console.error("[  error ]", ...filterUndefined(msg)),
 } as const
 
 export const hook: {[name: string]: Array<Function>} = {
