@@ -342,23 +342,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "価格.com マガジン",
     url: "https://kakakumag.com/rss/",
     icon: "https://pbs.twimg.com/profile_images/877052835182936064/yNkw85sy_400x400.jpg"
-  }, ...[ // 後で消される
-    { name: "政治", key: "politics" },
-    { name: "北朝鮮", key: "nk" },
-    { name: "韓日関係", key: "japan-relationship" },
-    { name: "経済", key: "economy" },
-    { name: "社会・文化", key: "society-culture" },
-    { name: "IT・科学", key: "it-science" },
-    { name: "芸能・スポーツ", key: "entertainment-sports" },
-    { name: "全般", key: "news" },
-  ].map(f => ({
-    name: f.name + " - 聯合ニュース日本語版",
-    description: "https://jp.yna.co.kr/channel/rss",
-    url: "https://jp.yna.co.kr/RSS/" + f.key + ".xml",
-    icon: "https://r.yna.co.kr/global/home/v01/img/favicon-152.png",
-    base: "https://jp.yna.co.kr",
-    threadName: "聯合ニュース日本語版"
-  })), ...[
+  }, ...[
     { name: "政治", key: "politics" },
     { name: "北朝鮮", key: "nk" },
     { name: "韓日関係", key: "japan-relationship" },
