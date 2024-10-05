@@ -364,7 +364,11 @@ const rawFeeds: Array<RawFeed> = [
         return p.origin + p.pathname
       }
     }
-  })),
+  })), {
+    name: "アリエナイ理科ポータル",
+    url: "https://www.cl20.jp/portal/feed/",
+    icon: "https://www.cl20.jp/portal/wp-content/uploads/2018/11/cropped-favicon-192x192.png"
+  }
 ]
 
 /*
