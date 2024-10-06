@@ -72,7 +72,7 @@ for(const feed of feeds) {
         const plugin = plugins[pluginName]
 
         for(const key in data) {
-          data[key] = transform(data[key], plugin[key])
+          data[key] = transform(data[key], plugin.transformer[key])
         }
       })
 
