@@ -1,4 +1,4 @@
-import { makePlugin } from "../utils";
+import { makePlugin } from "../utils.ts";
 
 export const cleanAllURLParams = makePlugin({
   transformer: {

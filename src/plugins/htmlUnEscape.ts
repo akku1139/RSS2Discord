@@ -1,4 +1,4 @@
-import { makePlugin } from "../utils";
+import { makePlugin } from "../utils.ts";
 
 // 後で書く
 // 数値文字参照と文字実体参照
