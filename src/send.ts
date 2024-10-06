@@ -14,7 +14,12 @@ hook.clean.push(() => {
   log.info("WebHook status", responseStatus)
 })
 
-const webhook = async (url: string, body: any, ok: Function, onFetchError: Function, onHTTPError: Function) => {
+const webhook = async (
+  url: string, body: any,
+  ok: (response: Response) => void = () => {},
+  onFetchError: (error: unknown) => void = log.error,
+  onHTTPError: (httpStatus: string, body: string) => void = log.error
+) => {
   let retryCount = 0
   let error: boolean = false
   let r: Response = new Response("Fake body")
@@ -26,7 +31,7 @@ const webhook = async (url: string, body: any, ok: Function, onFetchError: Funct
         body: JSON.stringify(body)
       })
     } catch(e) {
-      onFetchError(e, "")
+      onFetchError(e)
       responseStatus["error"] ++
       error = true
       break
@@ -79,12 +84,17 @@ const webhook = async (url: string, body: any, ok: Function, onFetchError: Funct
   }
 }
 
-export const sendWebhook = async (url: string, body: WebhookBody, feed: FormattedFeed, db: {[key: string]: "a"}) => {
+export const sendWebhook = async (
+  url: string,
+  body: WebhookBody,
+  feed: FormattedFeed,
+  db: {[key: string]: "a"}
+) => {
   if(feed.test === true) {
     return await webhook(
       feed.webhook, body,
       () => { db[url] = "a" },
-      (s, t) => log.error("on webhook: ", feed.name, url, s, t),
+      (s) => log.error("on webhook: ", feed.name, url, s),
       (s, t) => log.error(s, feed.name, url, t, body),
     )
   }
@@ -101,7 +111,7 @@ export const sendWebhook = async (url: string, body: WebhookBody, feed: Formatte
         avatar_url: feed.icon,
       },
       () => { },
-      (s, t) => log.error("on webhook (create thread): ", feed.name, url, s, t),
+      (s) => log.error("on webhook (create thread): ", feed.name, url, s),
       (s, t) => log.error(s, "(create thread)", feed.name, url, t, body),
     )
     if(raw.error === true) {
@@ -116,7 +126,7 @@ export const sendWebhook = async (url: string, body: WebhookBody, feed: Formatte
   return await webhook(
     `${FORUM_WEBHOOK_URL}?thread_id=${threadID}`, body,
     () => { db[url] = "a" },
-    (s, t) => log.error("on webhook (forum): ", feed.name, url, s, t),
+    (s) => log.error("on webhook (forum): ", feed.name, url, s),
     (s, t) => log.error(s, "(forum)", feed.name, url, t, body),
   )
 }
