@@ -1,5 +1,5 @@
-import { cleanAllURLParams } from "./plugins/urlClean"
-import { unEscapeHTML, enhancedUnEscapeHTML } from "./plugins/htmlUnEscape"
+import { cleanAllURLParams } from "./plugins/urlClean.ts"
+import { unEscapeHTML, enhancedUnEscapeHTML } from "./plugins/htmlUnEscape.ts"
 
 export const plugins = {
   cleanAllURLParams,

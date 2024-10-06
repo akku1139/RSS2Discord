@@ -1,4 +1,4 @@
-import type { plugins } from "./plugin"
+import type { plugins } from "./plugin.ts"
 
 // discord-api-types入れる?
 // Web版VSCodeでも補完してほしい
