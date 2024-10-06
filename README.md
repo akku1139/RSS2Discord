@@ -6,6 +6,10 @@
 
 ファイル追加はおk?
 
+## 仕様
+
+プラグインはbuilder使うやつには効かない
+
 ## Memo
 
 https://deno.land/api@v1.32.1?unstable=&s=Deno.Kv
@@ -32,6 +36,8 @@ https://zenn.dev/snowcait/articles/be718160aa9b2e
 
 - 自動でfeedsからimport
 - Deno 2.0 対応
+- コードの共通化
+- mapで複数フィード作成してるときに多分戻り値がanyになって補完が効かない
 
 ## 前のアルゴリズム
 

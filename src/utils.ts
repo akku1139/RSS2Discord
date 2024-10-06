@@ -1,4 +1,4 @@
-import { RawFeed } from "./types.ts"
+import type { Plugin, RawFeed } from "./types.ts"
 
 export const addSIPrefix = (e: string) => {
   const units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"];
@@ -18,7 +18,7 @@ export const timeSince = (e: number) => {
 
 export const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, 1000 * s))
 
-const filterUndefined = (a: Array<any>) => a.filter(e => {
+export const filterUndefined = (a: Array<any>) => a.filter(e => {
   if(e === void 0) {
     return false
   }
@@ -37,4 +37,8 @@ export const hook: {[name: string]: Array<Function>} = {
 
 export const makeFeeds = (...feeds: Array<RawFeed | Array<RawFeed>>): Array<RawFeed> => {
   return feeds.flat()
+}
+
+export const makePlugin = (plugin: Plugin) => {
+  return plugin
 }

@@ -1,4 +1,4 @@
-import { type FormattedFeed } from "./types.ts";
+import { WebhookBody, type FormattedFeed } from "./types.ts";
 import { log, sleep, hook } from "./utils.ts"
 import { threads } from "./defs.ts"
 
@@ -79,7 +79,7 @@ const webhook = async (url: string, body: any, ok: Function, onFetchError: Funct
   }
 }
 
-export const sendWebHook = async (url: string, body: any, feed: FormattedFeed, db: {[key: string]: "a"}) => {
+export const sendWebhook = async (url: string, body: WebhookBody, feed: FormattedFeed, db: {[key: string]: "a"}) => {
   if(feed.test === true) {
     return await webhook(
       feed.webhook, body,

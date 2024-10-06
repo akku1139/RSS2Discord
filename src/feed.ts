@@ -358,12 +358,7 @@ const rawFeeds: Array<RawFeed> = [
     icon: "https://r.yna.co.kr/global/home/v01/img/favicon-152.png",
     base: "https://jp.yna.co.kr",
     threadName: "聯合ニュース日本語版",
-    transformer: {
-      url: (s) => {
-        const p = new URL(s)
-        return p.origin + p.pathname
-      }
-    }
+    plugins: ["cleanAllURLParams"]
   })), {
     name: "アリエナイ理科ポータル",
     url: "https://www.cl20.jp/portal/feed/",
@@ -409,7 +404,7 @@ export default rawFeeds.map((feed): FormattedFeed => {
     // 上書きされるかもしれない
     description: feed.url,
     test: false,
-    transformer: {},
+    plugins: [],
     ...feed,
     threadName: (feed.threadName ?? feed.name).substring(0, 256),
     base,

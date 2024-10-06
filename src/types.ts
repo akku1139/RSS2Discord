@@ -1,5 +1,31 @@
-type Transformer = {
-  url?: (url: string) => string,
+import type { plugins } from "./plugin"
+
+// discord-api-types入れる?
+// Web版VSCodeでも補完してほしい
+export type WebhookBody = {
+  content?: string,
+  username?: string,
+  avatar_url?: string,
+  embeds: Array<{
+    author?: {
+      name: string,
+      url?: string,
+      icon_url?: string,
+    },
+    url?: string,
+    color?: number,
+    title?: string,
+    description?: string,
+    timestamp?: string,
+    fields?: Array<{
+      name: string,
+      value: string,
+      inline?: boolean,
+    }>,
+    thumbnail?: {
+      url: string,
+    },
+  }>
 }
 
 export type RawFeed = {
@@ -11,8 +37,8 @@ export type RawFeed = {
   base?: string, // WebHook設定用
   threadName?: string,
   test?: boolean, // 指定したら送信しない
-  transformer?: Transformer
-  builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: any }>>
+  plugins?: Array<PluginNames>,
+  builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: WebhookBody }>>,
 }
 
 export type FormattedFeed = RawFeed & {
@@ -23,5 +49,20 @@ export type FormattedFeed = RawFeed & {
   host: string,
   webhook: string,
   res: Promise<Response>,
-  transformer: Transformer,
+  plugins: Array<PluginNames>
 }
+
+export type TransformFunction = (obj: string) => string
+
+type TransformTargets =
+    "url"
+  | "description"
+
+
+export type Plugin = {
+  transformer: {
+    [key in TransformTargets]?: TransformFunction
+  },
+}
+
+export type PluginNames = keyof typeof plugins

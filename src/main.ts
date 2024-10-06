@@ -1,10 +1,11 @@
 import { parseFeed } from "rss"
 
 import feeds from "./feed.ts"
-import { type FormattedFeed } from "./types.ts"
+import type { WebhookBody, FormattedFeed, TransformFunction } from "./types.ts"
 import { log, hook } from "./utils.ts"
-import { sendWebHook } from "./send.ts"
+import { sendWebhook } from "./send.ts"
 import { threads } from "./defs.ts"
+import { plugins } from "./plugin.ts"
 
 const db: {[key: string]: "a"} = {}
 
@@ -23,11 +24,11 @@ hook.clean.push(() => {
   log.info("Failed feeds:", failFeeds)
 })
 
-const transform = (obj: string, transformer: (s: string) => string | undefined) => {
-  if(transformer === void 0) {
+const transform = (obj: string, transformFunc: TransformFunction | undefined) => {
+  if(transformFunc === void 0) {
     return obj
   }
-  return transformer(obj)
+  return transformFunc(obj)
 }
 
 // --- main script ---
@@ -63,7 +64,20 @@ for(const feed of feeds) {
       continue
     }
     for(const e of data.entries) {
-      const url = transform(e.links[0].href, feed.transformer.url)
+      const data = {
+        url: e.links[0].href
+      }
+
+      feed.plugins.forEach(pluginName => {
+        const plugin = plugins[pluginName]
+
+        for(const key in data) {
+          data[key] = transform(data[key], plugin[key])
+        }
+      })
+
+      const url = data.url
+
       if(typeof url === "undefined") {
         log.error(`in feed ${feed.name} (${feed.url}): url is undefined`)
         continue
@@ -84,7 +98,7 @@ for(const feed of feeds) {
       } catch(err) {
         log.error(feed.name, url, err)
       }
-      const body = {
+      const body: WebhookBody = {
         username: feed.name,
         avatar_url: feed.icon,
         embeds: [{
@@ -99,7 +113,7 @@ for(const feed of feeds) {
         }]
       }
 
-      const res = await sendWebHook(url, body, feed, db)
+      const res = await sendWebhook(url, body, feed, db)
       if(res.error) {
         errorCount ++
       } else {
@@ -132,7 +146,7 @@ for(const feed of feeds) {
       if(db[r.url] === "a") {
         continue
       }
-      const res = await sendWebHook(r.url, r.body, feed, db)
+      const res = await sendWebhook(r.url, r.body, feed, db)
       if(res.error) {
         errorCount ++
       } else {
