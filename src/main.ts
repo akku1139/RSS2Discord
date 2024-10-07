@@ -121,7 +121,7 @@ for(const feed of feeds) {
       }
     }
     log.info(
-      feed.name, data.entries.length,
+      feed.name, parsed.entries.length,
       "posts (sent:", sentCount, "error:", errorCount, ")",
       threads[feed.base] ? void 0 : "never sent",
     )
