@@ -55,7 +55,7 @@ for(const feed of feeds) {
   if(typeof feed.builder === "undefined") {
     let sentCount: number = 0
     let errorCount: number = 0
-    let parsed: {entries: Array<Feed>}
+    let parsed: Feed
     try {
       parsed = await parseFeed(await res.text())
     } catch(err) {
