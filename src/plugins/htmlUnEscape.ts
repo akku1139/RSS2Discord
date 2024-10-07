@@ -1,4 +1,6 @@
-import { makePlugin } from "../utils.ts";
+import { makePlugin } from "../utils.ts"
+import { unescape } from "@std/html/entities"
+import entityList from "@std/html/named-entity-list.json" with { type: "json" }
 
 // 後で書く
 // 数値文字参照と文字実体参照
@@ -10,7 +12,7 @@ import { makePlugin } from "../utils.ts";
 export const unEscapeHTML = makePlugin({
   transformer: {
     description(s) {
-      return s
+      return unescape(s, { entityList })
     }
   }
 })
