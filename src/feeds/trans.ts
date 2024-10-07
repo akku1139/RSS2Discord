@@ -20,5 +20,6 @@ export default makeFeeds(
     ...f,
     base: "trans",
     test: true,
+    hello: true, // 型の実験
   }))
 )

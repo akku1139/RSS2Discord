@@ -50,7 +50,7 @@ export type FormattedFeed = RawFeed & {
   host: string,
   webhook: string,
   res: Promise<Response>,
-  plugins: Array<PluginNames>
+  plugins: Array<PluginNames>,
 }
 
 export type TransformFunction = (obj: string) => string

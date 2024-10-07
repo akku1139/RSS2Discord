@@ -7,7 +7,7 @@ import miningpoolstats from "./feeds/miningpoolstats.ts"
 import nytimes from "./feeds/nytimes.ts"
 import trans from "./feeds/trans.ts"
 
-const rawFeeds: Array<RawFeed> = [
+const rawFeeds = [
   ...core,
   ...impress,
   ...miningpoolstats,
@@ -371,7 +371,7 @@ const rawFeeds: Array<RawFeed> = [
     icon: "https://www.cl20.jp/portal/wp-content/uploads/2018/11/cropped-favicon-192x192.png",
     plugins: ["unEscapeHTML"],
   }
-]
+] as const satisfies Array<RawFeed>
 
 /*
 まちカドまぞく画像bot
