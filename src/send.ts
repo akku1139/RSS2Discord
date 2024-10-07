@@ -17,7 +17,7 @@ hook.clean.push(() => {
 })
 
 const webhook = async (
-  url: string, body: any,
+  url: string, body: unknown,
   ok: (response: Response) => void = () => {},
   onFetchError: (error: unknown) => void = log.error,
   onHTTPError: (httpStatus: string, body: string) => void = log.error

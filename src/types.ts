@@ -6,7 +6,8 @@ export type WebhookBody = {
   content?: string,
   username?: string,
   avatar_url?: string,
-  embeds: Array<{
+  thread_name?: string,
+  embeds?: Array<{
     author?: {
       name: string,
       url?: string,
@@ -54,10 +55,9 @@ export type FormattedFeed = RawFeed & {
 
 export type TransformFunction = (obj: string) => string
 
-type TransformTargets =
+export type TransformTargets =
     "url"
   | "description"
-
 
 export type Plugin = {
   transformer: {

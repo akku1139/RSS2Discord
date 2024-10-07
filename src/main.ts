@@ -1,7 +1,7 @@
 import { parseFeed, type Feed } from "rss"
 
 import feeds from "./feed.ts"
-import type { WebhookBody, FormattedFeed, TransformFunction } from "./types.ts"
+import type { WebhookBody, FormattedFeed, TransformFunction, TransformTargets } from "./types.ts"
 import { log, hook } from "./utils.ts"
 import { sendWebhook } from "./send.ts"
 import { threads } from "./defs.ts"
@@ -64,8 +64,9 @@ for(const feed of feeds) {
       continue
     }
     for(const e of parsed.entries) {
-      const data = {
-        url: e.links[0].href
+      const data: {[key in TransformTargets]: string} = {
+        url: e.links[0].href,
+        description: e?.description?.value ?? ""
       }
 
       feed.plugins.forEach(pluginName => {
@@ -77,6 +78,10 @@ for(const feed of feeds) {
       })
 
       const url = data.url
+
+      if(data.description === "") {
+        data.description = void 0
+      }
 
       if(typeof url === "undefined") {
         log.error(`in feed ${feed.name} (${feed.url}): url is undefined`)
@@ -105,7 +110,7 @@ for(const feed of feeds) {
           url,
           color: 16777215,
           title: e?.title?.value?.substring(0, 256) ?? "-",
-          description: e?.description?.value?.substring(0, 4096),
+          description: data.description?.substring(0, 4096),
           timestamp,
           thumbnail: {
             url: (e?.attachments ?? [])[0]?.url
@@ -128,7 +133,7 @@ for(const feed of feeds) {
   } else {
     let sentCount: number = 0
     let errorCount: number = 0
-    let ret: Awaited<ReturnType<FormattedFeed["builder"]>>
+    let ret: Awaited<ReturnType<Exclude<FormattedFeed["builder"], undefined>>>
     try{
       ret = await feed.builder(feed)
     } catch(e) {
