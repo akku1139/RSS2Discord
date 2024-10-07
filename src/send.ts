@@ -7,7 +7,9 @@ if(FORUM_WEBHOOK_URL === "") {
   throw new Error("Env FORUM_WEBHOOK_URL is not set.")
 }
 
-const responseStatus = {
+const responseStatus: {
+  [T in "error" | number]: number
+} = {
   error: 0
 }
 hook.clean.push(() => {

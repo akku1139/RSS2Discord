@@ -7,8 +7,6 @@ import miningpoolstats from "./feeds/miningpoolstats.ts"
 import nytimes from "./feeds/nytimes.ts"
 import trans from "./feeds/trans.ts"
 
-const test = true
-
 const rawFeeds: Array<RawFeed> = [
   ...core,
   ...impress,

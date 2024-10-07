@@ -1,4 +1,4 @@
-import { parseFeed } from "rss"
+import { parseFeed, type Feed } from "rss"
 
 import feeds from "./feed.ts"
 import type { WebhookBody, FormattedFeed, TransformFunction } from "./types.ts"
@@ -55,15 +55,15 @@ for(const feed of feeds) {
   if(typeof feed.builder === "undefined") {
     let sentCount: number = 0
     let errorCount: number = 0
-    let data: {entries: Array<any>}
+    let parsed: {entries: Array<Feed>}
     try {
-      data = await parseFeed(await res.text())
-    } catch(e) {
-      log.error(feed.name, e)
+      parsed = await parseFeed(await res.text())
+    } catch(err) {
+      log.error(feed.name, err)
       failFeeds.push(new URL(feed.url).host)
       continue
     }
-    for(const e of data.entries) {
+    for(const e of parsed.entries) {
       const data = {
         url: e.links[0].href
       }
