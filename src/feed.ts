@@ -80,6 +80,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "ゲームビズ",
     url: "https://gamebiz.jp/feed.rss",
     icon: "https://pbs.twimg.com/profile_images/1507243962662518786/ADct9342_200x200.jpg",
+    plugins: ["unEscapeHTML"],
   }, {
     name: "ほのぼの日本史",
     url: "https://hono.jp/feed/",
@@ -88,6 +89,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "CVE",
     url: "https://cvefeed.io/rssfeed/latest.xml",
     icon: "https://files.mastodon.social/accounts/avatars/110/947/035/793/757/493/original/4b056135673f8725.png",
+    plugins: ["unEscapeHTML"],
   }, {
     name: "BlogBooks Library",
     url: "https://blogbooks.net/feed",
@@ -108,6 +110,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "特務機関NERV",
     url: "https://unnerv.jp/@UN_NERV.rss",
     icon: "https://media.unnerv.jp/accounts/avatars/000/000/001/original/d53dd7b3255a6f46.png",
+    plugins: ["unEscapeHTML"],
   }, {
     name: "akku's website",
     url: "https://akku1139.github.io/index.xml",
@@ -138,10 +141,12 @@ const rawFeeds: Array<RawFeed> = [
     name: "CNN.co.jp",
     url: "http://feeds.cnn.co.jp/rss/cnn/cnn.rdf",
     icon: "https://www.cnn.co.jp/media/cnn/images/common/logo_header_2015.gif",
+    plugins: ["unEscapeHTML"],
   }, {
     name: "AFPBB News",
     url: "http://feeds.afpbb.com/rss/afpbb/afpbbnews", // SSLエラー
     icon: "https://afpbb.ismcdn.jp/common/images/apple-touch-icon2020.png",
+    plugins: ["unEscapeHTML"],
   }, ...[
     { name: "マーケット", key: "RSSJapanMarket" },
     { name: "Heard on the Street", key: "RSSJapanHeardonTheStreet" },
@@ -160,6 +165,7 @@ const rawFeeds: Array<RawFeed> = [
     icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
     base: "https://feeds.content.dowjones.io",
     threadName: "ウォール・ストリート・ジャーナル日本語版",
+    plugins: ["unEscapeHTML"],
   })), ...[
     { name: "Opinion", key: "RSSOpinion" },
     { name: "World News", key: "RSSWorldNews" },
@@ -197,6 +203,7 @@ const rawFeeds: Array<RawFeed> = [
     name: "The Keyword",
     url: "https://blog.google/rss/",
     icon: "https://blog.google/static/blogv2/images/apple-touch-icon.png",
+    plugins: ["unEscapeHTML"],
   }, {
     name: "JVN",
     url: "https://jvn.jp/rss/jvn.rdf",
@@ -317,7 +324,8 @@ const rawFeeds: Array<RawFeed> = [
     name: "東方Projectよもやまニュース",
     url: "https://touhou-project.news/feed.rss",
     // icon: "https://touhou-project.news/wp-content/themes/korindo/resources/img/favicon.ico"
-    icon: "https://i.imgur.com/yjwXFbN.png"
+    icon: "https://i.imgur.com/yjwXFbN.png",
+    plugins: ["unEscapeHTML"],
   }, {
     name: "ダイヤモンド・オンライン",
     url: "https://diamond.jp/list/feed/rss/dol",
@@ -362,7 +370,8 @@ const rawFeeds: Array<RawFeed> = [
   })), {
     name: "アリエナイ理科ポータル",
     url: "https://www.cl20.jp/portal/feed/",
-    icon: "https://www.cl20.jp/portal/wp-content/uploads/2018/11/cropped-favicon-192x192.png"
+    icon: "https://www.cl20.jp/portal/wp-content/uploads/2018/11/cropped-favicon-192x192.png",
+    plugins: ["unEscapeHTML"],
   }
 ]
 
