@@ -3,7 +3,8 @@
   "packages": {
     "specifiers": {
       "jsr:@maxim-mazurok/sax-ts@1.2.13": "jsr:@maxim-mazurok/sax-ts@1.2.13",
-      "jsr:@mikaelporttila/rss@1.1.1": "jsr:@mikaelporttila/rss@1.1.1"
+      "jsr:@mikaelporttila/rss@1.1.1": "jsr:@mikaelporttila/rss@1.1.1",
+      "jsr:@std/html": "jsr:@std/html@1.0.3"
     },
     "jsr": {
       "@maxim-mazurok/sax-ts@1.2.13": {
@@ -14,13 +15,17 @@
         "dependencies": [
           "jsr:@maxim-mazurok/sax-ts@1.2.13"
         ]
+      },
+      "@std/html@1.0.3": {
+        "integrity": "7a0ac35e050431fb49d44e61c8b8aac1ebd55937e0dc9ec6409aa4bab39a7988"
       }
     }
   },
   "remote": {},
   "workspace": {
     "dependencies": [
-      "jsr:@mikaelporttila/rss@1.1.1"
+      "jsr:@mikaelporttila/rss@1.1.1",
+      "jsr:@std/html"
     ]
   }
 }
