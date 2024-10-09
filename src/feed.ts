@@ -1,4 +1,4 @@
-import { log } from "./utils.ts"
+import { log, makeFeeds } from "./utils.ts"
 import type { RawFeed, FormattedFeed } from "./types.ts"
 
 import core from "./feeds/core.ts"
@@ -7,7 +7,7 @@ import miningpoolstats from "./feeds/miningpoolstats.ts"
 import nytimes from "./feeds/nytimes.ts"
 import trans from "./feeds/trans.ts"
 
-const rawFeeds = [
+const rawFeeds = makeFeeds(
   ...core,
   ...impress,
   ...miningpoolstats,
@@ -370,8 +370,12 @@ const rawFeeds = [
     url: "https://www.cl20.jp/portal/feed/",
     icon: "https://www.cl20.jp/portal/wp-content/uploads/2018/11/cropped-favicon-192x192.png",
     plugins: ["unEscapeHTML"],
+  }, {
+    name: "GAZLOG",
+    url: "https://gazlog.jp/feed/",
+    icon: "https://gazlog.jp/wp-content/uploads/2024/02/cropped-Gazlog-favcon-3-1-192x192.jpg"
   }
-] as const satisfies Array<RawFeed>
+)
 
 /*
 まちカドまぞく画像bot
