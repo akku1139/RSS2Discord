@@ -19,7 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
 
       - uses: actions/cache@v4
         with:
@@ -28,7 +30,7 @@ jobs:
             /home/runner/.cache/deno
           restore-keys: deno-cache-
           key: deno-cache-${{ hashFiles('./deno.lock') }}
-          save-always: true
+          # save-always: true
 
       - run: deno run --unstable-kv --allow-env --allow-net --allow-read=. --allow-write=. ./src/main.ts
         env:
