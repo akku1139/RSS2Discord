@@ -32,6 +32,8 @@ jobs:
           key: deno-cache-${{ hashFiles('./deno.lock') }}
           # save-always: true
 
+      - run: git pull
+
       - run: deno run --unstable-kv --allow-env --allow-net --allow-read=. --allow-write=. ./src/main.ts
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
