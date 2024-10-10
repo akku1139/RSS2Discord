@@ -1,4 +1,4 @@
-import { log, makeFeeds } from "./utils.ts"
+import { log, makeFeeds, mapHelper } from "./utils.ts"
 import type { RawFeed, FormattedFeed } from "./types.ts"
 
 import core from "./feeds/core.ts"
@@ -43,7 +43,7 @@ const rawFeeds = makeFeeds(
     name: "GNU social JP Web",
     url: "https://web.gnusocial.jp/feed/",
     icon: "https://web.gnusocial.jp/wp-content/uploads/2022/07/cropped-GNU_Social_Image_Logo-4.png",
-  }, ...[
+  }, mapHelper([
     { name: "ITmedia NEWS", key: "news_bursts" },
     { name: "ITmedia AI＋", key: "aiplus" },
     { name: "ITmedia Mobile", key: "mobile" },
@@ -63,7 +63,7 @@ const rawFeeds = makeFeeds(
     { name: "ねとらぼ", key: "netlab" },
     { name: "Fav-Log by ITmedia", key: "fav" },
     { name: "ITmedia", key: "itmedia_all" },
-  ].map(f => ({
+  ], f => ({
     name: f.name,
     description: "https://corp.itmedia.co.jp/media/rss_list/",
     url: `https://rss.itmedia.co.jp/rss/2.0/${f.key}.xml`,
@@ -145,7 +145,7 @@ const rawFeeds = makeFeeds(
     url: "http://feeds.afpbb.com/rss/afpbb/afpbbnews", // SSLエラー
     icon: "https://afpbb.ismcdn.jp/common/images/apple-touch-icon2020.png",
     plugins: ["unEscapeHTML"],
-  }, ...[
+  }, mapHelper([
     { name: "マーケット", key: "RSSJapanMarket" },
     { name: "Heard on the Street", key: "RSSJapanHeardonTheStreet" },
     { name: "ビジネス", key: "RSSJapanBusiness" },
@@ -156,7 +156,7 @@ const rawFeeds = makeFeeds(
     { name: "オピニオン・社説", key: "RSSJapanOpinion" },
     { name: "ライフ", key: "RSSJapanLife" },
     { name: "バロンズ", key: "RSSJapanBarrons" },
-  ].map(f => ({
+  ], f => ({
     name: f.name + " - ウォール・ストリート・ジャーナル日本語版",
     description: "https://jp.wsj.com/news/rss-news-and-feeds",
     url: "https://feeds.content.dowjones.io/public/rss/" + f.key,
@@ -164,21 +164,21 @@ const rawFeeds = makeFeeds(
     base: "https://feeds.content.dowjones.io",
     threadName: "ウォール・ストリート・ジャーナル日本語版",
     plugins: ["unEscapeHTML"],
-  })), ...[
+  })), mapHelper([
     { name: "Opinion", key: "RSSOpinion" },
     { name: "World News", key: "RSSWorldNews" },
     { name: "U.S. Business", key: "WSJcomUSBusiness" },
     { name: "Markets News", key: "RSSMarketsMain" },
     { name: "Technology: What's News", key: "RSSWSJD" },
     { name: "Lifestyle", key: "RSSLifestyle" },
-  ].map(f => ({
+  ], f => ({
     name: f.name + " - The Wall Street Journal",
     description: "https://www.wsj.com/news/rss-news-and-feeds",
     url: "https://feeds.a.dj.com/rss/" + f.key + ".xml",
     icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
     base: "https://feeds.a.dj.com",
     threadName: "The Wall Street Journal"
-  })), ...[
+  })), mapHelper([
     { name: "时政", key: "politics" },
     { name: "社会", key: "society" },
     { name: "法治", key: "legal" },
@@ -186,7 +186,7 @@ const rawFeeds = makeFeeds(
     { name: "台港澳", key: "haixia" },
     { name: "军事", key: "military" },
     { name: "全部", key: "ywkx" },
-  ].map(f => ({
+  ], f => ({
     name: f.name + " - 人民日报",
     description: "http://politics.people.com.cn/ywkx/GB/368825/index.html",
     url: "http://www.people.com.cn/rss/" + f.key + ".xml",
@@ -214,7 +214,7 @@ const rawFeeds = makeFeeds(
     name: "AUTOMATON",
     url: "https://automaton-media.com/feed/",
     icon: "https://automaton-media.com/wp-content/uploads/2024/03/automaton-amp-logo.png"
-  }, ...[
+  }, mapHelper([
     { name: "ビジネス", key: "biz" },
     { name: "TECH", key: "tech" },
     { name: "Web Professional", key: "web" },
@@ -222,7 +222,7 @@ const rawFeeds = makeFeeds(
     { name: "iPhone/Mac", key: "mac" },
     { name: "ゲーム・ホビー", key: "hobby" },
     { name: "自作PC", key: "pc" }
-  ].map(f => ({
+  ], f => ({
     name: f.name + " - ASCII.jp",
     description: "https://ascii.jp/info/about_rss.html",
     url: "https://ascii.jp/" + f.key + "/rss.xml",
@@ -234,12 +234,12 @@ const rawFeeds = makeFeeds(
     url: "https://ascii.jp/rss.xml",
     icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
     base: "https://ascii.jp"
-  }, ...[
+  }, mapHelper([
     { name: "news", key: "dw" },
     { name: "Latest Distributions", key: "dwd" },
     { name: "Latest Headlines", key: "news-headlines" },
     { name: "Packages", key: "dwp" },
-  ].map(f => ({
+  ], f => ({
     name: f.name + " - DistroWatch.com",
     description: "https://distrowatch.com",
     url: "https://distrowatch.com/news/" + f.key + ".xml",
@@ -348,7 +348,7 @@ const rawFeeds = makeFeeds(
     name: "価格.com マガジン",
     url: "https://kakakumag.com/rss/",
     icon: "https://pbs.twimg.com/profile_images/877052835182936064/yNkw85sy_400x400.jpg"
-  }, ...[
+  }, mapHelper([
     { name: "政治", key: "politics" },
     { name: "北朝鮮", key: "nk" },
     { name: "韓日関係", key: "japan-relationship" },
@@ -357,7 +357,7 @@ const rawFeeds = makeFeeds(
     { name: "IT・科学", key: "it-science" },
     { name: "芸能・スポーツ", key: "entertainment-sports" },
     { name: "全般", key: "news" },
-  ].map(f => ({
+  ], f => ({
     name: f.name + " - 聯合ニュース日本語版",
     description: "https://jp.yna.co.kr/channel/rss",
     url: "https://jp.yna.co.kr/RSS/" + f.key + ".xml",
@@ -374,7 +374,41 @@ const rawFeeds = makeFeeds(
     name: "GAZLOG",
     url: "https://gazlog.jp/feed/",
     icon: "https://gazlog.jp/wp-content/uploads/2024/02/cropped-Gazlog-favcon-3-1-192x192.jpg"
-  }
+  }, {
+    name: "アナログ",
+    url: "https://www.4gamer.net/tags/TS/TS020/contents.xml",
+    icon: "https://pbs.twimg.com/profile_images/1452883854914560002/RD2jcwNm_400x400.png",
+    base: "https://www.4gamer.net",
+    threadName: "4Gamer.net",
+    description: "https://www.4gamer.net/rss/rss.shtml"
+  }, mapHelper([
+    { name: "PCゲーム", key: "pc/pc_news.xml" },
+    { name: "オンラインゲーム", key: "all_onlinegame" },
+    { name: "オンラインRPG", key: "online/online_rpg" },
+    { name: "Xbox Series X|S / Xbox One", key: "xbox360/xbox360_news" },
+    { name: "PlayStation 5 / PlayStation 4 / Playstation 3 / Playstation 2", key: "ps3/ps3_news" },
+    { name: "PS Vita / PSP", key: "psp/psp_news" },
+    { name: "Nintendo Switch / Wii U / Wii", key: "wii/wii_news" },
+    { name: "ニンテンドー3DS / DS", key: "nds/nds_news" },
+    { name: "スマートフォン", key: "smartphone/smartphone_index" },
+    { name: "ハードウェア", key: "hardware/hw_news" },
+    { name: "アーケード", key: "arcade/arcade_news" },
+    { name: "VR", key: "vr/vr_news" },
+    { name: "インタビュー", key: "all_interview" },
+    { name: "連載", key: "all_series" },
+    { name: "レビュー", key: "all_review" },
+    { name: "ムービー", key: "all_movie" },
+    { name: "無料体験版", key: "all_demo" },
+    { name: "注目の記事", key: "news_topics" },
+    { name: "4Gamer.net", key: "index" },
+  ], f => ({
+    name: f.name,
+    url: "https://www.4gamer.net/rss/" + f.key + ".xml",
+    icon: "https://pbs.twimg.com/profile_images/1452883854914560002/RD2jcwNm_400x400.png",
+    base: "https://www.4gamer.net",
+    threadName: "4Gamer.net",
+    description: "https://www.4gamer.net/rss/rss.shtml"
+  }))
 )
 
 /*

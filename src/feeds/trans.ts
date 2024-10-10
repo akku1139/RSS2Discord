@@ -1,7 +1,7 @@
-import { makeFeeds } from "../utils.ts"
+import { makeFeeds, mapHelper } from "../utils.ts"
 
 export default makeFeeds(
-  [
+  mapHelper([
     {
       name: "Zenn",
       url: "https://zenn.dev/p/trans/feed",
@@ -16,7 +16,7 @@ export default makeFeeds(
       url: "https://qiita.com/organizations/trans-dev/activities.atom",
       icon: "https://cdn.qiita.com/assets/public/qiita-pwa-icon_512-4f5b031e6cb002cb865db0dd38635a78.png",
     }
-  ].map(f => ({
+  ], f => ({
     ...f,
     base: "trans",
     test: true,

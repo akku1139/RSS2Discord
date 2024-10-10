@@ -1,7 +1,7 @@
-import { makeFeeds } from "../utils.ts"
+import { makeFeeds, mapHelper } from "../utils.ts"
 
 export default makeFeeds(
-  [
+  mapHelper([
     { key: "World" },
     { key: "Africa" },
     { key: "Americas" },
@@ -61,7 +61,7 @@ export default makeFeeds(
     { name: "Most Viewed", key: "MostViewed" },
     { name: "Sunday Opinion", key: "sunday-review" },
     { name: "Top", key: "HomePage" },
-  ].map(f => ({
+  ], f => ({
     name: (f.name ?? f.key) + " - The New York Times",
     description: "https://www.nytimes.com/rss",
     url: `https://rss.nytimes.com/services/xml/rss/nyt/${f.key}.xml`,
@@ -69,7 +69,7 @@ export default makeFeeds(
     base: "https://rss.nytimes.com",
     threadName: "The New York Times",
   })),
-  [
+  mapHelper([
     { name: "Charles M. Blow", key: "charles-m-blow" },
     { name: "Jamelle Bouie", key: "jamelle-bouie" },
     { name: "David Brooks", key: "david-brooks" },
@@ -84,12 +84,12 @@ export default makeFeeds(
     { name: "Paul Krugman", key: "paul-krugman" },
     { name: "Farhad Manjoo", key: "farhad-manjoo" },
     { name: "Bret Stephens", key: "bret-stephens" },
-  ].map(f => ({
+  ], f => ({
     name: f.name + "'s Column - The New York Times",
     description: "https://www.nytimes.com/rss",
     url: `https://www.nytimes.com/svc/collections/v1/publish/www.nytimes.com/column/${f.key}/rss.xml`,
     icon: "https://nytco-assets.nytimes.com/2021/09/NYTCO-WhiteT.jpg",
     base: "https://rss.nytimes.com",
     threadName: "The New York Times",
-  }))
+  })),
 )

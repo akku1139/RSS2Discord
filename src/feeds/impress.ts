@@ -1,7 +1,7 @@
-import { makeFeeds } from "../utils.ts"
+import { makeFeeds, mapHelper } from "../utils.ts"
 
 export default makeFeeds(
-  [
+  mapHelper([
     {
       name: "Impress Watch",
       url: "https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",
@@ -83,7 +83,7 @@ export default makeFeeds(
       url: "https://dekiru.net/feed",
       icon: "https://pbs.twimg.com/profile_images/1177394121033445376/wlysppTs_200x200.jpg"
     },
-  ].map(f => ({
+  ], f => ({
     ...f,
     base: "impress.co.jp",
     threadName: "Impress"
