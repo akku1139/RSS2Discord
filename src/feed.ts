@@ -1,5 +1,5 @@
 import { log, makeFeeds, mapHelper } from "./utils.ts"
-import type { RawFeed, FormattedFeed } from "./types.ts"
+import type { FormattedFeed } from "./types.ts"
 
 import core from "./feeds/core.ts"
 import impress from "./feeds/impress.ts"
@@ -382,7 +382,7 @@ const rawFeeds = makeFeeds(
     threadName: "4Gamer.net",
     description: "https://www.4gamer.net/rss/rss.shtml"
   }, mapHelper([
-    { name: "PCゲーム", key: "pc/pc_news.xml" },
+    { name: "PCゲーム", key: "pc/pc_news" },
     { name: "オンラインゲーム", key: "all_onlinegame" },
     { name: "オンラインRPG", key: "online/online_rpg" },
     { name: "Xbox Series X|S / Xbox One", key: "xbox360/xbox360_news" },

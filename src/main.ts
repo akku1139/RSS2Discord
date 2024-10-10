@@ -64,8 +64,8 @@ for(const feed of feeds) {
       continue
     }
     for(const e of parsed.entries) {
-      const data: {[key in TransformTargets]: string} = {
-        url: e.links[0].href,
+      const data: {[key in TransformTargets]: string | undefined} = {
+        url: e.links[0].href ?? "",
         description: e?.description?.value ?? ""
       }
 
@@ -128,7 +128,7 @@ for(const feed of feeds) {
     log.info(
       feed.name, parsed.entries.length,
       "posts (sent:", sentCount, "error:", errorCount, ")",
-      threads[feed.base] ? void 0 : "never sent",
+      threads[feed.base] ? void 0 : "first run",
     )
   } else {
     let sentCount: number = 0
@@ -161,16 +161,16 @@ for(const feed of feeds) {
     log.info(
       feed.name, ret.length,
       "posts (sent:", sentCount, "error:", errorCount, ")",
-      threads[feed.base] ? void 0 : "never sent",
+      threads[feed.base] ? void 0 : "first run",
     )
   }
   executedFeeds[feed.url] = "a"
 }
 
-Object.keys(db_old).forEach(_o => {
-  const o = new URL(_o)
+Object.keys(db_old).forEach(r => {
+  const o = new URL(r)
   if(failFeeds.includes(o.host)) {
-    db[_o] = "a"
+    db[r] = "a"
   }
 })
 
