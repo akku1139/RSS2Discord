@@ -416,6 +416,10 @@ const rawFeeds = makeFeeds(
     name: "JPCERT/CC Eyes",
     url: "https://blogs.jpcert.or.jp/ja/atom.xml",
     icon: "https://pbs.twimg.com/profile_images/882458634629795840/osK0iO8z_400x400.jpg"
+  }, {
+    name: "DevelopersIO",
+    url: "https://dev.classmethod.jp/feed/",
+    icon: "https://i.imgur.com/ryh2cVZ.png"
   }
 )
 
