@@ -239,5 +239,7 @@
   "https://www.4gamer.net/rss/all_demo.xml": "a",
   "https://www.4gamer.net/rss/news_topics.xml": "a",
   "https://www.4gamer.net/rss/index.xml": "a",
-  "https://www.4gamer.net/rss/pc/pc_news.xml": "a"
+  "https://www.4gamer.net/rss/pc/pc_news.xml": "a",
+  "https://sysdig.jp/feed/": "a",
+  "https://blogs.jpcert.or.jp/ja/atom.xml": "a"
 }
