@@ -408,7 +408,15 @@ const rawFeeds = makeFeeds(
     base: "https://www.4gamer.net",
     threadName: "4Gamer.net",
     description: "https://www.4gamer.net/rss/rss.shtml"
-  }))
+  })), {
+    name: "Sysdig",
+    url: "https://sysdig.jp/feed/",
+    icon: "https://sysdig.jp/wp-content/uploads/favicon-350x350.png"
+  }, {
+    name: "JPCERT/CC Eyes",
+    url: "https://blogs.jpcert.or.jp/ja/atom.xml",
+    icon: "https://pbs.twimg.com/profile_images/882458634629795840/osK0iO8z_400x400.jpg"
+  }
 )
 
 /*
