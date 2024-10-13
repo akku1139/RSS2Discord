@@ -73,7 +73,7 @@ for(const feed of feeds) {
         const plugin = plugins[pluginName]
 
         for(const key in data) {
-          data[key] = transform(data[key], plugin.transformer[key])
+          data[key] = transform(data[key], plugin?.transformer[key])
         }
       })
 
@@ -113,9 +113,11 @@ for(const feed of feeds) {
           // description: data.description?.substring(0, 4096),
           description: truncateString(data.description, 400),
           timestamp,
-          thumbnail: {
-            url: (e?.attachments ?? [])[0]?.url
-          },
+          thumbnail: ((k: string | undefined) => {
+            return k && {
+              url: k
+            }
+          })((e?.attachments ?? [])[0]?.url),
         }]
       }
 
