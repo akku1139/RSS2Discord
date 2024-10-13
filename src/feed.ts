@@ -424,6 +424,10 @@ const rawFeeds = makeFeeds(
     name: "XenoSpectrum",
     url: "https://xenospectrum.com/feed/",
     icon: "https://xenospectrum.com/wp-content/uploads/2024/03/xs-logo-300x300.png",
+  }, {
+    name: "TechPowerUp News",
+    url: "https://www.techpowerup.com/rss/news",
+    icon: "https://tpucdn.com/apple-touch-icon-v1728765512776.png",
   }
 )
 
