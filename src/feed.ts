@@ -385,7 +385,7 @@ const rawFeeds = makeFeeds(
     name: "GAZLOG",
     url: "https://gazlog.jp/feed/",
     icon: "https://gazlog.jp/wp-content/uploads/2024/02/cropped-Gazlog-favcon-3-1-192x192.jpg",
-    plugins: ["unHTML"],
+    plugins: ["unHTML", "unEscapeHTML"],
   }, {
     name: "アナログ",
     url: "https://www.4gamer.net/tags/TS/TS020/contents.xml",
