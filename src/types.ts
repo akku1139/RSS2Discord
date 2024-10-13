@@ -24,7 +24,7 @@ export type WebhookBody = {
       inline?: boolean,
     }>,
     thumbnail?: {
-      url: string,
+      url?: string,
     },
   }>
 }

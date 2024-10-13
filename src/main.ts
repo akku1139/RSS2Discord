@@ -113,11 +113,9 @@ for(const feed of feeds) {
           // description: data.description?.substring(0, 4096),
           description: truncateString(data.description, 400),
           timestamp,
-          thumbnail: ((k: string | undefined) => {
-            return k && {
-              url: k
-            }
-          })((e?.attachments ?? [])[0]?.url),
+          thumbnail: {
+            url: (e?.attachments ?? [])[0]?.url
+          }
         }]
       }
 
