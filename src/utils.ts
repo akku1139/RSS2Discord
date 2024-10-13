@@ -47,3 +47,15 @@ export const makePlugin = (plugin: Plugin) => {
 export const mapHelper = <T = {name: string, key: string}>(data: Array<T>, builder: (f: T) => RawFeed): Array<RawFeed> => {
   return data.map(builder)
 }
+
+export const truncateString = (str: string | undefined, maxLength: number): string | undefined => {
+  if(str === void 0) {
+    return str
+  }
+
+  if(str.length > maxLength) {
+    return str.slice(0, maxLength - 3) + '...'
+  } else {
+    return str
+  }
+}

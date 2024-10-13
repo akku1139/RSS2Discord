@@ -2,7 +2,7 @@ import { parseFeed, type Feed } from "rss"
 
 import feeds from "./feed.ts"
 import type { WebhookBody, FormattedFeed, TransformFunction, TransformTargets } from "./types.ts"
-import { log, hook } from "./utils.ts"
+import { log, hook, truncateString } from "./utils.ts"
 import { sendWebhook } from "./send.ts"
 import { threads } from "./defs.ts"
 import { plugins } from "./plugin.ts"
@@ -109,9 +109,9 @@ for(const feed of feeds) {
         embeds: [{
           url,
           color: 16777215,
-          title: e?.title?.value?.substring(0, 256) ?? "-",
+          title: truncateString(e?.title?.value, 256) ?? "-",
           // description: data.description?.substring(0, 4096),
-          description: data.description?.substring(0, 400),
+          description: truncateString(data.description, 400),
           timestamp,
           thumbnail: {
             url: (e?.attachments ?? [])[0]?.url

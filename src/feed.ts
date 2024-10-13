@@ -1,4 +1,4 @@
-import { log, makeFeeds, mapHelper } from "./utils.ts"
+import { log, makeFeeds, mapHelper, truncateString } from "./utils.ts"
 import type { FormattedFeed } from "./types.ts"
 
 import core from "./feeds/core.ts"
@@ -484,7 +484,7 @@ export default rawFeeds.map((feed): FormattedFeed => {
     test: false,
     plugins: [],
     ...feed,
-    threadName: (feed.threadName ?? feed.name).substring(0, 256),
+    threadName: truncateString(feed.threadName ?? feed.name, 256),
     base,
     host: feed.host ?? new URL(feed.url).host, // 右辺評価省略によるプチ軽量化
     webhook: webhook ?? webhooks.default,
