@@ -38,6 +38,7 @@ https://zenn.dev/snowcait/articles/be718160aa9b2e
 - Deno 2.0 対応
 - コードの共通化
 - mapで複数フィード作成してるときに多分戻り値がanyになって補完が効かない
+- OGPプラグイン
 
 ## 前のアルゴリズム
 

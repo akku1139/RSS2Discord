@@ -93,3 +93,5 @@ export default makeFeeds(
     threadName: "The New York Times",
   })),
 )
+
+// 時々 &#39; が混入する
