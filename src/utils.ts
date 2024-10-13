@@ -48,8 +48,8 @@ export const mapHelper = <T = {name: string, key: string}>(data: Array<T>, build
   return data.map(builder)
 }
 
-export const truncateString = (str: string | undefined, maxLength: number): string | undefined => {
-  if(str === void 0) {
+export const truncateString = (str: unknown, maxLength: number): typeof str => {
+  if(typeof str !== "string") {
     return str
   }
 
