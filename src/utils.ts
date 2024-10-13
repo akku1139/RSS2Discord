@@ -48,7 +48,7 @@ export const mapHelper = <T = {name: string, key: string}>(data: Array<T>, build
   return data.map(builder)
 }
 
-export const truncateString = (str: unknown, maxLength: number): typeof str => {
+export const truncateString = <T>(str: T, maxLength: number): string | T => {
   if(typeof str !== "string") {
     return str
   }
