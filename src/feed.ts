@@ -237,7 +237,8 @@ const rawFeeds = makeFeeds(
     name: "ASCII.jp",
     url: "https://ascii.jp/rss.xml",
     icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
-    base: "https://ascii.jp"
+    base: "https://ascii.jp",
+    plugins: ["unHTML"],
   }, mapHelper([
     { name: "news", key: "dw" },
     { name: "Latest Distributions", key: "dwd" },
