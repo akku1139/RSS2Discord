@@ -420,6 +420,10 @@ const rawFeeds = makeFeeds(
     name: "DevelopersIO",
     url: "https://dev.classmethod.jp/feed/",
     icon: "https://i.imgur.com/ryh2cVZ.png"
+  }, {
+    name: "XenoSpectrum",
+    url: "https://xenospectrum.com/feed/",
+    icon: "https://xenospectrum.com/wp-content/uploads/2024/03/xs-logo-300x300.png",
   }
 )
 
