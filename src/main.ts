@@ -110,7 +110,8 @@ for(const feed of feeds) {
           url,
           color: 16777215,
           title: e?.title?.value?.substring(0, 256) ?? "-",
-          description: data.description?.substring(0, 4096),
+          // description: data.description?.substring(0, 4096),
+          description: data.description?.substring(0, 400),
           timestamp,
           thumbnail: {
             url: (e?.attachments ?? [])[0]?.url
