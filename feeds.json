@@ -243,5 +243,6 @@
   "https://sysdig.jp/feed/": "a",
   "https://blogs.jpcert.or.jp/ja/atom.xml": "a",
   "https://dev.classmethod.jp/feed/": "a",
-  "https://xenospectrum.com/feed/": "a"
+  "https://xenospectrum.com/feed/": "a",
+  "https://www.techpowerup.com/rss/news": "a"
 }
