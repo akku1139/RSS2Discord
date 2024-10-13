@@ -60,7 +60,7 @@ export type TransformTargets =
   | "description"
 
 export type Plugin = {
-  transformer: {
+  transformer?: {
     [key in TransformTargets]?: TransformFunction
   },
 }
