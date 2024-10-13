@@ -1,7 +1,8 @@
+import type { RawFeed } from "../types.ts"
 import { makeFeeds, mapHelper } from "../utils.ts"
 
 export default makeFeeds(
-  mapHelper([
+  mapHelper<RawFeed>([ // あまり良い型指定じゃない
     {
       name: "Zenn",
       url: "https://zenn.dev/p/trans/feed",
@@ -11,6 +12,7 @@ export default makeFeeds(
       name: "note",
       url: "https://note.com/kombumori/m/me3717a077c16/rss",
       icon: "https://theme.zdassets.com/theme_assets/2318981/c1e35dfc4394b7982d2ea5e5a5a2e9c1621247cf.png",
+      plugins: ["unHTML"],
     }, {
       name: "Qiita",
       url: "https://qiita.com/organizations/trans-dev/activities.atom",

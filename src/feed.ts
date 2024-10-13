@@ -74,6 +74,7 @@ const rawFeeds = makeFeeds(
     name: "AIDB",
     url: "https://ai-data-base.com/feed",
     icon: "https://yt3.googleusercontent.com/ytc/AIdro_lf41HCuIWcXUjxiflA2tyVVVMrsnkgJcwySW2r=s176-c-k-c0x00ffffff-no-rj",
+    plugins: ["unHTML"],
   }, {
     name: "ゲームビズ",
     url: "https://gamebiz.jp/feed.rss",
@@ -87,7 +88,7 @@ const rawFeeds = makeFeeds(
     name: "CVE",
     url: "https://cvefeed.io/rssfeed/latest.xml",
     icon: "https://files.mastodon.social/accounts/avatars/110/947/035/793/757/493/original/4b056135673f8725.png",
-    plugins: ["unEscapeHTML"],
+    plugins: ["unEscapeHTML", "unHTML"],
   }, {
     name: "BlogBooks Library",
     url: "https://blogbooks.net/feed",
@@ -108,7 +109,7 @@ const rawFeeds = makeFeeds(
     name: "特務機関NERV",
     url: "https://unnerv.jp/@UN_NERV.rss",
     icon: "https://media.unnerv.jp/accounts/avatars/000/000/001/original/d53dd7b3255a6f46.png",
-    plugins: ["unEscapeHTML"],
+    plugins: ["unEscapeHTML", "unHTML"],
   }, {
     name: "akku's website",
     url: "https://akku1139.github.io/index.xml",
@@ -139,12 +140,12 @@ const rawFeeds = makeFeeds(
     name: "CNN.co.jp",
     url: "http://feeds.cnn.co.jp/rss/cnn/cnn.rdf",
     icon: "https://www.cnn.co.jp/media/cnn/images/common/logo_header_2015.gif",
-    plugins: ["unEscapeHTML"],
+    plugins: ["unEscapeHTML", "unHTML"],
   }, {
     name: "AFPBB News",
     url: "http://feeds.afpbb.com/rss/afpbb/afpbbnews", // SSLエラー
     icon: "https://afpbb.ismcdn.jp/common/images/apple-touch-icon2020.png",
-    plugins: ["unEscapeHTML"],
+    plugins: ["unEscapeHTML", "unHTML"],
   }, mapHelper([
     { name: "マーケット", key: "RSSJapanMarket" },
     { name: "Heard on the Street", key: "RSSJapanHeardonTheStreet" },
@@ -192,7 +193,8 @@ const rawFeeds = makeFeeds(
     url: "http://www.people.com.cn/rss/" + f.key + ".xml",
     icon: "http://politics.people.com.cn/img/MAIN/2013/08/113596/images/logo.gif",
     base: "http://www.people.com.cn",
-    threadName: "人民日报"
+    threadName: "人民日报",
+    plugins: ["unHTML"],
   })), {
     name: "IPAセキュリティセンター:重要なセキュリティ情報",
     url: "https://www.ipa.go.jp/security/alert-rss.rdf",
@@ -201,7 +203,7 @@ const rawFeeds = makeFeeds(
     name: "The Keyword",
     url: "https://blog.google/rss/",
     icon: "https://blog.google/static/blogv2/images/apple-touch-icon.png",
-    plugins: ["unEscapeHTML"],
+    plugins: ["unEscapeHTML", "unHTML"],
   }, {
     name: "JVN",
     url: "https://jvn.jp/rss/jvn.rdf",
@@ -213,7 +215,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "AUTOMATON",
     url: "https://automaton-media.com/feed/",
-    icon: "https://automaton-media.com/wp-content/uploads/2024/03/automaton-amp-logo.png"
+    icon: "https://automaton-media.com/wp-content/uploads/2024/03/automaton-amp-logo.png",
+    plugins: ["unHTML"],
   }, mapHelper([
     { name: "ビジネス", key: "biz" },
     { name: "TECH", key: "tech" },
@@ -228,7 +231,8 @@ const rawFeeds = makeFeeds(
     url: "https://ascii.jp/" + f.key + "/rss.xml",
     icon: "https://pbs.twimg.com/profile_images/1612620704679329793/N5bSPFFS_400x400.jpg",
     base: "https://ascii.jp",
-    threadName: "ASCII.jp"
+    threadName: "ASCII.jp",
+    plugins: ["unHTML"],
   })), {
     name: "ASCII.jp",
     url: "https://ascii.jp/rss.xml",
@@ -253,7 +257,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "THE GOLD ONLINE",
     url: "https://gentosha-go.com/list/feed/rss",
-    icon: "https://pbs.twimg.com/profile_images/1685900736021053441/CoHHUCSW_400x400.jpg"
+    icon: "https://pbs.twimg.com/profile_images/1685900736021053441/CoHHUCSW_400x400.jpg",
+    plugins: ["unHTML"],
   }, {
     name: "エンジニアtype",
     url: "https://type.jp/et/feature/feed/",
@@ -261,7 +266,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "Japaaan",
     url: "https://mag.japaaan.com/feed",
-    icon: "https://pbs.twimg.com/profile_images/3469257935/0db49db253a2710fd1372b392d595798_400x400.jpeg"
+    icon: "https://pbs.twimg.com/profile_images/3469257935/0db49db253a2710fd1372b392d595798_400x400.jpeg",
+    plugins: ["unHTML"],
   }, {
     name: "withnews",
     url: "https://withnews.jp/rss/consumer/new.rdf",
@@ -269,7 +275,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "ガジェット通信",
     url: "https://getnews.jp/feed/ext/orig",
-    icon: "https://pbs.twimg.com/profile_images/512441585976360960/DMd5at7__400x400.png"
+    icon: "https://pbs.twimg.com/profile_images/512441585976360960/DMd5at7__400x400.png",
+    plugins: ["unHTML"],
   }, {
     name: "現代ビジネス",
     url: "https://gendai.media/list/feed/rss",
@@ -278,6 +285,7 @@ const rawFeeds = makeFeeds(
     name: "現代農業web",
     url: "https://gn.nbkbooks.com/?feed=rss2",
     icon: "https://gn.nbkbooks.com/wpblog/wp-content/uploads/2021/11/logo.png",
+    plugins: ["unHTML"],
   }, {
     name: "旅する応用言語学",
     url: "https://www.nihongo-appliedlinguistics.net/wp/feed",
@@ -289,7 +297,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "xkcd",
     url: "https://xkcd.com/atom.xml",
-    icon: "https://xkcd.com/s/0b7742.png"
+    icon: "https://xkcd.com/s/0b7742.png",
+    plugins: ["unHTML"],
   }, {
     name: "PRESIDENT Online",
     url: "https://president.jp/list/rss",
@@ -313,7 +322,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "NEWS | ホロライブプロダクション",
     url: "https://hololivepro.com/news/feed",
-    icon: "https://pbs.twimg.com/profile_images/1805110423274016768/QSsckQWV_400x400.jpg"
+    icon: "https://pbs.twimg.com/profile_images/1805110423274016768/QSsckQWV_400x400.jpg",
+    plugins: ["unHTML"],
   }, {
     name: "萌え萌えmoebuntu",
     url: "https://moebuntu.blog.fc2.com/?xml",
@@ -339,7 +349,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "Engadget",
     url: "https://www.engadget.com/rss.xml",
-    icon: "https://s.yimg.com/kw/assets/apple-touch-icon-152x152.png"
+    icon: "https://s.yimg.com/kw/assets/apple-touch-icon-152x152.png",
+    plugins: ["unHTML"],
   }, {
     name: "TechnoEdge",
     url: "https://www.techno-edge.net/rss20/index.rdf",
@@ -373,7 +384,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "GAZLOG",
     url: "https://gazlog.jp/feed/",
-    icon: "https://gazlog.jp/wp-content/uploads/2024/02/cropped-Gazlog-favcon-3-1-192x192.jpg"
+    icon: "https://gazlog.jp/wp-content/uploads/2024/02/cropped-Gazlog-favcon-3-1-192x192.jpg",
+    plugins: ["unHTML"],
   }, {
     name: "アナログ",
     url: "https://www.4gamer.net/tags/TS/TS020/contents.xml",
