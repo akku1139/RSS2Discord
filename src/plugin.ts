@@ -18,14 +18,14 @@ const transform = (obj: string, transformFunc: TransformFunction | undefined) =>
 }
 
 export const runPlugins = (
-  plugins: PluguinList,
+  feedPlugins: PluguinList,
   data: FeedData,
 ) => {
-  plugins.forEach(pluginName => {
+  feedPlugins.forEach(pluginName => {
     const plugin = plugins[pluginName]
 
     if(plugin.deps.pre) {
-      runPlugins(plugin.deps.pre, data)
+      runPlugins(plugin?.deps?.pre, data)
     }
 
     for(const key in data) {
@@ -33,7 +33,7 @@ export const runPlugins = (
     }
 
     if(plugin.deps.post) {
-      runPlugins(plugin.deps.post, data)
+      runPlugins(plugin?.deps?.post, data)
     }
   })
 }
