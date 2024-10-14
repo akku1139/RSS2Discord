@@ -250,7 +250,8 @@ const rawFeeds = makeFeeds(
     url: "https://distrowatch.com/news/" + f.key + ".xml",
     icon: "https://distrowatch.com/images/cpxtu/dwbanner.png",
     base: "https://distrowatch.com",
-    threadName: "DistroWatch"
+    threadName: "DistroWatch",
+    plugins: ["unEscapeHTML", "unHTML"]
   })), {
     name: "WIRED.jp", // 他言語版もあるっぽい
     url: "https://wired.jp/feed/rss",
