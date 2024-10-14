@@ -59,3 +59,12 @@ export const truncateString = <T>(str: T, maxLength: number): string | T => {
     return str
   }
 }
+
+export const getEnv = (name: string) => {
+  const env = Deno.env.get(name)
+  if(env === void 0) {
+    throw new Error(`environment variable is empty: ${name}`)
+  } else {
+    return env
+  }
+}

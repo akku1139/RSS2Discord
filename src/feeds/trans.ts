@@ -1,5 +1,7 @@
 import type { RawFeed } from "../types.ts"
-import { makeFeeds, mapHelper } from "../utils.ts"
+import { makeFeeds, mapHelper, getEnv } from "../utils.ts"
+
+const TRANS_WEBHOOK_URL = getEnv("TRANS_WEBHOOK_URL")
 
 export default makeFeeds(
   mapHelper<RawFeed>([ // あまり良い型指定じゃない
@@ -22,6 +24,7 @@ export default makeFeeds(
     ...f,
     base: "trans",
     test: true,
+    webhook: TRANS_WEBHOOK_URL,
     hello: true, // 型の実験
   }))
 )

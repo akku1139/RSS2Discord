@@ -40,6 +40,7 @@ export type RawFeed = {
   test?: boolean, // 指定したら送信しない
   plugins?: PluguinList,
   builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: WebhookBody }>>,
+  webhook?: string,
 }
 
 export type FormattedFeed = RawFeed & {

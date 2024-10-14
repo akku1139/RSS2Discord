@@ -1,4 +1,4 @@
-import { log, makeFeeds, mapHelper, truncateString } from "./utils.ts"
+import { log, makeFeeds, mapHelper, truncateString, getEnv } from "./utils.ts"
 import type { FormattedFeed } from "./types.ts"
 
 import core from "./feeds/core.ts"
@@ -374,20 +374,11 @@ forbesjapan.com
 フォーラム化したらTRANsのフィードを分離しないと
 */
 
-const WEBHOOK_URL = Deno.env.get("WEBHOOK_URL") ?? ""
-if (WEBHOOK_URL === "") {
-  throw new Error("Env WEBHOOK_URL is not set.")
-}
-const webhooks = await (
-  await fetch(WEBHOOK_URL)
-).json() as {
-  [key: string]: string
-}
+const DEFAULT_WEBHOOK_URL = getEnv("DEFAULT_WEBHOOK_URL")
 
 export default rawFeeds.map((feed): FormattedFeed => {
   const base = feed.base ?? feed.url
-  const webhook = webhooks[base]
-  if (webhook === void 0 && feed.test === true) {
+  if (feed.test === true && feed.webhook === void 0) {
     log.warn(`${feed.name} (${feed.base}) has no webhooks configured. Use default hook.`)
   }
   const res = fetch(feed.url).catch<Response>(e => new Promise((resolve, _) => resolve(new Response(
@@ -408,7 +399,7 @@ export default rawFeeds.map((feed): FormattedFeed => {
     threadName: truncateString(feed.threadName ?? feed.name, 256),
     base,
     host: feed.host ?? new URL(feed.url).host, // 右辺評価省略によるプチ軽量化
-    webhook: webhook ?? webhooks.default,
+    webhook: feed.webhook ?? DEFAULT_WEBHOOK_URL,
     res,
   }
 })

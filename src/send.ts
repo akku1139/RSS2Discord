@@ -1,11 +1,8 @@
 import { WebhookBody, type FormattedFeed } from "./types.ts";
-import { log, sleep, hook } from "./utils.ts"
+import { log, sleep, hook, getEnv } from "./utils.ts"
 import { threads } from "./defs.ts"
 
-const FORUM_WEBHOOK_URL = Deno.env.get("FORUM_WEBHOOK_URL") ?? ""
-if(FORUM_WEBHOOK_URL === "") {
-  throw new Error("Env FORUM_WEBHOOK_URL is not set.")
-}
+const FORUM_WEBHOOK_URL = getEnv("FORUM_WEBHOOK_URL")
 
 const responseStatus: {
   [T in "error" | number]: number
