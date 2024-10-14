@@ -7,6 +7,8 @@ import miningpoolstats from "./feeds/miningpoolstats.ts"
 import nytimes from "./feeds/nytimes.ts"
 import trans from "./feeds/trans.ts"
 import fourgamer from "./feeds/4gamer.ts"
+import itmedia from "./feeds/itmedia.ts"
+import wsj from "./feeds/wsj.ts"
 
 const rawFeeds = makeFeeds(
   core,
@@ -15,6 +17,8 @@ const rawFeeds = makeFeeds(
   trans,
   nytimes,
   fourgamer,
+  itmedia,
+  wsj,
   {
     name: "虚構新聞",
     url: "https://kyoko-np.net/index.xml",
@@ -45,34 +49,7 @@ const rawFeeds = makeFeeds(
     name: "GNU social JP Web",
     url: "https://web.gnusocial.jp/feed/",
     icon: "https://web.gnusocial.jp/wp-content/uploads/2022/07/cropped-GNU_Social_Image_Logo-4.png",
-  }, mapHelper([
-    { name: "ITmedia NEWS", key: "news_bursts" },
-    { name: "ITmedia AI＋", key: "aiplus" },
-    { name: "ITmedia Mobile", key: "mobile" },
-    { name: "ITmedia PC USER", key: "pcuser" },
-    { name: "ITmedia ビジネスオンライン", key: "business" },
-    { name: "ITmedia エグゼクティブ", key: "executive" },
-    { name: "ITmedia マーケティング", key: "marketing" },
-    { name: "＠IT", key: "ait" },
-    { name: "キーマンズネット", key: "keymans" },
-    { name: "TechTargetジャパン", key: "techtarget" },
-    { name: "MONOist", key: "monoist" },
-    { name: "EE Times Japan", key: "eetimes" },
-    { name: "EDN Japan", key: "edn" },
-    { name: "スマートジャパン", key: "smartjapan" },
-    { name: "BUILT", key: "sj_built" },
-    { name: "TechFactory", key: "techfactory" },
-    { name: "ねとらぼ", key: "netlab" },
-    { name: "Fav-Log by ITmedia", key: "fav" },
-    { name: "ITmedia", key: "itmedia_all" },
-  ], f => ({
-    name: f.name,
-    description: "https://corp.itmedia.co.jp/media/rss_list/",
-    url: `https://rss.itmedia.co.jp/rss/2.0/${f.key}.xml`,
-    icon: "https://image.itmedia.co.jp/info/images/itmapp_part_icon_1_1422324774.png",
-    base: "https://rss.itmedia.co.jp",
-    threadName: "ITmedia",
-  })), {
+  }, {
     name: "AIDB",
     url: "https://ai-data-base.com/feed",
     icon: "https://yt3.googleusercontent.com/ytc/AIdro_lf41HCuIWcXUjxiflA2tyVVVMrsnkgJcwySW2r=s176-c-k-c0x00ffffff-no-rj",
@@ -149,39 +126,6 @@ const rawFeeds = makeFeeds(
     icon: "https://afpbb.ismcdn.jp/common/images/apple-touch-icon2020.png",
     plugins: ["unEscapeHTML", "unHTML"],
   }, mapHelper([
-    { name: "マーケット", key: "RSSJapanMarket" },
-    { name: "Heard on the Street", key: "RSSJapanHeardonTheStreet" },
-    { name: "ビジネス", key: "RSSJapanBusiness" },
-    { name: "テクノロジー", key: "RSSJapanTechnology" },
-    { name: "パーソナルテクノロジー", key: "RSSJapanPersonalTechnology" },
-    { name: "国際", key: "RSSJapanNewsWorld" },
-    { name: "Capital Journal", key: "RSSJapanCapitalJournal" },
-    { name: "オピニオン・社説", key: "RSSJapanOpinion" },
-    { name: "ライフ", key: "RSSJapanLife" },
-    { name: "バロンズ", key: "RSSJapanBarrons" },
-  ], f => ({
-    name: f.name + " - ウォール・ストリート・ジャーナル日本語版",
-    description: "https://jp.wsj.com/news/rss-news-and-feeds",
-    url: "https://feeds.content.dowjones.io/public/rss/" + f.key,
-    icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
-    base: "https://feeds.content.dowjones.io",
-    threadName: "ウォール・ストリート・ジャーナル日本語版",
-    plugins: ["unEscapeHTML"],
-  })), mapHelper([
-    { name: "Opinion", key: "RSSOpinion" },
-    { name: "World News", key: "RSSWorldNews" },
-    { name: "U.S. Business", key: "WSJcomUSBusiness" },
-    { name: "Markets News", key: "RSSMarketsMain" },
-    { name: "Technology: What's News", key: "RSSWSJD" },
-    { name: "Lifestyle", key: "RSSLifestyle" },
-  ], f => ({
-    name: f.name + " - The Wall Street Journal",
-    description: "https://www.wsj.com/news/rss-news-and-feeds",
-    url: "https://feeds.a.dj.com/rss/" + f.key + ".xml",
-    icon: "https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png",
-    base: "https://feeds.a.dj.com",
-    threadName: "The Wall Street Journal"
-  })), mapHelper([
     { name: "时政", key: "politics" },
     { name: "社会", key: "society" },
     { name: "法治", key: "legal" },
