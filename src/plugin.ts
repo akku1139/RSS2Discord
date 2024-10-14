@@ -18,22 +18,22 @@ const transform = (obj: string, transformFunc: TransformFunction | undefined) =>
 }
 
 export const runPlugins = (
-  feedPlugins: PluguinList,
+  feedPlugins: PluguinList | undefined,
   data: FeedData,
 ) => {
+  if(feedPlugins === void 0) {
+    return
+  }
+
   feedPlugins.forEach(pluginName => {
     const plugin = plugins[pluginName]
 
-    if(plugin.deps.pre) {
-      runPlugins(plugin?.deps?.pre, data)
-    }
+    runPlugins(plugin?.deps?.pre, data)
 
     for(const key in data) {
       data[key] = transform(data[key], plugin?.transformer[key])
     }
 
-    if(plugin.deps.post) {
-      runPlugins(plugin?.deps?.post, data)
-    }
+    runPlugins(plugin?.deps?.post, data)
   })
 }
