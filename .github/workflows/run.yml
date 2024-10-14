@@ -36,8 +36,9 @@ jobs:
 
       - run: deno run --unstable-kv --allow-env --allow-net --allow-read=. --allow-write=. ./src/main.ts
         env:
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          WEBHOOK_URL: ${{ secrets.DEFAULT_WEBHOOK_URL }}
           FORUM_WEBHOOK_URL: ${{ secrets.FORUM_WEBHOOK_URL }}
+          TRANS_WEBHOOK_URL: ${{ secrets.TRANS_WEBHOOK_URL }}
 
       - run: |
           if [ -n "$(git status --porcelain)" ]; then
