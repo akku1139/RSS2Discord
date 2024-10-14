@@ -333,7 +333,7 @@ const rawFeeds = makeFeeds(
     name: "GAZLOG",
     url: "https://gazlog.jp/feed/",
     icon: "https://gazlog.jp/wp-content/uploads/2024/02/cropped-Gazlog-favcon-3-1-192x192.jpg",
-    plugins: ["unHTML", "unEscapeHTML"],
+    plugins: ["unHTML"],
   }, {
     name: "アナログ",
     url: "https://www.4gamer.net/tags/TS/TS020/contents.xml",
@@ -361,7 +361,7 @@ const rawFeeds = makeFeeds(
     name: "TechPowerUp News",
     url: "https://www.techpowerup.com/rss/news",
     icon: "https://tpucdn.com/apple-touch-icon-v1728765512776.png",
-    plugins: ["unHTML", "unEscapeHTML"]
+    plugins: ["unHTML"]
   }
 )
 

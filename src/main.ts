@@ -1,11 +1,11 @@
 import { parseFeed, type Feed } from "rss"
 
 import feeds from "./feed.ts"
-import type { WebhookBody, FormattedFeed, TransformFunction, TransformTargets } from "./types.ts"
+import type { WebhookBody, FormattedFeed, FeedData } from "./types.ts"
 import { log, hook, truncateString } from "./utils.ts"
 import { sendWebhook } from "./send.ts"
 import { threads } from "./defs.ts"
-import { plugins } from "./plugin.ts"
+import { runPlugins } from "./plugin.ts"
 
 const db: {[key: string]: "a"} = {}
 
@@ -23,13 +23,6 @@ const failFeeds: Array<string> = []
 hook.clean.push(() => {
   log.info("Failed feeds:", failFeeds)
 })
-
-const transform = (obj: string, transformFunc: TransformFunction | undefined) => {
-  if(transformFunc === void 0) {
-    return obj
-  }
-  return transformFunc(obj)
-}
 
 // --- main script ---
 
@@ -64,18 +57,12 @@ for(const feed of feeds) {
       continue
     }
     for(const e of parsed.entries) {
-      const data: {[key in TransformTargets]: string | undefined} = {
+      const data: FeedData = {
         url: e.links[0].href ?? "",
         description: e?.description?.value ?? ""
       }
 
-      feed.plugins.forEach(pluginName => {
-        const plugin = plugins[pluginName]
-
-        for(const key in data) {
-          data[key] = transform(data[key], plugin?.transformer[key])
-        }
-      })
+      runPlugins(feed, data)
 
       const url = data.url
 

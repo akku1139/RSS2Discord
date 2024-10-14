@@ -9,5 +9,8 @@ export const unHTML = makePlugin({
     description: (desc) => {
       return desc.replaceAll(/<("[^"]*"|'[^']*'|[^'">])*>/g, "")
     }
+  },
+  deps: {
+    post: ["unEscapeHTML"]
   }
 })

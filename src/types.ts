@@ -38,7 +38,7 @@ export type RawFeed = {
   base?: string, // WebHook設定用
   threadName?: string,
   test?: boolean, // 指定したら送信しない
-  plugins?: Array<PluginNames>,
+  plugins?: PluguinList,
   builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: WebhookBody }>>,
 }
 
@@ -50,7 +50,7 @@ export type FormattedFeed = RawFeed & {
   host: string,
   webhook: string,
   res: Promise<Response>,
-  plugins: Array<PluginNames>,
+  plugins: PluguinList,
 }
 
 export type TransformFunction = (obj: string) => string
@@ -63,6 +63,14 @@ export type Plugin = {
   transformer?: {
     [key in TransformTargets]?: TransformFunction
   },
+  deps?: {
+    pre?: PluguinList,
+    post?: PluguinList,
+  },
 }
 
 export type PluginNames = keyof typeof plugins
+
+export type PluguinList = Array<PluginNames>
+
+export type FeedData = {[key in TransformTargets]: string | undefined}
