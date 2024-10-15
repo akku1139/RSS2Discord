@@ -93,6 +93,7 @@ const rawFeeds = makeFeeds(
     name: "akku's website",
     url: "https://akku1139.github.io/index.xml",
     icon: "https://akku1139.github.io/images/favicon.png",
+    plugins: ["unHTML"],
   }, {
     name: "CoinPost",
     // url: "https://coinpost.jp/rss.xml",
@@ -344,7 +345,8 @@ const rawFeeds = makeFeeds(
   }, {
     name: "Sysdig",
     url: "https://sysdig.jp/feed/",
-    icon: "https://sysdig.jp/wp-content/uploads/favicon-350x350.png"
+    icon: "https://sysdig.jp/wp-content/uploads/favicon-350x350.png",
+    plugins: ["unHTML"],
   }, {
     name: "JPCERT/CC Eyes",
     url: "https://blogs.jpcert.or.jp/ja/atom.xml",
@@ -357,6 +359,7 @@ const rawFeeds = makeFeeds(
     name: "XenoSpectrum",
     url: "https://xenospectrum.com/feed/",
     icon: "https://xenospectrum.com/wp-content/uploads/2024/03/xs-logo-300x300.png",
+    plugins: ["unHTML"],
   }, {
     name: "TechPowerUp News",
     url: "https://www.techpowerup.com/rss/news",
