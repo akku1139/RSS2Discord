@@ -365,6 +365,11 @@ const rawFeeds = makeFeeds(
     url: "https://www.techpowerup.com/rss/news",
     icon: "https://tpucdn.com/apple-touch-icon-v1728765512776.png",
     plugins: ["unHTML"]
+  }, {
+    name: "XDA",
+    url: "https://www.xda-developers.com/feed/",
+    icon: "https://www.xda-developers.com/public/build/images/favicon-240x240.43161a66.png",
+    plugins: ["unHTML"]
   }
 )
 
