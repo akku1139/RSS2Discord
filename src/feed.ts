@@ -264,11 +264,18 @@ const rawFeeds = makeFeeds(
     name: "AUR",
     url: "https://aur.archlinux.org/rss/modified",
     icon: "https://archlinux.org/static/logos/apple-touch-icon-144x144.png"
-  }, {
+  }, mapHelper([{
     name: "fabcross",
     url: "https://fabcross.jp/rss.xml",
-    icon: "https://fabcross.jp/images/common/apple-touch-icon-precomposed.png"
   }, {
+    name: "fabcross for エンジニア",
+    url: "https://engineer.fabcross.jp/smart_format/"
+  }], f => ({
+    ...f,
+    base: "https://fabcross.jp/rss.xml",
+    threadName: "fabcross",
+    icon: "https://fabcross.jp/images/common/apple-touch-icon-precomposed.png"
+  })), {
     name: "NEWS | ホロライブプロダクション",
     url: "https://hololivepro.com/news/feed",
     icon: "https://pbs.twimg.com/profile_images/1805110423274016768/QSsckQWV_400x400.jpg",
