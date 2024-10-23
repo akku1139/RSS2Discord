@@ -269,7 +269,8 @@ const rawFeeds = makeFeeds(
     url: "https://fabcross.jp/rss.xml",
   }, {
     name: "fabcross for エンジニア",
-    url: "https://engineer.fabcross.jp/smart_format/"
+    url: "https://engineer.fabcross.jp/smart_format/",
+    plugins: ["unHTML"]
   }], f => ({
     ...f,
     base: "https://fabcross.jp/rss.xml",
