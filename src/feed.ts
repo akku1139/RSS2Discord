@@ -63,6 +63,7 @@ const rawFeeds = makeFeeds(
     name: "ほのぼの日本史",
     url: "https://hono.jp/feed/",
     icon: "https://hono.jp/wp-content/uploads/2022/02/100610488_101613778244466_3921142606800617472_n.jpg",
+    plugins: ["unHTML"],
   }, {
     name: "CVE",
     url: "https://cvefeed.io/rssfeed/latest.xml",
