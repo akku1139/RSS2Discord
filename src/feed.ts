@@ -379,6 +379,10 @@ const rawFeeds = makeFeeds(
     url: "https://www.xda-developers.com/feed/",
     icon: "https://www.xda-developers.com/public/build/images/favicon-240x240.43161a66.png",
     plugins: ["unHTML"]
+  }, {
+    name: "Phoronix",
+    url: "https://www.phoronix.com/rss.php",
+    icon: "https://www.phoronix.com/android-chrome-192x192.png",
   }
 )
 
