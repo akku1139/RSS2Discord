@@ -383,6 +383,10 @@ const rawFeeds = makeFeeds(
     name: "Phoronix",
     url: "https://www.phoronix.com/rss.php",
     icon: "https://www.phoronix.com/android-chrome-192x192.png",
+  }, {
+    name: "電ファミニコゲーマー",
+    url: "https://news.denfaminicogamer.jp/feed",
+    icon: "https://news.denfaminicogamer.jp/wp-content/uploads/2016/12/apple-touch-icon.png",
   }
 )
 
