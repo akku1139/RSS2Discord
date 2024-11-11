@@ -387,6 +387,10 @@ const rawFeeds = makeFeeds(
     name: "電ファミニコゲーマー",
     url: "https://news.denfaminicogamer.jp/feed",
     icon: "https://news.denfaminicogamer.jp/wp-content/uploads/2016/12/apple-touch-icon.png",
+  }, {
+    name: "EE Times Japan",
+    url: "https://rss.itmedia.co.jp/rss/2.0/eetimes.xml",
+    icon: "https://pbs.twimg.com/profile_images/1591982815146803200/8yMm3WAW_400x400.png",
   }
 )
 
