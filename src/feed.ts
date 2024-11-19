@@ -257,6 +257,7 @@ const rawFeeds = makeFeeds(
     name: "Arch Linux News",
     url: "https://archlinux.org/feeds/news/",
     icon: "https://archlinux.org/static/logos/apple-touch-icon-144x144.png",
+    plugins: ["unEscapeHTML", "unHTML"],
   }, {
     name: "Arch Linux Packages",
     url: "https://archlinux.org/feeds/packages/",
