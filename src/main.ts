@@ -35,7 +35,13 @@ for(const feed of feeds) {
     feed.test = true
   }
 
-  const res = await feed.res
+  let res
+  try {
+    res = await feed.res
+  } catch(e) {
+    log.error(`${feed.name} (${feed.url}): JavaScript Error`, e)
+    continue
+  }
   if(!res.ok) {
     log.error(`${feed.name} (${feed.url}): HTTP ${res.status} (${res.statusText})`)
     if(res.headers.get("X-Local-Error")) {
