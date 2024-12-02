@@ -90,6 +90,7 @@ export const sendWebhook = async (
   db: {[key: string]: "a"}
 ) => {
   if(skipAll) {
+    db[url] = "a"
     return {
       r: new Response("fake"),
       error: false
