@@ -56,7 +56,8 @@ for(const feed of feeds) {
     let errorCount: number = 0
     let parsed: Feed
     try {
-      parsed = await parseFeed(await res.text())
+      const t = await res.text()
+      parsed = await parseFeed(t)
     } catch(err) {
       log.error(feed.name, err)
       failFeeds.push(new URL(feed.url).host)
