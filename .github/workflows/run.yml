@@ -4,6 +4,13 @@ on:
       - main
 
   workflow_dispatch:
+    inputs:
+      args:
+        type: string
+        required: false
+        description: 'Args'
+        default: ''
+
   schedule:
     - cron: '*/5 * * * *'
 
@@ -34,7 +41,7 @@ jobs:
 
       - run: git pull
 
-      - run: deno run --unstable-kv --allow-env --allow-net --allow-read=. --allow-write=. ./src/main.ts
+      - run: deno run --unstable-kv --allow-env --allow-net --allow-read=. --allow-write=. ./src/main.ts ${{ inputs.args }}
         env:
           DEFAULT_WEBHOOK_URL: ${{ secrets.DEFAULT_WEBHOOK_URL }}
           FORUM_WEBHOOK_URL: ${{ secrets.FORUM_WEBHOOK_URL }}

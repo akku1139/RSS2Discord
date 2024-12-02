@@ -1,6 +1,6 @@
 import { WebhookBody, type FormattedFeed } from "./types.ts";
 import { log, sleep, hook, getEnv } from "./utils.ts"
-import { threads } from "./defs.ts"
+import { threads, skipAll } from "./defs.ts"
 
 const FORUM_WEBHOOK_URL = getEnv("FORUM_WEBHOOK_URL")
 
@@ -89,6 +89,13 @@ export const sendWebhook = async (
   feed: FormattedFeed,
   db: {[key: string]: "a"}
 ) => {
+  if(skipAll) {
+    return {
+      r: new Response("fake"),
+      error: false
+    }
+  }
+
   if(feed.test === true) {
     return await webhook(
       feed.webhook, body,
