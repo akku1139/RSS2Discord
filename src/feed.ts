@@ -305,12 +305,12 @@ const rawFeeds = makeFeeds(
     name: "CodeZine",
     url: "https://codezine.jp/rss/new/index.xml",
     icon: "https://pbs.twimg.com/profile_images/1267291016035307522/OEH0rwXO_400x400.jpg",
-  }, /* {
+  }, {
     name: "Engadget",
     url: "https://www.engadget.com/rss.xml",
     icon: "https://s.yimg.com/kw/assets/apple-touch-icon-152x152.png",
     plugins: ["unHTML"],
-  }, */ {
+  }, {
     name: "TechnoEdge",
     url: "https://www.techno-edge.net/rss20/index.rdf",
     icon: "https://pbs.twimg.com/profile_images/1650368239082541056/3JriLBez_400x400.jpg"
