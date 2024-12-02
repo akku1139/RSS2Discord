@@ -12,6 +12,9 @@
 
 ## Memo
 
+Skip
+https://vscode.dev/github.com/akku1139/RSS2Discord/blob/main/src/feed.ts#L308
+
 https://deno.land/api@v1.32.1?unstable=&s=Deno.Kv
 
 https://deno.land/x/rss@1.0.4
