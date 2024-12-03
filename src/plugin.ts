@@ -1,7 +1,7 @@
 import { cleanAllURLParams } from "./plugins/urlClean.ts"
 import { unEscapeHTML, enhancedUnEscapeHTML } from "./plugins/unEscapeHTML.ts"
 import { unHTML } from "./plugins/unHTML.ts"
-import type { FeedData, PluguinList, TransformFunction } from "./types.ts"
+import type { FeedData, PluginList, TransformFunction } from "./types.ts"
 
 export const plugins = {
   cleanAllURLParams,
@@ -18,7 +18,7 @@ const transform = (obj: string, transformFunc: TransformFunction | undefined) =>
 }
 
 export const runPlugins = (
-  feedPlugins: PluguinList | undefined,
+  feedPlugins: PluginList | undefined,
   data: FeedData,
 ) => {
   if(feedPlugins === void 0) {

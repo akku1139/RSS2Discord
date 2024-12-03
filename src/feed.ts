@@ -1,5 +1,5 @@
 import { log, makeFeeds, mapHelper, truncateString, getEnv } from "./utils.ts"
-import type { FormattedFeed } from "./types.ts"
+import type { FormattedFeed, PluginList, RawFeed } from "./types.ts"
 
 import core from "./feeds/core.ts"
 import impress from "./feeds/impress.ts"
@@ -266,7 +266,11 @@ const rawFeeds = makeFeeds(
     name: "AUR",
     url: "https://aur.archlinux.org/rss/modified",
     icon: "https://archlinux.org/static/logos/apple-touch-icon-144x144.png"
-  }, mapHelper([{
+  }, mapHelper<{ // 普通に2個書いたほうが早い
+    name: string,
+    url: string,
+    plugins?: PluginList
+  }>([{
     name: "fabcross",
     url: "https://fabcross.jp/rss.xml",
   }, {
@@ -392,6 +396,18 @@ const rawFeeds = makeFeeds(
     name: "EE Times Japan",
     url: "https://rss.itmedia.co.jp/rss/2.0/eetimes.xml",
     icon: "https://pbs.twimg.com/profile_images/1591982815146803200/8yMm3WAW_400x400.png",
+  }, {
+    name: "探査報道",
+    url: "https://tansajp.org/investigativejournal_oneshot/one_shot/feed/",
+    icon: "https://pbs.twimg.com/profile_images/1368745066764722177/5dsSuMY6_400x400.jpg",
+    base: "https://tansajp.org",
+    threadName: "Tansa",
+  }, {
+    name: "ニュース",
+    url: "https://tansajp.org/investigativejournal/feed/",
+    icon: "https://pbs.twimg.com/profile_images/1368745066764722177/5dsSuMY6_400x400.jpg",
+    base: "https://tansajp.org",
+    threadName: "Tansa",
   }
 )
 
