@@ -402,12 +402,14 @@ const rawFeeds = makeFeeds(
     icon: "https://pbs.twimg.com/profile_images/1368745066764722177/5dsSuMY6_400x400.jpg",
     base: "https://tansajp.org",
     threadName: "Tansa",
+    plugins: ["unHTML"],
   }, {
     name: "ニュース",
     url: "https://tansajp.org/investigativejournal/feed/",
     icon: "https://pbs.twimg.com/profile_images/1368745066764722177/5dsSuMY6_400x400.jpg",
     base: "https://tansajp.org",
     threadName: "Tansa",
+    plugins: ["unHTML"],
   }
 )
 
