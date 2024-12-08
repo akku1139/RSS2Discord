@@ -410,7 +410,12 @@ const rawFeeds = makeFeeds(
     base: "https://tansajp.org",
     threadName: "Tansa",
     plugins: ["unHTML"],
-  }
+  }, {
+    name: "Latest Linux Kernel Versions",
+    url: "https://www.kernel.org/feeds/kdist.xml",
+    icon: "https://www.kernel.org/theme/images/logos/tux.png",
+    plugins: ["unEscapeHTML", "unHTML"],
+  },
 )
 
 /*
