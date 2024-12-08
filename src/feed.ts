@@ -39,8 +39,8 @@ const rawFeeds = makeFeeds(
     base: "https://www.nhk.or.jp",
   })), {
     name: "3Blue1Brown",
-    // url: "https://3blue1brown.substack.com/feed",
-    url: "https://proxy-94a4.akku1139.workers.dev/v1?url=https%3A%2F%2F3blue1brown.substack.com%2Ffeed",
+    base: "https://3blue1brown.substack.com/feed",
+    url: "https://3blue1brown.substack.com/feed",
     icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/3B1B_Logo.svg/1200px-3B1B_Logo.svg.png",
   }, {
     name: "fedimagazine.tokyo",
