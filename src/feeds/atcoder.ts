@@ -1,5 +1,6 @@
 import { makeFeeds } from "../utils.ts"
 import { DOMParser } from "deno-dom"
+import { truncateString } from "../utils.ts"
 
 export default makeFeeds({
   name: "AtCoder Posts (en)",
