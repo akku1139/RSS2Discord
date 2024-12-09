@@ -1,6 +1,6 @@
-import { makeFeeds } from "../utils.ts"
+import { makeFeeds, truncateString } from "../utils.ts"
 import { DOMParser } from "deno-dom"
-import { truncateString } from "../utils.ts"
+import { unHTMLCore } from "../plugins/unHTML.ts"
 
 export default makeFeeds({
   name: "AtCoder Posts (en)",
@@ -12,7 +12,7 @@ export default makeFeeds({
       "text/html",
     )
     return Array.from(doc.querySelectorAll(".panel.panel-default")).map(e => {
-      const url = e.querySelector(".panel-title").firstChild.getAttribute("href")
+      const url = "https://atcoder.jp" + e.querySelector(".panel-title").firstChild.getAttribute("href")
       return {
         url,
         body: {
@@ -22,7 +22,10 @@ export default makeFeeds({
             url,
             color: 16777215,
             title: truncateString(e.querySelector(".panel-title").innerText, 256) ?? "-",
-            description: truncateString(e.querySelector(".panel-body.blog-post").innerText, 1000),
+            description: truncateString(
+              unHTMLCore(e.querySelector(".panel-body.blog-post").innerText),
+              1000
+            ),
             timestamp: new Date(e.querySelector(".timeago").getAttribute("datetime")).toISOString(),
           }]
         }

@@ -1,5 +1,7 @@
 import { makePlugin } from "../utils.ts";
 
+export const unHTMLCore = (i: string) => i.replaceAll(/<("[^"]*"|'[^']*'|[^'">])*>/g, "")
+
 // https://hodade.com/seiki/page.php?r_tag_sakujo
 // TODO:
 // - brとかをいい感じに処理
@@ -7,7 +9,7 @@ import { makePlugin } from "../utils.ts";
 export const unHTML = makePlugin({
   transformer: {
     description: (desc) => {
-      return desc.replaceAll(/<("[^"]*"|'[^']*'|[^'">])*>/g, "")
+      return unHTMLCore(desc)
     }
   },
   deps: {
