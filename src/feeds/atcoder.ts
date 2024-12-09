@@ -6,9 +6,12 @@ export default makeFeeds({
   url: "https://atcoder.jp/posts/",
   icon: "https://img.atcoder.jp/assets/logo.png",
   builder: async (feed) => {
-    const doc = new DOMParser().parseFromString(await (await fetch("https://atcoder.jp/posts/")).text())
+    const doc = new DOMParser().parseFromString(
+      await (await fetch("https://atcoder.jp/posts/")).text(),
+      "text/html",
+    )
     return Array.from(doc.querySelectorAll(".panel.panel-default")).map(e => {
-      const url = e.querySelector(".panel-title").firstChild.href
+      const url = e.querySelector(".panel-title").firstChild.getAttribute("href")
       return {
         url,
         body: {
