@@ -9,6 +9,7 @@ import trans from "./feeds/trans.ts"
 import fourgamer from "./feeds/4gamer.ts"
 import itmedia from "./feeds/itmedia.ts"
 import wsj from "./feeds/wsj.ts"
+import atcoder from "./feeds/atcoder.ts"
 
 const rawFeeds = makeFeeds(
   core,
@@ -19,6 +20,7 @@ const rawFeeds = makeFeeds(
   fourgamer,
   itmedia,
   wsj,
+  atcoder,
   {
     name: "虚構新聞",
     url: "https://kyoko-np.net/index.xml",
