@@ -1,31 +1,33 @@
 {
-  "version": "3",
-  "packages": {
-    "specifiers": {
-      "jsr:@maxim-mazurok/sax-ts@1.2.13": "jsr:@maxim-mazurok/sax-ts@1.2.13",
-      "jsr:@mikaelporttila/rss@1.1.1": "jsr:@mikaelporttila/rss@1.1.1",
-      "jsr:@std/html": "jsr:@std/html@1.0.3"
+  "version": "4",
+  "specifiers": {
+    "jsr:@b-fuze/deno-dom@0.1.48": "0.1.48",
+    "jsr:@maxim-mazurok/sax-ts@1.2.13": "1.2.13",
+    "jsr:@mikaelporttila/rss@1.1.1": "1.1.1",
+    "jsr:@std/html@1.0.3": "1.0.3"
+  },
+  "jsr": {
+    "@b-fuze/deno-dom@0.1.48": {
+      "integrity": "bf5b591aef2e9e9c59adfcbb93a9ecd45bab5b7c8263625beafa5c8f1662e7da"
     },
-    "jsr": {
-      "@maxim-mazurok/sax-ts@1.2.13": {
-        "integrity": "9f2f9a3ac1b142400940a4c9e916656fe63d4710a78102aeb8e08e863de2c76d"
-      },
-      "@mikaelporttila/rss@1.1.1": {
-        "integrity": "f07d7a5a269398f00efd6913d14a92defa55bcb66a4de196a5a5c99ec9df4b8b",
-        "dependencies": [
-          "jsr:@maxim-mazurok/sax-ts@1.2.13"
-        ]
-      },
-      "@std/html@1.0.3": {
-        "integrity": "7a0ac35e050431fb49d44e61c8b8aac1ebd55937e0dc9ec6409aa4bab39a7988"
-      }
+    "@maxim-mazurok/sax-ts@1.2.13": {
+      "integrity": "9f2f9a3ac1b142400940a4c9e916656fe63d4710a78102aeb8e08e863de2c76d"
+    },
+    "@mikaelporttila/rss@1.1.1": {
+      "integrity": "f07d7a5a269398f00efd6913d14a92defa55bcb66a4de196a5a5c99ec9df4b8b",
+      "dependencies": [
+        "jsr:@maxim-mazurok/sax-ts"
+      ]
+    },
+    "@std/html@1.0.3": {
+      "integrity": "7a0ac35e050431fb49d44e61c8b8aac1ebd55937e0dc9ec6409aa4bab39a7988"
     }
   },
-  "remote": {},
   "workspace": {
     "dependencies": [
+      "jsr:@b-fuze/deno-dom@0.1.48",
       "jsr:@mikaelporttila/rss@1.1.1",
-      "jsr:@std/html"
+      "jsr:@std/html@1.0.3"
     ]
   }
 }
