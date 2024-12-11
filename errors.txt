@@ -1,0 +1,10 @@
+https://github.com/akku1139/RSS2Discord/actions/runs/12244908821/job/34157649648
+
+error: Uncaught (in promise) TypeError: error reading a body from connection
+      await sleep((await r.json()).retry_after)
+                   ^
+    at async readableStreamCollectIntoUint8Array (ext:deno_web/06_streams.js:1069:19)
+    at async consumeBody (ext:deno_fetch/22_body.js:255:9)
+    at async webhook (file:///home/runner/work/RSS2Discord/RSS2Discord/src/send.ts:60:20)
+    at async sendWebhook (file:///home/runner/work/RSS2Discord/RSS2Discord/src/send.ts:133:10)
+    at async file:///home/runner/work/RSS2Discord/RSS2Discord/src/main.ts:116:19
