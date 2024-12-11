@@ -8,3 +8,10 @@ error: Uncaught (in promise) TypeError: error reading a body from connection
     at async webhook (file:///home/runner/work/RSS2Discord/RSS2Discord/src/send.ts:60:20)
     at async sendWebhook (file:///home/runner/work/RSS2Discord/RSS2Discord/src/send.ts:133:10)
     at async file:///home/runner/work/RSS2Discord/RSS2Discord/src/main.ts:116:19
+
+https://github.com/akku1139/RSS2Discord/actions/runs/12210327144/job/34066267506
+
+error: Top-level await promise never resolved
+      parsed = await parseFeed(t)
+               ^
+    at <anonymous> (file:///home/runner/work/RSS2Discord/RSS2Discord/src/main.ts:60:16)
