@@ -418,6 +418,11 @@ const rawFeeds = makeFeeds(
     url: "https://www.kernel.org/feeds/kdist.xml",
     icon: "https://www.kernel.org/theme/images/logos/tux.png",
     plugins: ["unEscapeHTML", "unHTML"],
+  }, {
+    name: "ROM焼き試験場",
+    url: "https://mitanyan98.hatenablog.com/feed",
+    icon: "https://cdn.blog.st-hatena.com/images/theme/og-image-1500.png",
+    plugins: ["unEscapeHTML", "unHTML"],
   },
 )
 
