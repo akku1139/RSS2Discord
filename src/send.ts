@@ -57,7 +57,13 @@ const webhook = async (
         continue
       } */
     } else if(r.status === 429) {
-      await sleep((await r.json()).retry_after)
+      try {
+        await sleep((await r.json()).retry_after)
+      } catch(e) {
+        log.error("in: await sleep((await r.json()).retry_after)")
+        onFetchError(e)
+        await sleep(2)
+      }
       retryCount ++
       continue
     } else if(r.status === 500) {
