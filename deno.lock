@@ -2,6 +2,7 @@
   "version": "4",
   "specifiers": {
     "jsr:@b-fuze/deno-dom@0.1.48": "0.1.48",
+    "jsr:@libs/xml@6.0.4": "6.0.4",
     "jsr:@maxim-mazurok/sax-ts@1.2.13": "1.2.13",
     "jsr:@mikaelporttila/rss@1.1.1": "1.1.1",
     "jsr:@std/html@1.0.3": "1.0.3"
@@ -9,6 +10,9 @@
   "jsr": {
     "@b-fuze/deno-dom@0.1.48": {
       "integrity": "bf5b591aef2e9e9c59adfcbb93a9ecd45bab5b7c8263625beafa5c8f1662e7da"
+    },
+    "@libs/xml@6.0.4": {
+      "integrity": "c896f17016dbf5f2d62496e0bd6cd7db145c05987d0e45d4dd2c87785a60f528"
     },
     "@maxim-mazurok/sax-ts@1.2.13": {
       "integrity": "9f2f9a3ac1b142400940a4c9e916656fe63d4710a78102aeb8e08e863de2c76d"
@@ -26,6 +30,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@b-fuze/deno-dom@0.1.48",
+      "jsr:@libs/xml@6.0.4",
       "jsr:@mikaelporttila/rss@1.1.1",
       "jsr:@std/html@1.0.3"
     ]
