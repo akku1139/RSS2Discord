@@ -42,7 +42,9 @@ https://zenn.dev/snowcait/articles/be718160aa9b2e
 - コードの共通化
 - mapで複数フィード作成してるときに多分戻り値がanyになって補完が効かない
 - OGPプラグイン
-- builderの戻り値を `Promise<Array<{ url: string, body: WebhookBody }>>` じゃなく `Promise<Array<Promise<{ url: string, body: WebhookBody }>>>` に
+- builderの戻り値を `Promise<Array<{ url: string, body: WebhookBody }>>` じゃなく
+  `Promise<Array<Promise<{ url: string, body: WebhookBody }>>>` か
+  `Promise<Array<{ url: string, body: Promise<WebhookBody> }>>` に
 
 ## 前のアルゴリズム
 
