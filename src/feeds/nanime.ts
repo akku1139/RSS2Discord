@@ -1,3 +1,4 @@
+import type { WebhookBody } from "../types.ts"
 import { makeFeeds } from "../utils.ts"
 import { parse } from "xml"
 
@@ -187,6 +188,7 @@ export default makeFeeds({
           avatar_url: d.nicovideo_thumb_response.thumb.ch_icon_url,
           embeds: [{
             color: 16777215,
+            url: i.watchUrl,
             title: i.title,
             description: d.nicovideo_thumb_response.thumb.description,
             thumbnail: {
@@ -194,7 +196,7 @@ export default makeFeeds({
             },
             timestamp: d.nicovideo_thumb_response.thumb.first_retrieve,
           }]
-        }
+        } as const satisfies WebhookBody
       }
     }))
   },
