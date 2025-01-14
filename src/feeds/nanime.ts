@@ -40,7 +40,7 @@ export default makeFeeds({
     }
     */
     const parsed = new Function(`
-      const s = (v:string) => v.trim().replace(
+      const s = v => v.trim().replace(
         /&(lt|gt|amp|quot|#x27|#x60|#x2F|#x3D);/g,
         m => {
           return {
