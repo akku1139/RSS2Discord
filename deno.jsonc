@@ -4,5 +4,6 @@
     "deno-dom": "jsr:@b-fuze/deno-dom@0.1.48",
     "@std/html": "jsr:@std/html@1.0.3",
     "rss": "jsr:@mikaelporttila/rss@1.1.1",
+    "xml": "jsr:@libs/xml@6.0.4"
   }
 }
