@@ -4,6 +4,7 @@ import { parse } from "xml"
 
 export default makeFeeds({
   name: "Nアニメ", // 上書きされます
+  host: "www.nicovideo.jp",
   url: "https://anime.nicovideo.jp/latest/",
   icon: "https://anime.nicovideo.jp/ogp.png", // 仮データ
   async builder(feed) {

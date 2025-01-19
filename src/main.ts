@@ -47,7 +47,7 @@ for(const feed of feeds) {
     if(res.headers.get("X-Local-Error")) {
       res.text().then(() => log.error())
     }
-    failFeeds.push(new URL(feed.url).host)
+    failFeeds.push(feed.host)
     continue
   }
 
@@ -60,7 +60,7 @@ for(const feed of feeds) {
       parsed = await parseFeed(t)
     } catch(err) {
       log.error(feed.name, err)
-      failFeeds.push(new URL(feed.url).host)
+      failFeeds.push(feed.host)
       continue
     }
     for(const e of parsed.entries) {
@@ -133,7 +133,7 @@ for(const feed of feeds) {
       ret = await feed.builder(feed)
     } catch(e) {
       log.error(feed.name, e)
-      failFeeds.push(new URL(feed.url).host)
+      failFeeds.push(feed.host)
       continue
     }
 
