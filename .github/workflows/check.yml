@@ -16,8 +16,10 @@ jobs:
           path: |
             /home/runner/.deno
             /home/runner/.cache/deno
-          restore-keys: deno-cache-
-          key: deno-cache-${{ hashFiles('./deno.lock') }}
+          restore-keys: |
+            deno-check-cache-
+            deno-cache-
+          key: deno-check-cache-${{ hashFiles('./deno.lock') }}
           # save-always: true
 
       - run: deno check src/main.ts

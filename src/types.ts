@@ -1,5 +1,7 @@
 import type { plugins } from "./plugin.ts"
 
+type MaybePromise<T> = T | PromiseLike<T> | Promise<T>
+
 // discord-api-types入れる?
 // Web版VSCodeでも補完してほしい
 export type WebhookBody = {
@@ -39,7 +41,7 @@ export type RawFeed = {
   threadName?: string,
   test?: boolean, // 指定したら送信しない
   plugins?: PluginList,
-  builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: () => Promise<WebhookBody> }>>,
+  builder?: (feed: FormattedFeed) => MaybePromise<Array<{ url: string, body: () => MaybePromise<WebhookBody> }>>,
   webhook?: string,
 }
 

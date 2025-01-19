@@ -54,7 +54,7 @@ export default makeFeeds({
     }
     return data.data.map((d) => ({
       url: "https://miningpoolstats.stream/" + d.page,
-      body: async () => ({
+      body: () => ({
         username: feed.name,
         avatar_url: feed.icon,
         embeds: [{

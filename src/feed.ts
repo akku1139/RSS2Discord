@@ -1,5 +1,5 @@
 import { log, makeFeeds, mapHelper, truncateString, getEnv } from "./utils.ts"
-import type { FormattedFeed, PluginList, RawFeed } from "./types.ts"
+import type { FormattedFeed, PluginList } from "./types.ts"
 
 import core from "./feeds/core.ts"
 import impress from "./feeds/impress.ts"
