@@ -54,7 +54,7 @@ export default makeFeeds({
     }
     return data.data.map((d) => ({
       url: "https://miningpoolstats.stream/" + d.page,
-      body: {
+      body: async () => ({
         username: feed.name,
         avatar_url: feed.icon,
         embeds: [{
@@ -93,7 +93,7 @@ export default makeFeeds({
           ],
           footer: { text: "Age: " + timeSince(d.age) },
         }],
-      },
+      }),
     }))
   }
 })

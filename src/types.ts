@@ -39,7 +39,7 @@ export type RawFeed = {
   threadName?: string,
   test?: boolean, // 指定したら送信しない
   plugins?: PluginList,
-  builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: WebhookBody }>>,
+  builder?: (feed: FormattedFeed) => Promise<Array<{ url: string, body: () => Promise<WebhookBody> }>>,
   webhook?: string,
 }
 

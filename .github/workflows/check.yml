@@ -20,8 +20,8 @@ jobs:
           key: deno-cache-${{ hashFiles('./deno.lock') }}
           # save-always: true
 
-      - run: deno lint
-        # if: ${{ !cancelled() }}
-
       - run: deno check src/main.ts
+        if: ${{ !cancelled() }}
+
+      - run: deno lint
         if: ${{ !cancelled() }}

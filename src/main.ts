@@ -146,7 +146,7 @@ for(const feed of feeds) {
       if(db[r.url] === "a") {
         continue
       }
-      const res = await sendWebhook(r.url, r.body, feed, db)
+      const res = await sendWebhook(r.url, await r.body(), feed, db)
       if(res.error) {
         errorCount ++
       } else {
