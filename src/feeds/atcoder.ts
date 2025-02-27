@@ -15,7 +15,7 @@ export default makeFeeds({
       const url = "https://atcoder.jp" + e.querySelector(".panel-title").firstChild.getAttribute("href")
       return {
         url,
-        body: {
+        body: () => ({
           username: feed.name,
           avatar_url: feed.icon,
           embeds: [{
@@ -28,7 +28,7 @@ export default makeFeeds({
             ),
             timestamp: new Date(e.querySelector(".timeago").getAttribute("datetime")).toISOString(),
           }]
-        }
+        })
       }
     })
   }
