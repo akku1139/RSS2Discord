@@ -81,7 +81,7 @@ const rawFeeds = makeFeeds(
   }, {
     name: "テクニカル諏訪子",
     url: "https://technicalsuwako.moe/blog.atom",
-    icon: "https://technicalsuwako.moe/static/Eqjk_WgVQAE2psn-new.jpeg",
+    icon: "https://technicalsuwako.moe/static/logo.png",
   }, {
     name: "Publickey",
     url: "https://www.publickey1.jp/atom.xml",
