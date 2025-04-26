@@ -254,5 +254,6 @@
   "https://www.kernel.org/feeds/kdist.xml": "a",
   "https://atcoder.jp/posts/": "a",
   "https://mitanyan98.hatenablog.com/feed": "a",
-  "https://anime.nicovideo.jp/latest/": "a"
+  "https://anime.nicovideo.jp/latest/": "a",
+  "https://postmarketos.org/blog/feed.atom": "a"
 }
