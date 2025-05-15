@@ -25,7 +25,7 @@ const webhook = async (
     let r: Response = new Response("Fake body")
 
     const timeout = setTimeout(() => resolve({
-      r, true
+      r, error: true,
     }), 30000)
 
     while(true) {
