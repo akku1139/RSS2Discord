@@ -18,75 +18,82 @@ const webhook = async (
   ok: (response: Response) => void = () => {},
   onFetchError: (error: unknown) => void = log.error,
   onHTTPError: (httpStatus: string, body: string) => void = log.error
-) => {
-  let retryCount = 0
-  let error: boolean = false
-  let r: Response = new Response("Fake body")
-  while(true) {
-    try {
-      r = await fetch(url, {
-        method: "POST",
-        headers: { 'Content-type': "application/json" },
-        body: JSON.stringify(body)
-      })
-    } catch(e) {
-      onFetchError(e)
-      responseStatus["error"] ++
-      error = true
-      break
-    }
+): Promise<{ r: Response, error: boolean }> => {
+  return await new Promise(async (resolve, reject) => {
+    const timeout = setTimeout(() => reject("Webhook Timeout. url: " + url), 30000)
 
-    responseStatus[r.status] = (responseStatus[r.status] ?? 0) + 1
-
-    if(r.ok) {
-      ok(r)
-      break
-    } else if(retryCount > 5) {
-      log.warn(url, "Exceeded maximum retry count")
-      error = true
-      break
-    } else if(r.status === 400) {
-      onHTTPError("400 Bad Request", await r.text())
-      error = true
-      break
-      /* if(ratelimit === null) {
-        break
-      } else {
-        await sleep(Number(ratelimit))
-        retryCount ++
-        continue
-      } */
-    } else if(r.status === 429) {
+    let retryCount = 0
+    let error: boolean = false
+    let r: Response = new Response("Fake body")
+    while(true) {
       try {
-        await sleep((await r.json()).retry_after)
+        r = await fetch(url, {
+          method: "POST",
+          headers: { 'Content-type': "application/json" },
+          body: JSON.stringify(body)
+        })
       } catch(e) {
-        log.error("in: await sleep((await r.json()).retry_after)")
         onFetchError(e)
-        await sleep(2)
-      }
-      retryCount ++
-      continue
-    } else if(r.status === 500) {
-      // const ratelimit = r.headers.get("x-ratelimit-reset-after")
-      onHTTPError("500 Internal Server Error", await r.text())
-      error = true
-      break
-      /* if(ratelimit === null) {
+        responseStatus["error"] ++
+        error = true
         break
-      } else {
-        await sleep(Number(ratelimit))
+      }
+
+      responseStatus[r.status] = (responseStatus[r.status] ?? 0) + 1
+
+      if(r.ok) {
+        ok(r)
+        break
+      } else if(retryCount > 5) {
+        log.warn(url, "Exceeded maximum retry count")
+        error = true
+        break
+      } else if(r.status === 400) {
+        onHTTPError("400 Bad Request", await r.text())
+        error = true
+        break
+        /* if(ratelimit === null) {
+          break
+        } else {
+          await sleep(Number(ratelimit))
+          retryCount ++
+          continue
+        } */
+      } else if(r.status === 429) {
+        try {
+          await sleep((await r.json()).retry_after)
+        } catch(e) {
+          log.error("in: await sleep((await r.json()).retry_after)")
+          onFetchError(e)
+          await sleep(2)
+        }
         retryCount ++
         continue
-      } */
-    } else {
-      onHTTPError(`${r.status}`, await r.text())
-      error = true
-      break
+      } else if(r.status === 500) {
+        // const ratelimit = r.headers.get("x-ratelimit-reset-after")
+        onHTTPError("500 Internal Server Error", await r.text())
+        error = true
+        break
+        /* if(ratelimit === null) {
+          break
+        } else {
+          await sleep(Number(ratelimit))
+          retryCount ++
+          continue
+        } */
+      } else {
+        onHTTPError(`${r.status}`, await r.text())
+        error = true
+        break
+      }
     }
-  }
-  return {
-    r, error
-  }
+
+    clearTimeout(timeout)
+
+    resolve({
+      r, error
+    })
+  })
 }
 
 export const sendWebhook = async (
