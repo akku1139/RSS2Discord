@@ -20,11 +20,14 @@ const webhook = async (
   onHTTPError: (httpStatus: string, body: string) => void = log.error
 ): Promise<{ r: Response, error: boolean }> => {
   return await new Promise(async (resolve, reject) => {
-    const timeout = setTimeout(() => reject("Webhook Timeout. url: " + url), 30000)
-
     let retryCount = 0
     let error: boolean = false
     let r: Response = new Response("Fake body")
+
+    const timeout = setTimeout(() => resolve({
+      r, true
+    }), 30000)
+
     while(true) {
       try {
         r = await fetch(url, {
