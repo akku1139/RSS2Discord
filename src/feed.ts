@@ -132,23 +132,25 @@ const rawFeeds = makeFeeds(
     url: "http://feeds.afpbb.com/rss/afpbb/afpbbnews", // SSLエラー
     icon: "https://afpbb.ismcdn.jp/common/images/apple-touch-icon2020.png",
     plugins: ["unEscapeHTML", "unHTML"],
-  }, mapHelper([
-    { name: "时政", key: "politics" },
-    { name: "社会", key: "society" },
-    { name: "法治", key: "legal" },
-    { name: "国际", key: "world" },
-    { name: "台港澳", key: "haixia" },
-    { name: "军事", key: "military" },
-    { name: "全部", key: "ywkx" },
-  ], f => ({
-    name: f.name + " - 人民日报",
-    description: "http://politics.people.com.cn/ywkx/GB/368825/index.html",
-    url: "http://www.people.com.cn/rss/" + f.key + ".xml",
-    icon: "http://politics.people.com.cn/img/MAIN/2013/08/113596/images/logo.gif",
-    base: "http://www.people.com.cn",
-    threadName: "人民日报",
-    plugins: ["unHTML"],
-  })), {
+  },
+  // mapHelper([
+  //   { name: "时政", key: "politics" },
+  //   { name: "社会", key: "society" },
+  //   { name: "法治", key: "legal" },
+  //   { name: "国际", key: "world" },
+  //   { name: "台港澳", key: "haixia" },
+  //   { name: "军事", key: "military" },
+  //   { name: "全部", key: "ywkx" },
+  // ], f => ({
+  //   name: f.name + " - 人民日报",
+  //   description: "http://politics.people.com.cn/ywkx/GB/368825/index.html",
+  //   url: "http://www.people.com.cn/rss/" + f.key + ".xml",
+  //   icon: "http://politics.people.com.cn/img/MAIN/2013/08/113596/images/logo.gif",
+  //   base: "http://www.people.com.cn",
+  //   threadName: "人民日报",
+  //   plugins: ["unHTML"],
+  // })),
+  {
     name: "IPAセキュリティセンター:重要なセキュリティ情報",
     url: "https://www.ipa.go.jp/security/alert-rss.rdf",
     icon: "https://www.ipa.go.jp/apple-touch-icon-180x180.png",
