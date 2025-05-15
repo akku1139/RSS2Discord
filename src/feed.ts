@@ -409,7 +409,7 @@ const rawFeeds = makeFeeds(
     threadName: "Tansa",
     plugins: ["unHTML"],
   }, {
-    name: "ニュース",
+    name: "ニュース - tansajp",
     url: "https://tansajp.org/investigativejournal/feed/",
     icon: "https://pbs.twimg.com/profile_images/1368745066764722177/5dsSuMY6_400x400.jpg",
     base: "https://tansajp.org",
@@ -430,6 +430,11 @@ const rawFeeds = makeFeeds(
     url: "https://postmarketos.org/blog/feed.atom",
     icon: "https://gitlab.postmarketos.org/uploads/-/system/group/avatar/236/icon_mobile.png",
     plugins: ["unEscapeHTML", "unHTML"],
+  }, {
+    name: "お知らせ - 東方LostWord",
+    url: "https://touhoulostword.com/feed/",
+    icon: "https://touhoulostword.com/assets/images/og_image.png",
+    plugins: ["unHTML"],
   }
 )
 
