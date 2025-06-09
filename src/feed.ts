@@ -99,7 +99,7 @@ const rawFeeds = makeFeeds(
     name: "akku's website",
     url: "https://akku1139.github.io/index.xml",
     icon: "https://akku1139.github.io/images/favicon.png",
-    plugins: ["unHTML"],
+    plugins: ["unEscapeHTML", "unHTML"],
   }, {
     name: "CoinPost",
     // url: "https://coinpost.jp/rss.xml",
