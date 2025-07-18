@@ -439,7 +439,7 @@ const rawFeeds = makeFeeds(
     icon: "https://touhoulostword.com/assets/images/og_image.png",
     plugins: ["unHTML"],
   }, {
-    name: "すまほん!",
+    name: "すまほん!!",
     url: "https://smhn.info/feed",
     icon: "https://smhn.info/wp-content/themes/confidence/images/favicon-big.png",
     plugins: ["unHTML"],
