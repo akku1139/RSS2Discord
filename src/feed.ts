@@ -443,6 +443,11 @@ const rawFeeds = makeFeeds(
     url: "https://smhn.info/feed",
     icon: "https://smhn.info/wp-content/themes/confidence/images/favicon-big.png",
     plugins: ["unHTML"],
+  }, {
+    name: "Latest Linux Kernel Versions",
+    url: "https://www.kernel.org/feeds/kdist.xml",
+    icon: "https://www.kernel.org/theme/images/logos/tux.png",
+    plugins: ["unEscapeHTML", "unHTML"],
   },
 )
 
