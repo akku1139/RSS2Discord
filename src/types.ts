@@ -56,7 +56,7 @@ export type FormattedFeed = RawFeed & {
   plugins: PluginList,
 }
 
-export type TransformFunction = (obj: string) => string
+export type TransformFunction = (obj: string, e: any) => string
 
 export type TransformTargets =
     "url"

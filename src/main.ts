@@ -69,7 +69,7 @@ for(const feed of feeds) {
         description: e?.description?.value ?? ""
       }
 
-      runPlugins(feed?.plugins, data)
+      runPlugins(feed?.plugins, data, e)
 
       const url = data.url
 

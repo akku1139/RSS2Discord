@@ -447,7 +447,7 @@ const rawFeeds = makeFeeds(
     name: "Latest Linux Kernel Versions",
     url: "https://www.kernel.org/feeds/kdist.xml",
     icon: "https://www.kernel.org/theme/images/logos/tux.png",
-    plugins: ["unEscapeHTML", "unHTML"],
+    plugins: ["unEscapeHTML", "unHTML", "linuxReleaseID"],
   },
 )
 
