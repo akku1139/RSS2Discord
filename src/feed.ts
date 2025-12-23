@@ -89,7 +89,7 @@ const rawFeeds = makeFeeds(
   }, {
     name: "AdGuard",
     url: "https://adguard.com/blog/rss-ja.xml",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/AdGuard.svg/640px-AdGuard.svg.png",
+    icon: "https://a.thumbs.redditmedia.com/fpH-NlU8N-L2EakQoJ5gOnVIhxgS_M1UVXDvldcMzH8.png",
   }, {
     name: "特務機関NERV",
     url: "https://unnerv.jp/@UN_NERV.rss",
