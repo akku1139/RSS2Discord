@@ -46,11 +46,11 @@ const rawFeeds = makeFeeds(
     base: "https://3blue1brown.substack.com/feed",
     url: "https://3blue1brown.substack.com/feed",
     icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/3B1B_Logo.svg/1200px-3B1B_Logo.svg.png",
-  }, {
+  }, /* {
     name: "fedimagazine.tokyo",
     url: "https://fedimagazine.tokyo/feed/",
     icon: "https://fedimagazine.tokyo/wp-content/uploads/2023/10/cropped-favicon.png",
-  }, {
+  }, */ {
     name: "GNU social JP Web",
     url: "https://web.gnusocial.jp/feed/",
     icon: "https://web.gnusocial.jp/wp-content/uploads/2022/07/cropped-GNU_Social_Image_Logo-4.png",
