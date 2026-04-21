@@ -354,7 +354,7 @@ const rawFeeds = makeFeeds(
   }, {
     name: "GAZLOG",
     url: "https://gazlog.jp/feed/",
-    icon: "https://gazlog.com/wp-content/uploads/2022/12/cropped-Gazlog-favcon-3-192x192.jpg",
+    icon: "https://gazlog.jp/wp-content/uploads/2022/12/cropped-Gazlog-favcon.jpg",
     plugins: ["unHTML"],
   }, {
     name: "アナログ",
