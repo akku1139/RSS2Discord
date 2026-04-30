@@ -26,6 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - uses: actions/checkout@v6
+        with:
+          ref: data
+          path: ./data
+
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
@@ -48,6 +53,7 @@ jobs:
           TRANS_WEBHOOK_URL: ${{ secrets.TRANS_WEBHOOK_URL }}
 
       - run: |
+          cd data
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
