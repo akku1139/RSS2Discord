@@ -456,6 +456,7 @@ const rawFeeds = makeFeeds(
     name: "Chienomi",
     url: "https://chienomi.org/feed.atom",
     icon: "https://chienomi.org/apple-touch-icon.png",
+  },
 )
 
 /*
