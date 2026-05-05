@@ -452,7 +452,10 @@ const rawFeeds = makeFeeds(
     name: "プリキュア公式YouTubeチャンネル",
     url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCSsjL41NsyqSNNbanuI0htg",
     icon: "https://pbs.twimg.com/profile_images/2015584512403779584/N-fxnUh5_400x400.jpg",
-  },
+  }, {
+    name: "Chienomi",
+    url: "https://chienomi.org/feed.atom",
+    icon: "https://chienomi.org/apple-touch-icon.png",
 )
 
 /*
