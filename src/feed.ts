@@ -456,6 +456,10 @@ const rawFeeds = makeFeeds(
     name: "Chienomi",
     url: "https://chienomi.org/feed.atom",
     icon: "https://chienomi.org/apple-touch-icon.png",
+  }, {
+    name: "デイリーNKジャパン",
+    url: "https://dailynk.jp/feed",
+    icon: "https://i0.wp.com/dailynk.jp/wp-content/uploads/2022/02/cropped-dnj_LOGO_600x600_2.png",
   },
 )
 
