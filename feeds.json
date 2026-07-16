@@ -262,5 +262,6 @@
   "https://type.jp/et/feature/feed/": "a",
   "https://chienomi.org/feed.atom": "a",
   "https://www.astroarts.co.jp/article/feed.atom": "a",
-  "https://dailynk.jp/feed": "a"
+  "https://dailynk.jp/feed": "a",
+  "https://lore.kernel.org/linux-mediatek/new.atom": "a"
 }
