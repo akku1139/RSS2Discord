@@ -460,6 +460,10 @@ const rawFeeds = makeFeeds(
     name: "デイリーNKジャパン",
     url: "https://dailynk.jp/feed",
     icon: "https://i0.wp.com/dailynk.jp/wp-content/uploads/2022/02/cropped-dnj_LOGO_600x600_2.png",
+  }, {
+    name: "linux-mediatek",
+    url: "https://lore.kernel.org/linux-mediatek/new.atom",
+    icon: "https://www.kernel.org/theme/images/logos/tux.png",
   },
 )
 
