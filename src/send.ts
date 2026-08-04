@@ -146,10 +146,54 @@ export const sendWebhook = async (
     threads[feed.base] = threadID
   }
 
-  return await webhook(
+  let res = await webhook(
     `${FORUM_WEBHOOK_URL}?thread_id=${threadID}`, body,
     () => { db[url] = "a" },
     (s) => log.error("on webhook (forum): ", feed.name, url, s),
     (s, t) => log.error(s, "(forum)", feed.name, url, t, body),
   )
+
+  if (res.error && res.r.status === 400) {
+    try {
+      const json = await res.r.json()
+      if (json?.code === 30007) {
+        log.warn(`Thread ${threadID} is closed. Attempting to reopen...`)
+        if (await reopenThread(threadID)) {
+          log.info("Thread reopened. Retrying...")
+          res = await webhook(
+            `${FORUM_WEBHOOK_URL}?thread_id=${threadID}`, body,
+            () => { db[url] = "a" },
+            (s) => log.error("on webhook (forum retry): ", feed.name, url, s),
+            (s, t) => log.error(s, "(forum retry)", feed.name, url, t, body),
+          )
+        }
+      }
+    } catch (e) {
+      // ignore parse error
+    }
+  }
+
+  return res
+}
+
+const reopenThread = async (threadID: string): Promise<boolean> => {
+  const token = Deno.env.get("DISCORD_BOT_TOKEN")
+  if (!token) {
+    log.warn("Cannot reopen thread: DISCORD_BOT_TOKEN is not set.")
+    return false
+  }
+  try {
+    const r = await fetch(`https://discord.com/api/v10/channels/${threadID}`, {
+      method: "PATCH",
+      headers: {
+        "Authorization": `Bot ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ archived: false, locked: false }),
+    })
+    return r.ok
+  } catch (e) {
+    log.error("Failed to reopen thread:", e)
+    return false
+  }
 }
