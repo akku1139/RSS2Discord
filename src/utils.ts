@@ -27,8 +27,7 @@ export const makePlugin = (plugin: Plugin) => {
   return plugin
 }
 
-// 無意味なデフォ値 by ぷぬぷぬ
-export const mapHelper = <T = {name: string, key: string}>(data: Array<T>, builder: (f: T) => RawFeed): Array<RawFeed> => {
+export const mapHelper = <T>(data: Array<T>, builder: (f: T) => RawFeed): Array<RawFeed> => {
   return data.map(builder)
 }
 
