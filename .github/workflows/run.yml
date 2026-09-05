@@ -49,6 +49,7 @@ jobs:
           DEFAULT_WEBHOOK_URL: ${{ secrets.DEFAULT_WEBHOOK_URL }}
           FORUM_WEBHOOK_URL: ${{ secrets.FORUM_WEBHOOK_URL }}
           TRANS_WEBHOOK_URL: ${{ secrets.TRANS_WEBHOOK_URL }}
+          OPENROUTER_WEBHOOK_URL: ${{ secrets.OPENROUTER_WEBHOOK_URL }}
 
       - run: |
           cd data
