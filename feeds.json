@@ -264,5 +264,6 @@
   "https://www.astroarts.co.jp/article/feed.atom": "a",
   "https://dailynk.jp/feed": "a",
   "https://lore.kernel.org/linux-mediatek/new.atom": "a",
-  "https://openrouter.ai/api/v1/models?limit=50&use_rss=true&sort=newest": "a"
+  "https://openrouter.ai/api/v1/models?limit=50&use_rss=true&sort=newest": "a",
+  "https://openrouter.ai/api/v1/models?limit=50&use_rss=true&sort=newest&output_modalities=all": "a"
 }
