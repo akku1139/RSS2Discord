@@ -429,7 +429,7 @@ const rawFeeds = makeFeeds(
     url: "https://mitanyan98.hatenablog.com/feed",
     icon: "https://cdn.blog.st-hatena.com/images/theme/og-image-1500.png",
     plugins: ["unEscapeHTML", "unHTML"],
-  }, {
+  }, { // TODO rename
     name: "postmarketOS Blog",
     url: "https://postmarketos.org/blog/feed.atom",
     //icon: "https://gitlab.postmarketos.org/uploads/-/system/group/avatar/236/icon_mobile.png",
