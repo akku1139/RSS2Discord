@@ -8,4 +8,5 @@ export default makeFeeds([{
   icon: "https://openrouter.ai/apple-touch-icon.png",
   test: true,
   webhook: OPENROUTER_WEBHOOK_URL,
+  plugins: ["unHTML"],
 }]);
