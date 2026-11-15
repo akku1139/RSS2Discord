@@ -1,3 +1,4 @@
+import process from "node:process"
 import type { Plugin, RawFeed } from "./types.ts"
 
 export const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, 1000 * s))
@@ -44,7 +45,7 @@ export const truncateString = <T>(str: T, maxLength: number): string | T => {
 }
 
 export const getEnv = (name: string) => {
-  const env = Deno.env.get(name)
+  const env = process.env[name]
   if(env === void 0) {
     throw new Error(`environment variable is empty: ${name}`)
   } else {

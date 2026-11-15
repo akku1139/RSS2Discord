@@ -1,4 +1,5 @@
-import { parseFeed, type Feed } from "rss"
+import { parseFeed, type Feed } from "@mikaelporttila/rss"
+import fs from "node:fs/promises"
 
 import feeds from "./feed.ts"
 import type { WebhookBody, FormattedFeed, FeedData } from "./types.ts"
@@ -9,14 +10,14 @@ import { runPlugins } from "./plugin.ts"
 
 const db: {[key: string]: "a"} = {}
 
-const db_old = JSON.parse(await Deno.readTextFile('data/data.json')) as {[key: string]: "a"}
+const db_old = JSON.parse((await fs.readFile('data/data.json')).toString()) as {[key: string]: "a"}
 hook.clean.push(async () => {
-  await Deno.writeTextFile('data/data.json', JSON.stringify(db, null, 2))
+  await fs.writeFile('data/data.json', JSON.stringify(db, null, 2))
 })
 
-const executedFeeds = JSON.parse(await Deno.readTextFile('data/feeds.json')) as {[key: string]: "a"}
+const executedFeeds = JSON.parse((await fs.readFile('data/feeds.json')).toString()) as {[key: string]: "a"}
 hook.clean.push(async () => {
-  await Deno.writeTextFile('data/feeds.json', JSON.stringify(executedFeeds, null, 2))
+  await fs.writeFile('data/feeds.json', JSON.stringify(executedFeeds, null, 2))
 })
 
 const failFeeds: Array<string> = []

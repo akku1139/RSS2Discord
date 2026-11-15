@@ -1,5 +1,5 @@
 import { makeFeeds, truncateString } from "../utils.ts"
-import { DOMParser } from "deno-dom"
+import { DOMParser } from "@b-fuze/deno-dom"
 import { unHTMLCore } from "../plugins/unHTML.ts"
 
 export default makeFeeds({
@@ -12,6 +12,7 @@ export default makeFeeds({
       "text/html",
     )
     return Array.from(doc.querySelectorAll(".panel.panel-default")).map(e => {
+      // @ts-expect-error: Property getAttribute does not exist on type Node. (ts 2339)
       const url = "https://atcoder.jp" + e.querySelector(".panel-title").firstChild.getAttribute("href")
       return {
         url,

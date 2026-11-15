@@ -2,10 +2,10 @@
   "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
-    "lib": ["ESNext", "WebWorker"],
+    "module": "nodenext",
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "moduleResolution": "Bundler"
+    "moduleResolution": "nodenext",
+    "types": ["node"],
   }
 }

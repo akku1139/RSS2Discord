@@ -1,0 +1,31 @@
+{
+  "name": "RSS2Discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.21.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.21.0",
+  "type": "module",
+  "dependencies": {
+    "@b-fuze/deno-dom": "jsr:0.1.48",
+    "@libs/xml": "jsr:6.0.4",
+    "@mikaelporttila/rss": "jsr:1.1.1",
+    "@std/html": "jsr:1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

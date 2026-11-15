@@ -24,27 +24,20 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: data
           path: ./data
 
-      - uses: denoland/setup-deno@v2
+      - uses: pnpm/setup@v3
         with:
-          deno-version: v2.x
+          runtime: node@26
+          install: true
+          cache: true
 
-      - uses: actions/cache@v5
-        with:
-          path: |
-            /home/runner/.deno
-            /home/runner/.cache/deno
-          restore-keys: deno-cache-
-          key: deno-cache-${{ hashFiles('./deno.lock') }}
-          # save-always: true
-
-      - run: deno run --unstable-kv --allow-env --allow-net --allow-read=. --allow-write=. ./src/main.ts ${{ inputs.args }}
+      - run: node ./src/main.ts ${{ inputs.args }}
         env:
           DEFAULT_WEBHOOK_URL: ${{ secrets.DEFAULT_WEBHOOK_URL }}
           FORUM_WEBHOOK_URL: ${{ secrets.FORUM_WEBHOOK_URL }}

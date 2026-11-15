@@ -1,6 +1,6 @@
 import type { WebhookBody } from "../types.ts"
 import { makeFeeds } from "../utils.ts"
-import { parse } from "xml"
+import { parse } from "@libs/xml"
 
 export default makeFeeds({
   name: "Nアニメ", // 上書きされます
@@ -71,6 +71,7 @@ export default makeFeeds({
       return {
         url: i.watchUrl,
         body: async () => {
+          // @ts-expect-error: cast
           const d = parse(await (
             await fetch(i.watchUrl.replace("https://www.nicovideo.jp/watch/", "https://ext.nicovideo.jp/api/getthumbinfo/"))
           ).text()) as ThumbinfoJSON
