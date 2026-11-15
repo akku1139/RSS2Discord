@@ -1,4 +1,4 @@
-import { WebhookBody, type FormattedFeed } from "./types.ts";
+import type { WebhookBody, FormattedFeed } from "./types.ts";
 import { log, sleep, hook, getEnv } from "./utils.ts"
 import { threads, skipAll } from "./defs.ts"
 
