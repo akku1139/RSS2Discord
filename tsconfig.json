@@ -7,5 +7,7 @@
     "allowImportingTsExtensions": true,
     "moduleResolution": "nodenext",
     "types": ["node"],
+    "strict": true,
+    "noImplicitAny": true,
   }
 }
