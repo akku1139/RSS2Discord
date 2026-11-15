@@ -43,6 +43,7 @@ export type RawFeed = {
   plugins?: PluginList,
   builder?: (feed: FormattedFeed) => MaybePromise<Array<{ url: string, body: () => MaybePromise<WebhookBody> }>>,
   webhook?: string,
+  reverseOrder?: boolean,
 }
 
 export type FormattedFeed = RawFeed & {

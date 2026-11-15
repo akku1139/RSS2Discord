@@ -64,6 +64,9 @@ for(const feed of feeds) {
       failFeeds.push(feed.host)
       continue
     }
+
+    if(feed.reverseOrder) parsed.entries.reverse()
+
     for(const e of parsed.entries) {
       const data: FeedData = {
         url: e.links[0].href ?? "",
