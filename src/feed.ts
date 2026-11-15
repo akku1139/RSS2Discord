@@ -466,6 +466,7 @@ const rawFeeds = makeFeeds(
     name: "linux-mediatek",
     url: "https://lore.kernel.org/linux-mediatek/new.atom",
     icon: "https://www.kernel.org/theme/images/logos/tux.png",
+    reverseOrder: true,
   },
 )
 
