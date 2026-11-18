@@ -266,5 +266,6 @@
   "https://lore.kernel.org/linux-mediatek/new.atom": "a",
   "https://openrouter.ai/api/v1/models?limit=50&use_rss=true&sort=newest": "a",
   "https://openrouter.ai/api/v1/models?limit=50&use_rss=true&sort=newest&output_modalities=all": "a",
-  "https://3blue1brown.substack.com/feed": "a"
+  "https://3blue1brown.substack.com/feed": "a",
+  "https://openrouter.ai/api/v1/models?limit=1000&use_rss=true&sort=newest&output_modalities=all": "a"
 }
