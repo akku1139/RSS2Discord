@@ -167,9 +167,13 @@ for(const feed of feeds) {
 }
 
 Object.keys(db_old).forEach(r => {
-  const o = new URL(r)
-  if(failFeeds.includes(o.host)) {
-    db[r] = "a"
+  try {
+    const o = new URL(r)
+    if (failFeeds.includes(o.host)) {
+      db[r] = "a"
+    }
+  } catch (e) {
+    console.log(e)
   }
 })
 
