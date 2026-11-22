@@ -16,7 +16,7 @@ const catalogBuilder: (modelId2URL: (id: string) => string) => Builder = (modelI
   }
 
   return models.data.map(m => ({
-    url: modelId2URL(m.id),
+    url: "modelCatalog:" + modelId2URL(m.id),
     body: () => ({
       username: feed.name,
       avatar_url: feed.icon,
