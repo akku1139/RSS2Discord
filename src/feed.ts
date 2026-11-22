@@ -12,6 +12,7 @@ import wsj from "./feeds/wsj.ts"
 import atcoder from "./feeds/atcoder.ts"
 import nanime from "./feeds/nanime.ts"
 import openrouter from "./feeds/openrouter.ts"
+import modelCatalog from "./feeds/modelCatalog.ts"
 
 const rawFeeds = makeFeeds(
   core,
@@ -25,6 +26,7 @@ const rawFeeds = makeFeeds(
   atcoder,
   nanime,
   openrouter,
+  modelCatalog,
   {
     name: "虚構新聞",
     url: "https://kyoko-np.net/index.xml",

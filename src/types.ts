@@ -31,6 +31,8 @@ export type WebhookBody = {
   }>
 }
 
+export type Builder = (feed: FormattedFeed) => MaybePromise<Array<{ url: string, body: () => MaybePromise<WebhookBody> }>>
+
 export type RawFeed = {
   name: string,
   description?: string,
@@ -41,7 +43,7 @@ export type RawFeed = {
   threadName?: string,
   test?: boolean, // 指定したら送信しない
   plugins?: PluginList,
-  builder?: (feed: FormattedFeed) => MaybePromise<Array<{ url: string, body: () => MaybePromise<WebhookBody> }>>,
+  builder?: Builder,
   webhook?: string,
   reverseOrder?: boolean,
 }
