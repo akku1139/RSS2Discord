@@ -1,4 +1,4 @@
-import { Builder } from "../types.ts"
+import type { Builder } from "../types.ts"
 import { makeFeeds } from "../utils.ts"
 
 const catalogBuilder: (modelId2URL: (id: string) => string) => Builder = (modelId2URL) => async (feed) => {
