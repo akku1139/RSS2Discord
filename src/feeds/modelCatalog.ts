@@ -30,7 +30,7 @@ export default makeFeeds({
   url: "https://api.commandcode.ai/provider/v1/models",
   icon: "https://avatars.githubusercontent.com/u/151507869?s=200&v=4",
   builder: catalogBuilder(
-    id => id.replace(/^[^/]+\//, '') // スラッシュ以前を削除
+    id => "https://commandcode.ai/models/" + id.replace(/^[^/]+\//, "") // スラッシュ以前を削除
       .replace(/[.:]/g, '-') // ドットとコロンをハイフンに置換),
       .toLowerCase()
   ),
