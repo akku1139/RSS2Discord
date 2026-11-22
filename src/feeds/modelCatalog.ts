@@ -41,4 +41,11 @@ export default makeFeeds({
   builder: catalogBuilder(
     id => "https://openrouter.ai/" + id,
   ),
+}, {
+  name: "Vercel AI Gateway",
+  url: "https://ai-gateway.vercel.sh/v1/models",
+  icon: "https://assets.vercel.com/image/upload/q_auto/front/favicon/vercel/apple-touch-icon-256x256.png",
+  builder: catalogBuilder(
+    id => "https://vercel.com/ai-gateway/models/" + id,
+  ),
 })
