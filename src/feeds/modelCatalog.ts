@@ -34,4 +34,11 @@ export default makeFeeds({
       .replace(/[.:]/g, '-') // ドットとコロンをハイフンに置換),
       .toLowerCase()
   ),
+}, {
+  name: "OpenRouter",
+  url: "https://openrouter.ai/api/v1/models",
+  icon: "https://openrouter.ai/apple-touch-icon.png",
+  builder: catalogBuilder(
+    id => "https://openrouter.ai/" + id,
+  ),
 })
