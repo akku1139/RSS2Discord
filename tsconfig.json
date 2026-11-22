@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
     "module": "nodenext",
@@ -8,6 +7,23 @@
     "moduleResolution": "nodenext",
     "types": ["node"],
     "strict": true,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "allowJs": false,
+    "isolatedModules": true,
+    // "isolatedDeclarations": true,
+    "forceConsistentCasingInFileNames": true, // Windows
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedSideEffectImports": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "erasableSyntaxOnly": true,
     "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    // "noPropertyAccessFromIndexSignature": true,
   }
 }
