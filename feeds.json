@@ -270,5 +270,6 @@
   "https://openrouter.ai/api/v1/models?limit=1000&use_rss=true&sort=newest&output_modalities=all": "a",
   "https://api.commandcode.ai/provider/v1/models": "a",
   "https://openrouter.ai/api/v1/models": "a",
-  "https://ai-gateway.vercel.sh/v1/models": "a"
+  "https://ai-gateway.vercel.sh/v1/models": "a",
+  "https://reameizu.com/feed/": "a"
 }
