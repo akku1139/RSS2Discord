@@ -469,6 +469,10 @@ const rawFeeds = makeFeeds(
     url: "https://lore.kernel.org/linux-mediatek/new.atom",
     icon: "https://www.kernel.org/theme/images/logos/tux.png",
     reverseOrder: true,
+  }, {
+    name: "ReaMEIZU",
+    url: "https://reameizu.com/feed/",
+    icon: "https://reameizu.com/wp-content/uploads/2026/06/cropped-new-reameizu-logo-512px-0-2-180x180.png",
   },
 )
 
