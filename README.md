@@ -62,3 +62,9 @@ KV.一括追加(新)
 ```
 
 ここにフィードがエラー返した場合の処理がある
+
+## LICENSE
+
+```
+SPDX-License-Identifier: AGPL-3.0-or-later
+```
