@@ -19,7 +19,7 @@ const webhook = async (
   onFetchError: (error: unknown) => void = log.error,
   onHTTPError: (httpStatus: string, body: string) => void = log.error
 ): Promise<{ r: Response, error: boolean }> => {
-  return await new Promise(async (resolve, reject) => {
+  return await new Promise(async (resolve) => {
     let retryCount = 0
     let error: boolean = false
     let r: Response = new Response("Fake body")

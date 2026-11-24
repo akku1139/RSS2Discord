@@ -16,7 +16,7 @@ export const log = {
   error: (...msg: Array<unknown>) => console.error("[  error ]", ...filterUndefined(msg)),
 } as const
 
-export const hook: {[name: string]: Array<() => void>} = {
+export const hook: { 'clean': Array<() => unknown> } = {
   clean: []
 }
 
