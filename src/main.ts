@@ -177,4 +177,4 @@ Object.keys(db_old).forEach(r => {
   }
 })
 
-hook.clean.forEach((f) => f())
+await Promise.all(hook.clean.map(f => f()))
