@@ -432,8 +432,9 @@ const rawFeeds = makeFeeds(
     icon: "https://cdn.blog.st-hatena.com/images/theme/og-image-1500.png",
     plugins: ["unEscapeHTML", "unHTML"],
   }, { // TODO rename
-    name: "postmarketOS Blog",
-    url: "https://postmarketos.org/blog/feed.atom",
+    name: "Nura Blog",
+    url: "https://nura.eco/blog/feed.atom",
+    base: "https://postmarketos.org",
     //icon: "https://gitlab.postmarketos.org/uploads/-/system/group/avatar/236/icon_mobile.png",
     icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/PostmarketOS_logo.svg/2048px-PostmarketOS_logo.svg.png",
     plugins: ["unEscapeHTML", "unHTML"],
