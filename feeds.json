@@ -271,5 +271,6 @@
   "https://api.commandcode.ai/provider/v1/models": "a",
   "https://openrouter.ai/api/v1/models": "a",
   "https://ai-gateway.vercel.sh/v1/models": "a",
-  "https://reameizu.com/feed/": "a"
+  "https://reameizu.com/feed/": "a",
+  "https://nura.eco/blog/feed.atom": "a"
 }
