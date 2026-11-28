@@ -48,4 +48,11 @@ export default makeFeeds({
   builder: catalogBuilder(
     id => "https://vercel.com/ai-gateway/models/" + id,
   ),
+}, {
+  name: "OrcaRouter",
+  url: "https://www.orcarouter.ai/api/v1/models",
+  icon: "https://www.orcarouter.ai/orca-logo-classic.png",
+  builder: catalogBuilder(
+    id => "https://www.orcarouter.ai/models/" + id,
+  ),
 })
